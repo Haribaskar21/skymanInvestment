@@ -16,9 +16,10 @@ import RefundPolicy from './pages/RefundPolicy';
 // import BookServices from './pages/BookServices';
 // import News from './pages/News';
 // import Calculators from './pages/Calculators';
-// import Blog from './pages/Blog';
+import Blog from './pages/Blog';
 import Offers from './pages/Offers';
 import PageTitleSetter from './components/PageTitleSetter';
+import BlogDetail from './pages/BlogDetail';
 
 export default function App() {
   useEffect(() => {
@@ -46,6 +47,10 @@ export default function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/offers" element={<Offers />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
+          {/* <Route path="/news" element={<News />} />
+          <Route path="/news/:id" element={<NewsDetail />} /> */}
         </Routes>
       </main>
       <Footer />

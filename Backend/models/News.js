@@ -8,4 +8,4 @@ const contentSchema = new mongoose.Schema({
   image: String
 });
 
-module.exports = mongoose.model('Blog', contentSchema);
+module.exports = mongoose.model('News', contentSchema);

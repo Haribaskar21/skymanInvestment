@@ -1,31 +1,12 @@
+
 const express = require('express');
 const router = express.Router();
-const Blog = require('../models/Blog');
+const blogController = require('../controllers/blogController');
+const { verifyToken, isAdmin } = require('../middleware/authMiddleware');
 
-// Get all blogs
-router.get('/', async (req, res) => {
-  try {
-    const blogs = await Blog.find().sort({ createdAt: -1 });
-    res.json(blogs);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Create a new blog
-router.post('/', async (req, res) => {
-  const blog = new Blog({
-    title: req.body.title,
-    content: req.body.content,
-    author: req.body.author
-  });
-
-  try {
-    const newBlog = await blog.save();
-    res.status(201).json(newBlog);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+router.post('/', verifyToken, isAdmin, blogController.upload, blogController.createBlog);
+router.get('/', blogController.getAllBlogs);
+router.put('/:id', verifyToken, isAdmin, blogController.upload, blogController.updateBlog);
+router.delete('/:id', verifyToken, isAdmin, blogController.deleteBlog);
 
 module.exports = router;
