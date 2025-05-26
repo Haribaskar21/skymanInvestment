@@ -2,9 +2,14 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const sectionVariant = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  const fadeLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  };
+
+  const fadeRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
   };
 
   return (
@@ -54,19 +59,14 @@ export default function Home() {
       {/* Main Content */}
       <section className="py-16 px-4 max-w-6xl mx-auto text-gray-800 space-y-12">
 
-        {/* About Us */}
-        <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <h2 className="text-3xl font-bold text-cyan-600 mb-4">About Us</h2>
-          <p>
-            Skyman Investments is a trusted leader in comprehensive financial services, dedicated to helping individuals, families, and businesses achieve their financial goals with confidence.
-          </p>
-          <p className="mt-2">
-            We provide expert guidance, personalized strategies, and innovative solutions tailored to meet the unique needs of each client.
-          </p>
-        </motion.div>
-
         {/* Our Mission */}
-        <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+        <motion.div
+          variants={fadeRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="p-6 rounded-lg bg-blue-100 border border-blue-200"
+        >
           <h3 className="text-2xl font-semibold text-cyan-600 mb-2">Our Mission</h3>
           <p>
             To empower our clients with tools and knowledge to build wealth, manage risk, and protect their financial well-being. We are committed to transparency, trust, and putting our clients' interests first.
@@ -74,7 +74,13 @@ export default function Home() {
         </motion.div>
 
         {/* Our Services */}
-        <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+        <motion.div
+          variants={fadeLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="p-6 rounded-lg bg-blue-100 border border-blue-200"
+        >
           <h3 className="text-2xl font-semibold text-cyan-600 mb-2">Our Services</h3>
           <ul className="list-disc pl-5 space-y-2">
             <li><strong>Investment Management:</strong> Tailored portfolios, risk management, and growth-focused options.</li>
@@ -86,7 +92,13 @@ export default function Home() {
         </motion.div>
 
         {/* Why Choose Us */}
-        <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+        <motion.div
+          variants={fadeRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="p-6 rounded-lg bg-blue-100 border border-blue-200"
+        >
           <h3 className="text-2xl font-semibold text-cyan-600 mb-2">Why Choose Us?</h3>
           <ul className="list-disc pl-5 space-y-2">
             <li><strong>Personalized Approach:</strong> We build relationships to understand your goals.</li>
@@ -97,7 +109,13 @@ export default function Home() {
         </motion.div>
 
         {/* Our Values */}
-        <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+        <motion.div
+          variants={fadeLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="p-6 rounded-lg bg-blue-100 border border-blue-200"
+        >
           <h3 className="text-2xl font-semibold text-cyan-600 mb-2">Our Values</h3>
           <ul className="list-disc pl-5 space-y-2">
             <li><strong>Integrity:</strong> We value honesty and ethical service.</li>
@@ -108,7 +126,13 @@ export default function Home() {
         </motion.div>
 
         {/* Contact CTA */}
-        <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center">
+        <motion.div
+          variants={fadeRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-center p-6 rounded-lg bg-blue-100 border border-blue-200"
+        >
           <h3 className="text-2xl font-bold text-cyan-600 mb-2">Get in Touch</h3>
           <p className="mb-6 text-lg">
             Ready to begin your financial journey? Reach out today and let’s build your future together.
