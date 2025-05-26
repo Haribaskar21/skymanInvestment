@@ -118,7 +118,7 @@ export default function Navbar() {
             <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
               <Link
                 to="/admin/login"
-                className="text-sm bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition"
+                className="text-sm bg-[#004d6e] text-white px-4 py-2 rounded-full hover:bg-[#00bcd4] transition"
               >
                 Admin Login
               </Link>
@@ -128,7 +128,7 @@ export default function Navbar() {
               <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
                 <Link
                   to="/admin/dashboard"
-                  className="text-sm bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition"
+                  className="text-sm bg-[#004d6e] text-white px-4 py-2 rounded-full hover:bg-[#00bcd4] transition"
                 >
                   Dashboard
                 </Link>
@@ -211,7 +211,7 @@ export default function Navbar() {
           {!isAdminLoggedIn ? (
             <Link
               to="/admin/login"
-              className="text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition"
+              className="text-sm bg-[#004d6e] text-white px-3 py-1 rounded hover:bg-[#00bcd4] transition"
             >
               Admin Login
             </Link>
@@ -219,7 +219,7 @@ export default function Navbar() {
             <>
               <Link
                 to="/admin/dashboard"
-                className="text-sm bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition"
+                className="text-sm bg-[#004d6e] text-white px-3 py-1 rounded hover:bg-[#00bcd4] transition"
               >
                 Dashboard
               </Link>
@@ -369,7 +369,7 @@ export default function Navbar() {
                   <Link
                     to="/admin/login"
                     onClick={() => setIsMenuOpen(false)}
-                    className="text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition inline-block"
+                    className="text-sm bg-[#004d6e] text-white px-3 py-1 rounded hover:bg-[#00bcd4] transition inline-block"
                   >
                     Admin Login
                   </Link>
@@ -380,7 +380,7 @@ export default function Navbar() {
                     <Link
                       to="/admin/dashboard"
                       onClick={() => setIsMenuOpen(false)}
-                      className="text-sm bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition inline-block"
+                      className="text-sm bg-[#004d6e] text-white px-3 py-1 rounded hover:bg-[#00bcd4] transition inline-block"
                     >
                       Dashboard
                     </Link>
@@ -391,7 +391,7 @@ export default function Navbar() {
                         localStorage.removeItem('token');
                         window.location.href = '/';
                       }}
-                      className="text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition w-full text-left"
+                      className="text-sm bg-red-400 text-white px-3 py-1 rounded hover:bg-red-500 transition w-full text-left"
                     >
                       Logout
                     </button>
