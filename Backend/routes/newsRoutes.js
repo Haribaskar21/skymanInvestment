@@ -6,6 +6,7 @@ const { verifyToken, isAdmin } = require('../middleware/authMiddleware');
 
 router.post('/', verifyToken, isAdmin, newsController.upload, newsController.createNews);
 router.get('/', newsController.getAllNews);
+router.get('/:id', newsController.getNewsById);
 router.put('/:id', verifyToken, isAdmin, newsController.upload, newsController.updateNews);
 router.delete('/:id', verifyToken, isAdmin, newsController.deleteNews);
 

@@ -6,6 +6,7 @@ const { verifyToken, isAdmin } = require('../middleware/authMiddleware');
 
 router.post('/', verifyToken, isAdmin, blogController.upload, blogController.createBlog);
 router.get('/', blogController.getAllBlogs);
+router.get('/:id', blogController.getBlogById);
 router.put('/:id', verifyToken, isAdmin, blogController.upload, blogController.updateBlog);
 router.delete('/:id', verifyToken, isAdmin, blogController.deleteBlog);
 

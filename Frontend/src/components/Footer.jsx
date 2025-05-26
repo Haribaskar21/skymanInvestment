@@ -53,7 +53,7 @@ export default function Footer() {
             <ul className="flex flex-wrap gap-6 text-sm items-center">
               {[
                 { href: "https://www.linkedin.com/in/iamrk/", label: "LinkedIn", icon: "/linkedin.png", color: "hover:text-blue-700" },
-                { href: "https://x.com/rajeshkmoorthy", label: "X", icon: "x.png", color: "/hover:text-blue-400" },
+                { href: "https://x.com/rajeshkmoorthy", label: "X", icon: "x.png", icon: "/x.png", color: "/hover:text-blue-400" },
                 { href: "https://www.facebook.com/skyman.rajesh", label: "Facebook", icon: "/facebook.png", color: "hover:text-blue-600" },
                 { href: "https://www.instagram.com/skymaninvestments/", label: "Instagram", icon: "/instagram.png", color: "hover:text-pink-500" },
                 { href: "https://www.threads.com/@skymaninvestments", label: "Threads", icon: "/threads.png", color: "hover:text-black" }
