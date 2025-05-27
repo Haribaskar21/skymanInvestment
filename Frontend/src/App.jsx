@@ -21,9 +21,9 @@ import Blog from './pages/Blog';
 import Offers from './pages/Offers';
 import PageTitleSetter from './components/PageTitleSetter';
 import BlogDetail from './pages/BlogDetail';
-import AdminRoute from './components/AdminRoute';
-import AdminLogin from './pages/AdminLogin';
-import AdminDashboard from './pages/AdminDashboard';
+// import AdminRoute from './components/AdminRoute';
+// import AdminLogin from './pages/AdminLogin';
+// import AdminDashboard from './pages/AdminDashboard';
 
 export default function App() {
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function App() {
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<NewsDetail />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
+          {/* <Route path="/admin/login" element={<AdminLogin />} />
           <Route
               path="/admin/dashboard"
               element={
@@ -63,7 +63,7 @@ export default function App() {
                   <AdminDashboard />
                 </AdminRoute>
               }
-            />
+            /> */}
         </Routes>
       </main>
       <Footer />

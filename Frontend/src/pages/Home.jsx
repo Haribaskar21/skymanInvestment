@@ -52,7 +52,7 @@ export default function Home() {
           />
           <Link
             to="/services"
-            className="absolute bottom-5 shadow-black hover:bg-[#004d6e] bg-cyan-500 text-white font-medium px-6 py-3 rounded-full transition shadow-lg"
+            className="absolute h-15 w-l bottom-5 shadow-black hover:bg-[#004d6e] bg-cyan-500 text-white text-center font-medium mb-10 px-6 py-3 rounded-full transition shadow-lg"
           >
             Explore Our Services
           </Link>
