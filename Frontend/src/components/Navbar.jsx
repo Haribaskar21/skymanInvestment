@@ -87,7 +87,7 @@ export default function Navbar() {
                   <Link to="/news" className="text-black hover:text-gray-500 transition">
                     News & updates
                   </Link>
-                  <Link to="/more#calculator" className="text-black hover:text-gray-500 transition">
+                  <Link to="/calculators" className="text-black hover:text-gray-500 transition">
                     Calculators
                   </Link>
                   <Link to="/privacy-policy" className="text-black hover:text-gray-500 transition">
@@ -185,7 +185,7 @@ export default function Navbar() {
               <Link to="/news" className="block px-2 py-1 hover:bg-gray-100 rounded">
                 News & Updates
               </Link>
-              <Link to="/more#calculator" className="block px-2 py-1 hover:bg-gray-100 rounded">
+              <Link to="/calculators" className="block px-2 py-1 hover:bg-gray-100 rounded">
                 Calculators
               </Link>
               <Link to="/privacy-policy" className="block px-2 py-1 hover:bg-gray-100 rounded">
@@ -329,7 +329,7 @@ export default function Navbar() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="/more#calculator" onClick={() => setIsMenuOpen(false)}>
+                        <Link to="/calculators" onClick={() => setIsMenuOpen(false)}>
                           Calculators
                         </Link>
                       </li>

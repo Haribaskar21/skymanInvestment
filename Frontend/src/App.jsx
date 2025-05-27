@@ -16,7 +16,7 @@ import RefundPolicy from './pages/RefundPolicy';
 // import BookServices from './pages/BookServices';
 import News from './pages/News';
 import NewsDetail from './pages/NewsDetail';
-// import Calculators from './pages/Calculators';
+import Calculators from './pages/Calculators';
 import Blog from './pages/Blog';
 import Offers from './pages/Offers';
 import PageTitleSetter from './components/PageTitleSetter';
@@ -55,6 +55,7 @@ export default function App() {
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<NewsDetail />} />
+          <Route path="/calculators" element={<Calculators />} />
           {/* <Route path="/admin/login" element={<AdminLogin />} />
           <Route
               path="/admin/dashboard"
