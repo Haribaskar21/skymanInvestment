@@ -16,16 +16,14 @@ export default function Home() {
     <div>
       {/* Hero Section */}
       <section className="relative bg-gray-100 flex flex-col w-full items-center justify-center gap-10">
-        {/* Top Text */}
         <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center z-10">
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 1 }}
             className="text-6xl md:text-5xl font-bold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500"
           >
-            Empowering Your Financial Future 
+            Empowering Your Financial Future
           </motion.h1>
 
           <motion.p
@@ -39,7 +37,6 @@ export default function Home() {
           </motion.p>
         </div>
 
-        {/* Bottom Image & Button */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,61 +56,91 @@ export default function Home() {
           </Link>
         </motion.div>
       </section>
+
+      {/* Content Sections */}
       <section className="py-16 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-  {/* Left Side - Our Mission */}
-  <div className="text-black p-8 rounded-2xl bg-blue-50 shadow-md" data-aos="fade-right">
-    <h2 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6" data-aos="fade-down">
-      Our Mission
-    </h2>
-    <p className="text-xl leading-relaxed text-gray-700" data-aos="fade-up">
-      At <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Skyman Investments</span>, our mission is to empower our clients by 
-      offering them the tools and knowledge necessary to build wealth, manage risk, and protect their financial well-being. 
-      We are committed to providing <span className="font-semibold">transparent, trustworthy, and reliable</span> services, 
-      always putting our clients' interests first.
-    </p>
-  </div>
+          {/* Our Mission */}
+          <div className="text-black p-8 rounded-2xl bg-blue-50 shadow-md" data-aos="fade-right">
+            <h2 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6" data-aos="fade-down">
+              Our Mission
+            </h2>
+            <p className="text-xl leading-relaxed text-gray-700" data-aos="fade-up">
+              At <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Skyman Investments</span>, our mission is to empower our clients by
+              offering them the tools and knowledge necessary to build wealth, manage risk, and protect their financial well-being.
+              We are committed to providing <span className="font-semibold">transparent, trustworthy, and reliable</span> services,
+              always putting our clients' interests first.
+            </p>
+          </div>
 
-  {/* Right Side - Our Services */}
-  <div>
-    <h2 className="text-4xl font-bold text-gray-900 mb-12">Our Services</h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      <div className="bg-blue-200 text-black p-6 rounded-2xl shadow-md" data-aos="fade-right">
-        <div className="text-4xl mb-4">📂</div>
-        <h3 className="text-xl font-bold mb-2">Demat Account</h3>
-        <p className="text-sm">
-          Secure and convenient way to hold and manage your shares electronically.
-        </p>
-      </div>
+          {/* Our Services */}
+          <div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-12">Our Services</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="bg-blue-200 text-black p-6 rounded-2xl shadow-md" data-aos="fade-right">
+                <div className="text-5xl mb-4">📂</div>
+                <h3 className="text-xl font-bold mb-2">Demat Account</h3>
+                <p className="text-sm">
+                  Secure and convenient way to hold and manage your shares electronically.
+                </p>
+              </div>
 
-      <div className="bg-blue-600 text-white p-6 rounded-2xl shadow-md" data-aos="fade-left" data-aos-delay="50">
-        <div className="text-4xl mb-4">🛡️</div>
-        <h3 className="text-xl font-bold mb-2">Insurance</h3>
-        <p className="text-sm">
-          Protect your life, health, and property with comprehensive insurance plans.
-        </p>
-      </div>
+              <div className="bg-blue-600 text-white p-6 rounded-2xl shadow-md" data-aos="fade-left" data-aos-delay="50">
+                <div className="text-5xl mb-4">🛡️</div>
+                <h3 className="text-xl font-bold mb-2">Insurance</h3>
+                <p className="text-sm">
+                  Protect your life, health, and property with comprehensive insurance plans.
+                </p>
+              </div>
 
-      <div className="bg-blue-600 text-white p-6 rounded-2xl shadow-md" data-aos="fade-right" data-aos-delay="100">
-        <div className="text-4xl mb-4">💰</div>
-        <h3 className="text-xl font-bold mb-2">Tax Services</h3>
-        <p className="text-sm">
-          Efficient tax planning and filing services to save you time and money.
-        </p>
-      </div>
+              <div className="bg-blue-600 text-white p-6 rounded-2xl shadow-md" data-aos="fade-right" data-aos-delay="100">
+                <div className="text-5xl mb-4">💰</div>
+                <h3 className="text-xl font-bold mb-2">Tax Services</h3>
+                <p className="text-sm">
+                  Efficient tax planning and filing services to save you time and money.
+                </p>
+              </div>
 
-      <div className="bg-blue-200 text-black p-6 rounded-2xl shadow-md" data-aos="fade-left" data-aos-delay="150">
-        <div className="text-4xl mb-4">📅</div>
-        <h3 className="text-xl font-bold mb-2">Financial Planning</h3>
-        <p className="text-sm">
-          Smart budgeting, goal planning, and investment advice for your future.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+              <div className="bg-blue-200 text-black p-6 rounded-2xl shadow-md" data-aos="fade-left" data-aos-delay="150">
+                <div className="text-5xl mb-4">📅</div>
+                <h3 className="text-xl font-bold mb-2">Financial Planning</h3>
+                <p className="text-sm">
+                  Smart budgeting, goal planning, and investment advice for your future.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        {/* Why Choose Us */}
+        <div className="mt-20  p-10 rounded-2xl" data-aos="fade-up">
+          <h2 className="text-4xl font-bold text-center text-cyan-600 mb-10">Why Choose Us?</h2>
+          <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition" data-aos="fade-up">
+              <div className="text-6xl mb-4">🤝</div>
+              <h3 className="text-xl font-bold mb-2">Personalized Approach</h3>
+              <p className="text-sm text-gray-600">
+                We believe in strong relationships to understand your financial goals deeply.
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="100">
+              <div className="text-6xl mb-4">👨‍💼</div>
+              <h3 className="text-xl font-bold mb-2">Experienced Professionals</h3>
+              <p className="text-sm text-gray-600">
+                Our advisors bring years of experience and a deep understanding of markets.
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="200">
+              <div className="text-6xl mb-4">💡</div>
+              <h3 className="text-xl font-bold mb-2">Innovative Solutions</h3>
+              <p className="text-sm text-gray-600">
+                We use modern tools and strategies tailored to your individual needs.
+              </p>
+            </div>
+          </div>
+        </div>
 
+        {/* Get in Touch */}
         <motion.div
           variants={fadeRight}
           initial="hidden"
