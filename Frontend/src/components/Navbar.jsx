@@ -20,7 +20,7 @@ export default function Navbar() {
       <div className="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <img src="/Logo.png" alt="Skyman Investments Logo" className="h-14 w-auto" />
+          <img src="assets/Logo.png" alt="Skyman Investments Logo" className="h-14 w-auto" />
           <div>
             <Link
               to="/"
@@ -391,7 +391,7 @@ export default function Navbar() {
                         localStorage.removeItem('token');
                         window.location.href = '/';
                       }}
-                      className="text-sm bg-red-400 text-white px-3 py-1 rounded hover:bg-red-500 transition w-full text-left"
+                      className="text-sm bg-red-400 text-white px-3 py-1 rounded hover:bg-red-500 transition inline-block"
                     >
                       Logout
                     </button>

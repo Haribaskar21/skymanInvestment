@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+.bg-skygreen {
+  background-color: #00b58d;
+}
+.text-skygreen {
+  color: #00b58d;
+}
+
+.bg-skyblue {
+  background-color: #008b7a;
+}
+.text-skyblue {
+  color: #008b7a;
+}

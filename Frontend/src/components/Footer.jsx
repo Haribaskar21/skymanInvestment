@@ -52,11 +52,11 @@ export default function Footer() {
             <h5 className="text-xl font-semibold mb-4 text-black">Follow Us</h5>
             <ul className="flex flex-wrap gap-6 text-sm items-center">
               {[
-                { href: "https://www.linkedin.com/in/iamrk/", label: "LinkedIn", icon: "/linkedin.png", color: "hover:text-blue-700" },
-                { href: "https://x.com/rajeshkmoorthy", label: "X", icon: "x.png", color: "/hover:text-blue-400" },
-                { href: "https://www.facebook.com/skyman.rajesh", label: "Facebook", icon: "/facebook.png", color: "hover:text-blue-600" },
-                { href: "https://www.instagram.com/skymaninvestments/", label: "Instagram", icon: "/instagram.png", color: "hover:text-pink-500" },
-                { href: "https://www.threads.com/@skymaninvestments", label: "Threads", icon: "/threads.png", color: "hover:text-black" }
+                { href: "https://www.linkedin.com/in/iamrk/", label: "assets/LinkedIn", icon: "/linkedin.png", color: "hover:text-blue-700" },
+                { href: "https://x.com/rajeshkmoorthy", label: "X", icon: "assets/x.png", color: "/hover:text-blue-400" },
+                { href: "https://www.facebook.com/skyman.rajesh", label: "assets/Facebook", icon: "/facebook.png", color: "hover:text-blue-600" },
+                { href: "https://www.instagram.com/skymaninvestments/", label: "assets/Instagram", icon: "/instagram.png", color: "hover:text-pink-500" },
+                { href: "https://www.threads.com/@skymaninvestments", label: "assets/Threads", icon: "/threads.png", color: "hover:text-black" }
               ].map((item, idx) => (
                 <li key={idx} className={`flex items-center space-x-2 ${item.color} transition-transform transform hover:scale-110`}>
                   <a href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
