@@ -18,13 +18,14 @@ export default function Home() {
       <section className="relative bg-gray-100 flex flex-col w-full items-center justify-center gap-10">
         {/* Top Text */}
         <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center z-10">
+
           <motion.h1
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-4xl md:text-5xl font-bold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500"
+            transition={{ delay: 0.3, duration: 1 }}
+            className="text-6xl md:text-5xl font-bold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500"
           >
-            Empowering Your Financial Future
+            Empowering Your Financial Future 
           </motion.h1>
 
           <motion.p
@@ -34,7 +35,7 @@ export default function Home() {
             className="text-lg md:text-xl text-gray-700 max-w-2xl"
           >
             Skyman Investments offers personalized strategies to help you build wealth,
-            manage risk, and achieve your financial goals.
+            manage risk, and achieve your <span className='font-bold'>financial goals.</span>
           </motion.p>
         </div>
 
@@ -58,65 +59,6 @@ export default function Home() {
           </Link>
         </motion.div>
       </section>
-
-      {/* Mission, Services, Values, etc. */}
-      {/* <section className="py-24 px-6 max-w-7xl mx-auto space-y-24 bg-gray-100 text-gray-800">
-        {[
-          {
-            title: 'Our Services',
-            content: (
-              <ul className="list-disc pl-5 space-y-2">
-                <li><strong>Investment Management:</strong> Tailored portfolios, risk management, and growth-focused options.</li>
-                <li><strong>Retirement Planning:</strong> Personalized retirement strategies.</li>
-                <li><strong>Financial Planning:</strong> Smart money management and tax-efficient plans.</li>
-                <li><strong>Insurance Solutions:</strong> From life to property coverage.</li>
-                <li><strong>Corporate Financial Services:</strong> Strategic business guidance and succession planning.</li>
-              </ul>
-            ),
-            animation: fadeLeft,
-          },
-          {
-            title: 'Why Choose Us?',
-            content: (
-              <ul className="list-disc pl-5 space-y-2">
-                <li><strong>Personalized Approach:</strong> We build relationships to understand your goals.</li>
-                <li><strong>Experienced Professionals:</strong> Deep market knowledge and strategy.</li>
-                <li><strong>Client-Centered Philosophy:</strong> Honesty, transparency, and integrity first.</li>
-                <li><strong>Innovative Solutions:</strong> Technology-driven financial strategies.</li>
-              </ul>
-            ),
-            animation: fadeRight,
-          },
-          {
-            title: 'Our Values',
-            content: (
-              <ul className="list-disc pl-5 space-y-2">
-                <li><strong>Integrity:</strong> We value honesty and ethical service.</li>
-                <li><strong>Commitment:</strong> Dedicated to helping clients succeed.</li>
-                <li><strong>Excellence:</strong> We aim for superior results.</li>
-                <li><strong>Trust:</strong> Relationships built on long-term respect.</li>
-              </ul>
-            ),
-            animation: fadeLeft,
-          },
-        ].map(({ title, content, animation }, index) => (
-          <motion.div
-            key={index}
-            variants={animation}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="p-8 rounded-3xl bg-blue-100 border border-blue-200 shadow-lg"
-          >
-            <h3 className="text-3xl font-semibold text-cyan-600 mb-4">{title}</h3>
-            {content}
-          </motion.div>
-        ))}
-
-        {/* CTA Section */}
-      {/* </section> */}
-
-      {/* Services Cards Section */}
       <section className="py-16 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
   {/* Left Side - Our Mission */}
