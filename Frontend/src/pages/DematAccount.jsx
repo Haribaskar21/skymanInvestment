@@ -4,49 +4,79 @@ import 'aos/dist/aos.css';
 
 const DematAccount = () => {
   return (
-    <div className="min-h-screen bg-white p-4 md:p-10 text-center">
+    <div className="min-h-screen bg-blue-50 px-4 md:px-10 py-16">
       <motion.h1
-        className="text-2xl md:text-4xl font-bold mb-10 text-gray-800"
+        className="text-3xl md:text-5xl font-bold text-center text-blue-900 mb-10 leading-relaxed"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Please click on any one of our Partner's Logo to open a <br /> Demat Account
+        Open a Demat Account <br />
+        with Our Trusted Partners
       </motion.h1>
 
-      <div className="flex flex-wrap justify-center gap-10 mb-10">
-        <a href="https://www.indiainfoline.com/" target="_blank" rel="noopener noreferrer">
-          <img src="assets/iifl.avif" alt="IIFL Securities" className="w-40 hover:scale-110 transition-transform duration-300" />
+      {/* Partner Logos */}
+      <div className="flex flex-wrap justify-center gap-12 mb-16">
+        <a
+          href="https://premium-partners.indiainfoline.com/common/openaccount?E1Code=JKOJ6mW8pP13ofvnxAkyGQ%3D%3D&SourceChannelID=KBWtK3WkgyXc2SanaseYhg%3D%3D"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:scale-110 transition-transform duration-300"
+        >
+          <img
+            src="assets/iifl.avif"
+            alt="IIFL Securities"
+            className="w-44 h-auto object-contain rounded-xl shadow-md"
+          />
         </a>
-        <a href="https://www.angelone.in/" target="_blank" rel="noopener noreferrer">
-          <img src="assets/angelOne.avif" alt="AngelOne" className="w-40 hover:scale-110 transition-transform duration-300" />
+
+        <a
+          href="https://www.angelone.in/register/?rne_source=B2B_NXT&btype=SVRQUA&referrer=RJMO::rne_source=B2B_NXT::btype=SVRQUA&source_caller=api&pid=NXT&SbTag=UkpNTw==&deep_link_value=referrer%3DRJMO%3A%3Arne_source%3DB2B_NXT%3A%3Abtype%3DSVRQUA&c=nxt_campaign#/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:scale-110 transition-transform duration-300"
+        >
+          <img
+            src="assets/angelOne.avif"
+            alt="AngelOne"
+            className="w-44 h-auto object-contain rounded-xl shadow-md"
+          />
         </a>
-        {/* <a href="https://www.fundsindia.com/" target="_blank" rel="noopener noreferrer">
-          <img src="/images/fundsindia.png" alt="FundsIndia" className="w-40 hover:scale-110 transition-transform duration-300" />
-        </a> */}
       </div>
 
-      <div className="max-w-2xl mx-auto text-left text-gray-700 space-y-6">
+      {/* Information Section */}
+      <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl p-8 space-y-10 text-gray-700">
         <div>
-          <h2 className="text-lg font-semibold underline">Documents required to open a Demat Account are:-</h2>
-          <ul className="list-decimal ml-5 mt-2 space-y-1">
-            <li>PAN</li>
-            <li>Aadhaar Card - Front and Back</li>
+          <h2 className="text-xl font-semibold text-blue-800 border-b border-blue-200 pb-2 mb-4">
+            📄 Documents Required to Open a Demat Account
+          </h2>
+          <ul className="list-decimal ml-6 space-y-2 text-base">
+            <li>PAN Card</li>
+            <li>Aadhaar Card – Front and Back</li>
             <li>
-              Cancel Cheque - This should be signed and the account holder's name must be printed. <br />
-              If not available, a scanned copy of the Bank Passbook or Soft copy of the Bank statement (last 6 months)
+              Cancel Cheque (Signed & Account holder's name printed)
+              <br />
+              If unavailable, provide:
+              <ul className="list-disc ml-6 mt-1">
+                <li>Scanned Bank Passbook</li>
+                <li>Soft Copy of Last 6 Months Bank Statement</li>
+              </ul>
             </li>
-            <li>Photo - Clear Selfie would be ok</li>
-            <li>Signature photo - Sign on a white paper and scan it with your mobile.</li>
+            <li>Photo-Clear Selfie Photo would be okzx</li>
+            <li>Signature Photo (Sign on white paper and scan via mobile)</li>
           </ul>
-          <p className="mt-2">Please ensure that all scanned copies are clear and crisp</p>
+          <p className="mt-3 font-medium text-sm text-gray-600">
+            🔍 Ensure all scanned copies are clear and high quality.
+          </p>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold underline">Need the following details also:</h2>
-          <ul className="list-decimal ml-5 mt-2 space-y-1">
-            <li>Mail ID</li>
-            <li>Mobile Number (Must be mapped to your Aadhaar as well)</li>
+          <h2 className="text-xl font-semibold text-blue-800 border-b border-blue-200 pb-2 mb-4">
+            📝 Additional Details Required
+          </h2>
+          <ul className="list-decimal ml-6 space-y-2 text-base">
+            <li>Registered Email ID</li>
+            <li>Mobile Number (Must be linked to Aadhaar)</li>
           </ul>
         </div>
       </div>

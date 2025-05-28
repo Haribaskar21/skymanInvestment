@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+// Slugify utility
+const slugify = (str) =>
+  str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // Remove accents
+    .replace(/[^\w\s-]/g, "") // Remove emojis/symbols
+    .trim()
+    .toLowerCase()
+    .replace(/[\s_-]+/g, "-");
+
 // Main services data
 const services = [
   {
@@ -17,7 +27,7 @@ const services = [
   { title: "Mutual Funds", image: "assets/mutual.avif" },
 ];
 
-// Book services data with big emojis
+// Book services data
 const bookServices = [
   { title: "🧾 Income Tax", price: "₹23,600 (incl 18% GST)" },
   { title: "📊 Portfolio Management Services", price: "₹23,600 (incl 18% GST)" },
@@ -60,8 +70,9 @@ export default function ServicesSection() {
         </p>
 
         {services.map((service, index) => (
-          <div
+          <Link
             key={service.title}
+            to={`/${slugify(service.title)}`}
             data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
             className="w-full h-[420px] relative overflow-hidden flex justify-center items-center"
           >
@@ -69,16 +80,14 @@ export default function ServicesSection() {
               className="bg-blue-50 w-full rounded-3xl shadow-lg p-6 flex flex-col items-center text-center cursor-pointer z-10
               hover:shadow-2xl hover:scale-105 transition-transform duration-300 ease-in-out"
             >
-              <Link to={`/service/${service.title.toLowerCase().replace(/ /g, "-")}`}>
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-48 h-36 object-contain mb-5 mx-auto"
-                />
-              </Link>
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-48 h-36 object-contain mb-5 mx-auto"
+              />
               <h3 className="text-xl font-semibold text-gray-900">{service.title}</h3>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
@@ -100,21 +109,20 @@ export default function ServicesSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
           {bookServices.map((service, index) => (
-            <div
+            <Link
               key={service.title}
+              to={`/service/${slugify(service.title)}`}
               data-aos="fade-up"
               data-aos-delay={index * 100}
               className="bg-blue-50 rounded-3xl shadow-lg p-10 flex flex-col items-center text-center cursor-pointer
                          hover:shadow-2xl hover:scale-105 transition-transform duration-300 ease-in-out"
             >
               <div className="text-6xl mb-4">{service.title.split(" ")[0]}</div>
-              <Link to={`/service/${service.title.toLowerCase().replace(/[^a-z0-9]/gi, "-")}`}>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {service.title.split(" ").slice(1).join(" ")}
-                </h3>
-              </Link>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {service.title.split(" ").slice(1).join(" ")}
+              </h3>
               <p className="text-lg font-medium text-gray-700">{service.price}</p>
-            </div>
+            </Link>
           ))}
         </div>
 
