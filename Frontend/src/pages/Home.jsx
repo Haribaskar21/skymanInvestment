@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import cursor from "/assets/icon1.png";
+import lightning from "/assets/icon2.png";
 
 export default function Home() {
   const fadeLeft = {
@@ -25,6 +27,34 @@ export default function Home() {
           >
             Empowering Your Financial Future
           </motion.h1>
+         <motion.div
+  className="hidden md:block absolute left-[280px] top-[170px]"
+  drag
+>
+  <img 
+    src={cursor}
+    height="170"
+    width="170"
+    alt="cursor"
+    className=""
+    draggable="false"
+  />
+</motion.div>
+
+<motion.div
+  className="hidden md:block absolute right-[220px] top-[20px]"
+  drag
+>
+  <img 
+    src={lightning}
+    height="120"
+    width="120"
+    alt="lightning"
+    className=""
+    draggable="false"
+  />
+</motion.div>
+
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -78,35 +108,43 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-gray-900 mb-12">Our Services</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="bg-blue-200 text-black p-6 rounded-2xl shadow-md" data-aos="fade-right">
+              <Link to="/demat-account">
                 <div className="text-5xl mb-4">📂</div>
                 <h3 className="text-xl font-bold mb-2">Demat Account</h3>
                 <p className="text-sm">
                   Secure and convenient way to hold and manage your shares electronically.
                 </p>
+              </Link>
               </div>
 
               <div className="bg-blue-600 text-white p-6 rounded-2xl shadow-md" data-aos="fade-left" data-aos-delay="50">
+                <Link to="/insurance">
                 <div className="text-5xl mb-4">🛡️</div>
                 <h3 className="text-xl font-bold mb-2">Insurance</h3>
                 <p className="text-sm">
                   Protect your life, health, and property with comprehensive insurance plans.
                 </p>
+                </Link>
               </div>
 
               <div className="bg-blue-600 text-white p-6 rounded-2xl shadow-md" data-aos="fade-right" data-aos-delay="100">
+                <Link to="/tax-services">
                 <div className="text-5xl mb-4">💰</div>
                 <h3 className="text-xl font-bold mb-2">Tax Services</h3>
                 <p className="text-sm">
                   Efficient tax planning and filing services to save you time and money.
                 </p>
+                </Link>
               </div>
 
               <div className="bg-blue-200 text-black p-6 rounded-2xl shadow-md" data-aos="fade-left" data-aos-delay="150">
+                <Link to="financial-planning">
                 <div className="text-5xl mb-4">📅</div>
                 <h3 className="text-xl font-bold mb-2">Financial Planning</h3>
                 <p className="text-sm">
                   Smart budgeting, goal planning, and investment advice for your future.
                 </p>
+                </Link>
               </div>
             </div>
           </div>

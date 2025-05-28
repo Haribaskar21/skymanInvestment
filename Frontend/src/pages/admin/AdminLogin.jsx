@@ -15,6 +15,7 @@ const AdminLogin = () => {
     try {
       const res = await axios.post('/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
+      window.location.href = '/admin/dashboard';
       navigate('/admin/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
