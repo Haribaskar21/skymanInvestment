@@ -21,6 +21,7 @@ import Blog from './pages/Blog';
 import Offers from './pages/Offers';
 import PageTitleSetter from './components/PageTitleSetter';
 import BlogDetail from './pages/BlogDetail';
+import DematAccount from './pages/DematAccount';
 // import AdminRoute from './components/AdminRoute';
 // import AdminLogin from './pages/AdminLogin';
 // import AdminDashboard from './pages/AdminDashboard';
@@ -56,6 +57,8 @@ export default function App() {
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/calculators" element={<Calculators />} />
+          <Route path="/demat-account" element={<DematAccount />} />
+
           {/* <Route path="/admin/login" element={<AdminLogin />} />
           <Route
               path="/admin/dashboard"
