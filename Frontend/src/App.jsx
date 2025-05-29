@@ -22,9 +22,19 @@ import Offers from './pages/Offers';
 import PageTitleSetter from './components/PageTitleSetter';
 import BlogDetail from './pages/BlogDetail';
 import DematAccount from './pages/DematAccount';
+import InsuranceServices from './pages/InsuranceServices';
+import FinancialPlanning from './pages/FinancialPlanning';
+import BondsPage from './pages/BondsPage';
 // import AdminRoute from './components/AdminRoute';
 // import AdminLogin from './pages/AdminLogin';
 // import AdminDashboard from './pages/AdminDashboard';
+import SipCalculator from './pages/calculators/SipCalculator';
+import LumpsumCalculator from './pages/calculators/LumpsumCalculator';
+import LoanAmortizationPage from './pages/calculators/LoanAmortizationPage';
+import InvestmentCagrCalculator from './pages/calculators/InvestmentCagrCalculator';
+import SwpCalculator from './pages/calculators/SwpCalculator';
+import FutureValueCalculator from './pages/calculators/FutureValueCalculator';
+import LoanEMICalculator from './pages/calculators/LoanEMICalculator';
 
 export default function App() {
   useEffect(() => {
@@ -58,6 +68,16 @@ export default function App() {
           <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/calculators" element={<Calculators />} />
           <Route path="/demat-account" element={<DematAccount />} />
+          <Route path="/insurance" element={<InsuranceServices />} />
+          <Route path="/financial-planning" element={<FinancialPlanning />} />
+          <Route path="/bonds" element={<BondsPage />} />
+          <Route path="/calculators/sip-calculator" element={<SipCalculator />} />
+          <Route path="/calculators/lumpsum" element={<LumpsumCalculator />} />
+          <Route path="/calculators/loan-amortization" element={<LoanAmortizationPage />} />
+          <Route path="/calculators/cagr" element={<InvestmentCagrCalculator />} />
+          <Route path="/calculators/swp" element={<SwpCalculator />} />
+          <Route path="/calculators/future-value" element={<FutureValueCalculator />} />
+          <Route path="/calculators/loan-emi" element={<LoanEMICalculator />} />
 
           {/* <Route path="/admin/login" element={<AdminLogin />} />
           <Route
