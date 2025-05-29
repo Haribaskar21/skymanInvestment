@@ -24,6 +24,7 @@ import BlogDetail from './pages/BlogDetail';
 import DematAccount from './pages/DematAccount';
 import InsuranceServices from './pages/InsuranceServices';
 import FinancialPlanning from './pages/FinancialPlanning';
+import MutualFundAdvisor from './pages/MutualFundAdvisor';
 import BondsPage from './pages/BondsPage';
 // import AdminRoute from './components/AdminRoute';
 // import AdminLogin from './pages/AdminLogin';
@@ -70,6 +71,7 @@ export default function App() {
           <Route path="/demat-account" element={<DematAccount />} />
           <Route path="/insurance" element={<InsuranceServices />} />
           <Route path="/financial-planning" element={<FinancialPlanning />} />
+          <Route path="/mutual-funds" element={<MutualFundAdvisor />} />
           <Route path="/bonds" element={<BondsPage />} />
           <Route path="/calculators/sip-calculator" element={<SipCalculator />} />
           <Route path="/calculators/lumpsum" element={<LumpsumCalculator />} />
