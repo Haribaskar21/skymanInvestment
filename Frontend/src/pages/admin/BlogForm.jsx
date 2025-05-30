@@ -8,27 +8,23 @@ const BlogForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Form state including imageUrl for existing image
   const [formData, setFormData] = useState({
     title: '',
     content: '',
     category: '',
     tags: [],
-    imageUrl: '',
+    image: '',
   });
 
-  // For file input and preview
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState('');
 
-  // Category and tags options fetched from API
   const [categories, setCategories] = useState([]);
   const [tagsOptions, setTagsOptions] = useState([]);
 
-  // Fetch categories & tags for selects
   useEffect(() => {
-    const fetchCategories = api.get('/blogs-categories');
-    const fetchTags = api.get('/blogs-tags');
+    const fetchCategories = api.get('/meta/categories');
+    const fetchTags = api.get('/meta/tags');
 
     Promise.all([fetchCategories, fetchTags])
       .then(([catRes, tagRes]) => {
@@ -38,7 +34,6 @@ const BlogForm = () => {
       .catch(() => toast.error('Failed to load categories or tags'));
   }, []);
 
-  // Fetch existing blog post if editing
   useEffect(() => {
     if (id) {
       api.get(`/blogs/${id}`)
@@ -46,17 +41,15 @@ const BlogForm = () => {
           setFormData(res.data);
           if (res.data.imageUrl) setImagePreview(res.data.imageUrl);
         })
-        .catch(() => toast.error('Failed to load blog'));
+        .catch(() => toast.error('Failed to load Blogs item'));
     }
   }, [id]);
 
-  // Handle input changes (text/select)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Handle tags multi-select change
   const handleTagsChange = (e) => {
     const options = e.target.options;
     const selectedTags = [];
@@ -66,7 +59,6 @@ const BlogForm = () => {
     setFormData(prev => ({ ...prev, tags: selectedTags }));
   };
 
-  // Handle image file select + preview
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImage(file);
@@ -80,44 +72,45 @@ const BlogForm = () => {
     }
   };
 
-  // Submit form handler with image upload
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      let imageUrl = formData.imageUrl || '';
-      let filename = '';
+  try {
+    let imageFilename = formData.image || '';
 
-      if (image) {
-        const formDataImage = new FormData();
-        formDataImage.append('image', image);
+    if (image) {
+      const formDataImage = new FormData();
+      formDataImage.append('image', image);
 
-        const uploadRes = await api.post('/upload', formDataImage, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
-         filename = uploadRes.data.filename; // <-- get filename here
-        } else if (formData.imageUrl) {
-          // Extract filename from existing imageUrl if no new image selected
-          const parts = formData.imageUrl.split('/');
-          filename = parts[parts.length - 1];
-        }
+      const uploadRes = await api.post('/upload', formDataImage, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
 
-      const payload = { ...formData, image: filename };  // save filename in `image` field
-      
-      console.log('Sending news payload:', payload);
-      if (id) {
-        await api.put(`/blogs/${id}`, payload);
-        toast.success('Blog updated!');
-      } else {
-        await api.post('/blogs', payload);
-        toast.success('Blog created!');
-      }
-
-      navigate('/admin/blogs');
-    } catch (error) {
-      toast.error('Error saving blog');
+      imageFilename = uploadRes.data.filename;
     }
-  };
+
+    const payload = {
+      ...formData,
+      image: imageFilename,
+    };
+
+    delete payload.imageUrl;
+
+    if (id) {
+      await api.put(`/blogs/${id}`, payload);
+      toast.success('blogs updated!');
+    } else {
+      await api.post('/blogs', payload);
+      toast.success('blogs created!');
+    }
+
+    navigate('/admin/blogs');
+  } catch (error) {
+    console.error('Submission error:', error);
+    toast.error('Error saving blogs');
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 p-4 max-w-xl mx-auto">
@@ -180,7 +173,6 @@ const BlogForm = () => {
         <span className="text-sm font-medium text-gray-700">Featured Image</span>
         <input
           type="file"
-          name="image"
           accept="image/*"
           onChange={handleImageChange}
           className="mt-1 block w-full"
@@ -197,7 +189,8 @@ const BlogForm = () => {
       )}
 
       <button type="submit" className="btn btn-primary w-full">
-        {id ? 'Update Blog' : 'Create Blog'}
+        {id ? 'Update Blogs' : 'Create Blogs'}
+
       </button>
     </form>
   );

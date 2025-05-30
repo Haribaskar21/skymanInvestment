@@ -43,6 +43,11 @@ import InvestmentCagrCalculator from './pages/calculators/InvestmentCagrCalculat
 import SwpCalculator from './pages/calculators/SwpCalculator';
 import FutureValueCalculator from './pages/calculators/FutureValueCalculator';
 import LoanEMICalculator from './pages/calculators/LoanEMICalculator';
+import BlogCategories from './pages/admin/BlogCategories';
+import BlogTags from './pages/admin/BlogTags';
+import NewsCategories from './pages/admin/NewsCategories';
+import NewsTags from './pages/admin/NewsTags';
+
 
 export default function App() {
   useEffect(() => {
@@ -94,6 +99,12 @@ export default function App() {
 <Route path="/admin/blogs/edit/:id" element={<BlogForm isEdit />} />
 <Route path="/admin/news/create" element={<NewsForm />} />
 <Route path="/admin/news/edit/:id" element={<NewsForm isEdit />} />
+// example in your route config
+<Route path="/admin/categories" element={<BlogCategories />} />
+<Route path="/admin/tags" element={<BlogTags />} />
+<Route path="/admin/categories" element={<NewsCategories />} />
+<Route path="/admin/tags" element={<NewsTags />} />
+
 
 
 

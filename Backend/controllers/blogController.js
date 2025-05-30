@@ -17,17 +17,24 @@ const upload = multer({ storage }).single('image');
 exports.upload = upload;
 
 exports.createBlog = async (req, res) => {
-  const { title, content } = req.body;
-  const image = req.file ? req.file.filename : '';
-  const blog = new Blog({ title, content, image });
+  const { title, content, category, tags, image } = req.body;
+
+  // tags may come as array or string, adjust accordingly
+  const tagsArray = Array.isArray(tags) ? tags : tags ? tags.split(',').map(t => t.trim()) : [];
+  const blog = new Blog({ title, content, category, tags: tagsArray, image  });
   await blog.save();
   res.status(201).json(blog);
 };
 
 exports.getAllBlogs = async (req, res) => {
-  const blogs = await Blog.find();
-  res.json(blogs);
-};
+ const blogList = await Blog.find();
+   const blogWithUrls = blogList.map(blog => {
+     const obj = blog.toObject();
+     obj.imageUrl = blog.image ? `${req.protocol}://${req.get('host')}/uploads/${blog.image}` : '';
+     return obj;
+   });
+   res.json(blogWithUrls);
+ };
 
 exports.getBlogById = async (req, res) => {
   try {
@@ -35,6 +42,9 @@ exports.getBlogById = async (req, res) => {
     if (!blog) {
       return res.status(404).json({ message: 'Blog not found' });
     }
+
+    const blogObj = blog.toObject();
+    blogObj.imageUrl = blog.image ? `${req.protocol}://${req.get('host')}/uploads/${blog.image}` : '';
     res.json(blog);
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
@@ -44,9 +54,10 @@ exports.getBlogById = async (req, res) => {
 exports.updateBlog = async (req, res) => {
   const { id } = req.params;
   const { title, content } = req.body;
-  const image = req.file ? req.file.filename : undefined;
-  const updateData = { title, content };
-  if (image) updateData.image = image;
+  const updateData = { title, content, category, tags };
+
+  if (image !== undefined) updateData.image = image; // update image URL if provided
+  
   const blog = await Blog.findByIdAndUpdate(id, updateData, { new: true });
   res.json(blog);
 };

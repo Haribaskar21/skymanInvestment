@@ -8,6 +8,3 @@ createRoot(document.getElementById('root')).render(
     <App />
   </BrowserRouter>
 );
-
-
-// text-[#0e2e50] 

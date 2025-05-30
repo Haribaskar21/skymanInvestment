@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../api/axios';
 
+const API_URL = 'http://localhost:5000';
+const placeholder = 'https://via.placeholder.com/400x300?text=No+Image';
+
 const BlogDetail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
@@ -15,7 +18,12 @@ const BlogDetail = () => {
   return (
     <div className="max-w-4xl mx-auto p-4">
       <img
-        src={`http://localhost:5000/uploads/${blog.image}`}
+        src={blog.image && blog.image.startsWith('http') 
+  ? blog.image 
+  : blog.image 
+    ? `http://localhost:5000/uploads/${blog.image}` 
+    : placeholder}
+
         alt={blog.title}
         className="w-full h-64 object-contain rounded mb-4"
       />

@@ -33,7 +33,7 @@ const News = () => {
               className="border rounded shadow p-4 hover:shadow-lg cursor-pointer"
             >
               <img
-               src={news.image ? `${API_URL}/uploads/${news.image}` : placeholder}
+               src={news.image.startsWith('http') ? news.image : `http://localhost:5000/uploads/${news.image}`}
                 alt={news.title}
                 className="w-full h-48 object-cover mb-2 rounded"
               />

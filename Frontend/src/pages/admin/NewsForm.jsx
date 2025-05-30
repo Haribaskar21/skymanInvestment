@@ -23,8 +23,8 @@ const NewsForm = () => {
   const [tagsOptions, setTagsOptions] = useState([]);
 
   useEffect(() => {
-    const fetchCategories = api.get('/news-categories');
-    const fetchTags = api.get('/news-tags');
+    const fetchCategories = api.get('/meta/categories');
+    const fetchTags = api.get('/meta/tags');
 
     Promise.all([fetchCategories, fetchTags])
       .then(([catRes, tagRes]) => {
@@ -72,41 +72,45 @@ const NewsForm = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      let imageUrl = formData.imageUrl || '';
+  try {
+    let imageFilename = formData.image || '';
 
-      if (image) {
-        const formDataImage = new FormData();
-        formDataImage.append('image', image);
+    if (image) {
+      const formDataImage = new FormData();
+      formDataImage.append('image', image);
 
-        const uploadRes = await api.post('/upload', formDataImage, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+      const uploadRes = await api.post('/upload', formDataImage, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
 
-        imageUrl = uploadRes.data.url;
-      }
-
-      const payload = { ...formData, image: image ? uploadRes.data.filename : formData.image };
-      console.log('Sending news payload:', payload);
-      delete payload.imageUrl;
-
-
-      if (id) {
-        await api.put(`/news/${id}`, payload);
-        toast.success('News updated!');
-      } else {
-        await api.post('/news', payload);
-        toast.success('News created!');
-      }
-
-      navigate('/admin/news');
-    } catch (error) {
-      toast.error('Error saving news');
+      imageFilename = uploadRes.data.filename;
     }
-  };
+
+    const payload = {
+      ...formData,
+      image: imageFilename,
+    };
+
+    delete payload.imageUrl;
+
+    if (id) {
+      await api.put(`/news/${id}`, payload);
+      toast.success('News updated!');
+    } else {
+      await api.post('/news', payload);
+      toast.success('News created!');
+    }
+
+    navigate('/admin/news');
+  } catch (error) {
+    console.error('Submission error:', error);
+    toast.error('Error saving news');
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 p-4 max-w-xl mx-auto">

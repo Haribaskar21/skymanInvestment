@@ -1,32 +1,34 @@
 import { useEffect, useState } from 'react';
-import api from '../../api/axios';
+import api from '../../api/axios'; // or wherever your axios instance file is
 import toast from 'react-hot-toast';
 import DeleteConfirmModal from "../../components/DeleteConfirmModal";
+
 import { Link } from 'react-router-dom';
 
 const AdminBlogList = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogItems, setBlogItems] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  const fetchBlogs = async () => {
+  const fetchBlog = async () => {
     try {
       const res = await api.get('/blogs');
-      setBlogs(res.data);
+      console.log('API response data:', res.data);
+      setBlogItems(res.data);
     } catch (err) {
-      toast.error('Failed to fetch blogs');
+      toast.error('Failed to fetch Blogs');
     }
   };
 
   useEffect(() => {
-    fetchBlogs();
+    fetchBlog();
   }, []);
 
   const handleDelete = async () => {
     try {
       await api.delete(`/blogs/${selectedId}`);
       toast.success('Deleted successfully');
-      fetchBlogs(); // refresh list
+      fetchBlog();
       setShowModal(false);
     } catch {
       toast.error('Delete failed');
@@ -37,10 +39,10 @@ const AdminBlogList = () => {
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Manage Blogs</h1>
       <Link to="/admin/blogs/create" className="bg-blue-600 text-white px-4 py-2 rounded mb-4 inline-block">
-        + Create New Blog
+        + Create Blogs Post
       </Link>
       <ul className="divide-y">
-        {blogs.map(blog => (
+        {blogItems.map(blog => (
           <li key={blog._id} className="py-4 flex justify-between items-center">
             <div>
               <p className="font-semibold">{blog.title}</p>

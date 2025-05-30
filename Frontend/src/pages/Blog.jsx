@@ -5,6 +5,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import api from '../api/axios';
 
+const API_URL = 'http://localhost:5000';
+const placeholder = 'https://via.placeholder.com/400x300?text=No+Image';
+
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
@@ -28,7 +31,11 @@ const Blog = () => {
               className="border rounded shadow p-4 hover:shadow-lg cursor-pointer"
             >
               <img
-                src={`http://localhost:5000/uploads/${blog.image}`}
+              src={blog.image && blog.image.startsWith('http') 
+  ? blog.image 
+  : blog.image 
+    ? `http://localhost:5000/uploads/${blog.image}` 
+    : placeholder}
                 alt={blog.title}
                 className="w-full h-48 object-cover mb-2 rounded"
               />
