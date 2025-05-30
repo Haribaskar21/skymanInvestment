@@ -114,38 +114,26 @@ export default function Navbar() {
           </motion.div>
 
           {/* Admin Login / Dashboard / Logout */}
-          {!isAdminLoggedIn ? (
-            <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
-              <Link
-                to="/admin/login"
-                className="text-sm bg-[#004d6e] text-white px-4 py-2 rounded-full hover:bg-[#00bcd4] transition"
-              >
-                Admin Login
-              </Link>
-            </motion.div>
-          ) : (
-            <>
-              <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
-                <Link
-                  to="/admin/dashboard"
-                  className="text-sm bg-[#004d6e] text-white px-4 py-2 rounded-full hover:bg-[#00bcd4] transition"
-                >
-                  Dashboard
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
-                <button
-                  onClick={() => {
-                    localStorage.removeItem('token');
-                    window.location.href = '/';
-                  }}
-                  className="text-sm bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
-                >
-                  Logout
-                </button>
-              </motion.div>
-            </>
-          )}
+{isAdminLoggedIn && (
+  <>
+    <Link
+      to="/admin/dashboard"
+      className="text-sm bg-[#004d6e] text-white px-4 py-2 rounded-full hover:bg-[#00bcd4] transition"
+    >
+      Dashboard
+    </Link>
+    <button
+      onClick={() => {
+        localStorage.removeItem('token');
+        window.location.href = '/';
+      }}
+      className="text-sm bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
+    >
+      Logout
+    </button>
+  </>
+)}
+
 
           {/* Get in Touch Button */}
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
@@ -208,32 +196,26 @@ export default function Navbar() {
           </Link>
 
           {/* Admin login/logout */}
-          {!isAdminLoggedIn ? (
-            <Link
-              to="/admin/login"
-              className="text-sm bg-[#004d6e] text-white px-3 py-1 rounded hover:bg-[#00bcd4] transition"
-            >
-              Admin Login
-            </Link>
-          ) : (
-            <>
-              <Link
-                to="/admin/dashboard"
-                className="text-sm bg-[#004d6e] text-white px-3 py-1 rounded hover:bg-[#00bcd4] transition"
-              >
-                Dashboard
-              </Link>
-              <button
-                onClick={() => {
-                  localStorage.removeItem('token');
-                  window.location.href = '/';
-                }}
-                className="text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
-              >
-                Logout
-              </button>
-            </>
-          )}
+{isAdminLoggedIn && (
+  <>
+    <Link
+      to="/admin/dashboard"
+      className="text-sm bg-[#004d6e] text-white px-4 py-2 rounded-full hover:bg-[#00bcd4] transition"
+    >
+      Dashboard
+    </Link>
+    <button
+      onClick={() => {
+        localStorage.removeItem('token');
+        window.location.href = '/';
+      }}
+      className="text-sm bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
+    >
+      Logout
+    </button>
+  </>
+)}
+
         </nav>
 
         {/* Mobile Menu Button - below md */}
@@ -272,143 +254,171 @@ export default function Navbar() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white shadow-md border-t"
+            className="md:hidden bg-gray-100 border-t border-gray-300"
           >
-            <ul className="flex flex-col px-6 py-4 space-y-3 text-black font-medium">
-              <li>
-                <Link to="/" onClick={() => setIsMenuOpen(false)}>
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/investing" onClick={() => setIsMenuOpen(false)}>
-                  Investing
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" onClick={() => setIsMenuOpen(false)}>
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/blog" onClick={() => setIsMenuOpen(false)}>
-                  Blog
-                </Link>
-              </li>
+            <Link
+              to="/"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-6 py-3 border-b border-gray-300"
+            >
+              Home
+            </Link>
+            <Link
+              to="/investing"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-6 py-3 border-b border-gray-300"
+            >
+              Investing
+            </Link>
+            <Link
+              to="/services"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-6 py-3 border-b border-gray-300"
+            >
+              Services
+            </Link>
+            <Link
+              to="/blog"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-6 py-3 border-b border-gray-300"
+            >
+              Blog
+            </Link>
 
-              {/* Mobile More dropdown */}
-              <li>
-                <button
-                  onClick={() => setIsMoreMobileOpen(!isMoreMobileOpen)}
-                  className="w-full text-left flex justify-between items-center focus:outline-none"
-                >
-                  More ▾
-                </button>
-
-                <AnimatePresence>
-                  {isMoreMobileOpen && (
-                    <motion.ul
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="pl-4 mt-2 flex flex-col space-y-1 border-l border-gray-300"
-                    >
-                      <li>
-                        <Link to="/more#book" onClick={() => setIsMenuOpen(false)}>
-                          Book Services
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/news" onClick={() => setIsMenuOpen(false)}>
-                          News & Updates
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/calculators" onClick={() => setIsMenuOpen(false)}>
-                          Calculators
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/privacy-policy" onClick={() => setIsMenuOpen(false)}>
-                          Privacy Policy
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/terms" onClick={() => setIsMenuOpen(false)}>
-                          Terms & Conditions
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/refund-policy" onClick={() => setIsMenuOpen(false)}>
-                          Refund Policy
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/offers" onClick={() => setIsMenuOpen(false)}>
-                          Offers
-                        </Link>
-                      </li>
-                    </motion.ul>
-                  )}
-                </AnimatePresence>
-              </li>
-
-              <li>
-                <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                  Contact
-                </Link>
-              </li>
-
-              {!isAdminLoggedIn ? (
-                <li>
-                  <Link
-                    to="/admin/login"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm bg-[#004d6e] text-white px-3 py-1 rounded hover:bg-[#00bcd4] transition inline-block"
+            {/* Mobile More dropdown */}
+            <div className="border-b border-gray-300">
+              <button
+                onClick={() => setIsMoreMobileOpen(!isMoreMobileOpen)}
+                className="w-full flex justify-between items-center px-6 py-3 text-left font-medium"
+              >
+                More
+                <span className={`transition-transform duration-300 ${isMoreMobileOpen ? 'rotate-180' : ''}`}>
+                  ▾
+                </span>
+              </button>
+              <AnimatePresence>
+                {isMoreMobileOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="pl-6 pb-4 flex flex-col space-y-2"
                   >
-                    Admin Login
-                  </Link>
-                </li>
-              ) : (
-                <>
-                  <li>
                     <Link
-                      to="/admin/dashboard"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="text-sm bg-[#004d6e] text-white px-3 py-1 rounded hover:bg-[#00bcd4] transition inline-block"
-                    >
-                      Dashboard
-                    </Link>
-                  </li>
-                  <li>
-                    <button
+                      to="/more#book"
                       onClick={() => {
-                        localStorage.removeItem('token');
-                        window.location.href = '/';
+                        setIsMenuOpen(false);
+                        setIsMoreMobileOpen(false);
                       }}
-                      className="text-sm bg-red-400 text-white px-3 py-1 rounded hover:bg-red-500 transition inline-block"
+                      className="block text-black hover:text-gray-600 transition"
                     >
-                      Logout
-                    </button>
-                  </li>
-                </>
-              )}
+                      Book Services
+                    </Link>
+                    <Link
+                      to="/news"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsMoreMobileOpen(false);
+                      }}
+                      className="block text-black hover:text-gray-600 transition"
+                    >
+                      News & updates
+                    </Link>
+                    <Link
+                      to="/calculators"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsMoreMobileOpen(false);
+                      }}
+                      className="block text-black hover:text-gray-600 transition"
+                    >
+                      Calculators
+                    </Link>
+                    <Link
+                      to="/privacy-policy"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsMoreMobileOpen(false);
+                      }}
+                      className="block text-black hover:text-gray-600 transition"
+                    >
+                      Privacy Policy
+                    </Link>
+                    <Link
+                      to="/terms"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsMoreMobileOpen(false);
+                      }}
+                      className="block text-black hover:text-gray-600 transition"
+                    >
+                      Terms & Conditions
+                    </Link>
+                    <Link
+                      to="/refund-policy"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsMoreMobileOpen(false);
+                      }}
+                      className="block text-black hover:text-gray-600 transition"
+                    >
+                      Refund Policy
+                    </Link>
+                    <Link
+                      to="/offers"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsMoreMobileOpen(false);
+                      }}
+                      className="block text-black hover:text-gray-600 transition"
+                    >
+                      Offers
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
-              <li>
-                <Link
-                  to="/contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="bg-[#004d6e] text-white px-4 py-2 rounded-full text-sm inline-block text-center hover:bg-[#00bcd4] transition"
-                >
-                  Get in Touch
-                </Link>
-              </li>
-            </ul>
+            <Link
+              to="/contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-6 py-3 border-b border-gray-300"
+            >
+              Contact
+            </Link>
+
+           {isAdminLoggedIn && (
+  <>
+    <Link
+      to="/admin/dashboard"
+      className="text-sm bg-[#004d6e] text-white px-4 py-2 rounded-full hover:bg-[#00bcd4] transition"
+    >
+      Dashboard
+    </Link>
+    <button
+      onClick={() => {
+        localStorage.removeItem('token');
+        window.location.href = '/';
+      }}
+      className="text-sm bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
+    >
+      Logout
+    </button>
+  </>
+)}
+
+            <Link
+              to="/contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="block mt-3 mb-6 mx-6 px-4 py-3 rounded bg-[#004d6e] text-white text-center text-sm hover:bg-[#00bcd4] transition"
+            >
+              Get in Touch
+            </Link>
           </motion.nav>
         )}
       </AnimatePresence>

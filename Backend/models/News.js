@@ -5,7 +5,9 @@ const contentSchema = new mongoose.Schema({
   title: String,
   content: String,
   date: { type: Date, default: Date.now },
-  image: String
+  category: String,
+  tags: [String],
+  image: String, 
 });
 
 module.exports = mongoose.model('News', contentSchema);

@@ -1,13 +1,21 @@
-
 const express = require('express');
 const router = express.Router();
-const blogController = require('../controllers/blogController');
-const { verifyToken, isAdmin } = require('../middleware/authMiddleware');
+const verifyAdmin = require('../middleware/verifyAdmin');
+const {
+  createBlog,
+  getAllBlogs,
+  getBlogById,
+  updateBlog,
+  deleteBlog,
+} = require('../controllers/blogController');
 
-router.post('/', verifyToken, isAdmin, blogController.upload, blogController.createBlog);
-router.get('/', blogController.getAllBlogs);
-router.get('/:id', blogController.getBlogById);
-router.put('/:id', verifyToken, isAdmin, blogController.upload, blogController.updateBlog);
-router.delete('/:id', verifyToken, isAdmin, blogController.deleteBlog);
+// Public routes
+router.get('/', getAllBlogs);
+router.get('/:id', getBlogById);
+
+// Admin-only routes
+router.post('/', verifyAdmin, createBlog);
+router.put('/:id', verifyAdmin, updateBlog);
+router.delete('/:id', verifyAdmin, deleteBlog);
 
 module.exports = router;

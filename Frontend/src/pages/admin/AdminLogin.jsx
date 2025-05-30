@@ -1,53 +1,54 @@
-import { useState } from 'react';
+// src/pages/admin/AdminLogin.jsx
+import api from '../../api/axios'; // Adjust path based on file location
+import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-import axios from '../../api/axios';
+import { useState } from 'react';
 
 const AdminLogin = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError('');
-
     try {
-      const res = await axios.post('/auth/login', { email, password });
-      localStorage.setItem('token', res.data.token);
-      navigate('/admin/dashboard');
+      const res = await api.post('/auth/login', { email, password }); // <--- use `api`
+      localStorage.setItem('authToken', res.data.token);
+      const token = res.data.token;
+      const decoded = jwtDecode(token);
+
+      if (decoded.role === 'admin') {
+        localStorage.setItem('token', token);
+        navigate('/admin/dashboard');
+      } else {
+        alert('Access denied: Not an admin.');
+      }
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
+      alert('Login failed');
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form onSubmit={handleLogin} className="bg-white p-6 rounded shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold mb-4 text-center">Admin Login</h2>
-        {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full border mb-3 p-2 rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full border mb-4 p-2 rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-        >
-          Login
-        </button>
-      </form>
-    </div>
+    <form onSubmit={handleLogin} className="p-6 max-w-md mx-auto">
+      <h2 className="text-2xl mb-4">Admin Login</h2>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="block w-full p-2 mb-4 border"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="block w-full p-2 mb-4 border"
+      />
+      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+        Login
+      </button>
+    </form>
   );
 };
 

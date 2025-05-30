@@ -5,12 +5,17 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import api from '../api/axios';
 
+const API_URL = 'http://localhost:5000';
+const placeholder = 'https://via.placeholder.com/400x300?text=No+Image';
+
+
+
 const News = () => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     AOS.init(); // Initialize AOS animations
-    api.get('/News').then(res => setNews(res.data));
+    api.get('/news').then(res => setNews(res.data));
   }, []);
 
   return (
@@ -28,7 +33,7 @@ const News = () => {
               className="border rounded shadow p-4 hover:shadow-lg cursor-pointer"
             >
               <img
-                src={`http://localhost:5000/uploads/${news.image}`}
+               src={news.image ? `${API_URL}/uploads/${news.image}` : placeholder}
                 alt={news.title}
                 className="w-full h-48 object-cover mb-2 rounded"
               />

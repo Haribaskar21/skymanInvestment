@@ -1,13 +1,21 @@
-
 const express = require('express');
 const router = express.Router();
-const newsController = require('../controllers/newsController');
-const { verifyToken, isAdmin } = require('../middleware/authMiddleware');
+const verifyAdmin = require('../middleware/verifyAdmin');
+const {
+  createNews,
+  getAllNews,
+  getNewsById,
+  updateNews,
+  deleteNews,
+} = require('../controllers/newsController');
 
-router.post('/', verifyToken, isAdmin, newsController.upload, newsController.createNews);
-router.get('/', newsController.getAllNews);
-router.get('/:id', newsController.getNewsById);
-router.put('/:id', verifyToken, isAdmin, newsController.upload, newsController.updateNews);
-router.delete('/:id', verifyToken, isAdmin, newsController.deleteNews);
+// Public routes
+router.get('/', getAllNews);
+router.get('/:id', getNewsById);
+
+// Admin-only routes
+router.post('/', verifyAdmin, createNews);
+router.put('/:id', verifyAdmin, updateNews);
+router.delete('/:id', verifyAdmin, deleteNews);
 
 module.exports = router;

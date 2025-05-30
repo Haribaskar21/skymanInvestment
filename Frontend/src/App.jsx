@@ -5,6 +5,7 @@ import 'aos/dist/aos.css'; // AOS styles
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { Toaster } from 'react-hot-toast';
 
 import Home from './pages/Home';
 import Contact from './pages/Contact';
@@ -26,9 +27,15 @@ import InsuranceServices from './pages/InsuranceServices';
 import FinancialPlanning from './pages/FinancialPlanning';
 import MutualFundAdvisor from './pages/MutualFundAdvisor';
 import BondsPage from './pages/BondsPage';
-// import AdminRoute from './components/AdminRoute';
-// import AdminLogin from './pages/AdminLogin';
-// import AdminDashboard from './pages/AdminDashboard';
+import AdminLogin from './pages/admin/AdminLogin';
+import Dashboard from './pages/admin/AdminDashboard';
+import AdminBlogList from './pages/admin/AdminBlogList';
+import AdminNewsList from './pages/admin/AdminNewsList';
+
+import BlogForm from './pages/admin/BlogForm';
+import NewsForm from './pages/admin/NewsForm';
+import AdminRoute from './components/AdminRoute';
+import AdminLayout from './layouts/AdminLayout';
 import SipCalculator from './pages/calculators/SipCalculator';
 import LumpsumCalculator from './pages/calculators/LumpsumCalculator';
 import LoanAmortizationPage from './pages/calculators/LoanAmortizationPage';
@@ -55,6 +62,7 @@ export default function App() {
       <Navbar />
       <PageTitleSetter /> {/* <- Dynamic titles here */}
       <main className="flex-grow pt-20">
+        <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
@@ -80,16 +88,37 @@ export default function App() {
           <Route path="/calculators/swp" element={<SwpCalculator />} />
           <Route path="/calculators/future-value" element={<FutureValueCalculator />} />
           <Route path="/calculators/loan-emi" element={<LoanEMICalculator />} />
+        {/* Public admin login */}
+        <Route path="/secret-admin-login" element={<AdminLogin />} />
+        <Route path="/admin/blogs/create" element={<BlogForm />} />
+<Route path="/admin/blogs/edit/:id" element={<BlogForm isEdit />} />
+<Route path="/admin/news/create" element={<NewsForm />} />
+<Route path="/admin/news/edit/:id" element={<NewsForm isEdit />} />
 
-          {/* <Route path="/admin/login" element={<AdminLogin />} />
+
+
+        {/* Admin protected layout and nested pages */}
+        <Route element={<AdminRoute><AdminLayout /></AdminRoute>}>
+          <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route
-              path="/admin/dashboard"
-              element={
-                <AdminRoute>
-                  <AdminDashboard />
-                </AdminRoute>
-              }
-            /> */}
+    path="/admin/blogs"
+    element={
+      <AdminRoute>
+        <AdminBlogList />
+      </AdminRoute>
+    }
+  />
+  <Route
+    path="/admin/news"
+    element={
+      <AdminRoute>
+        <AdminNewsList />
+      </AdminRoute>
+    }
+  />
+          {/* <Route path="/admin/blogs" element={<BlogList />} />
+          <Route path="/admin/news" element={<NewsList />} /> */}
+        </Route>
         </Routes>
       </main>
       <Footer />
