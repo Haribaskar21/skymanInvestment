@@ -1,42 +1,59 @@
-// components/AdminMetaCRUD.jsx
 import { useEffect, useState } from "react";
 import api from '../../api/axios'; 
 
 export default function AdminMetaCRUD({ metaType }) {
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-const fetchItems = async () => {
-  try {
-    const res = await api.get(`/meta/${metaType}`);
-    if (Array.isArray(res.data)) {
-      setItems(res.data);
-    } else {
-      console.error("Expected an array, got:", res.data);
+  const fetchItems = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await api.get(`/meta/${metaType}`);
+      if (Array.isArray(res.data)) {
+        setItems(res.data);
+      } else {
+        setItems([]);
+        setError("Unexpected data format.");
+      }
+    } catch (err) {
+      setError("Failed to fetch items.");
       setItems([]);
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.error("Failed to fetch items", err);
-    setItems([]);
-  }
-};
-
+  };
 
   const createItem = async () => {
     if (!name.trim()) return;
-    await api.post(`/meta/${metaType}`, { name });
-    setName("");
-    fetchItems();
+    try {
+      await api.post(`/meta/${metaType}`, { name });
+      setName("");
+      fetchItems();
+    } catch {
+      alert("Failed to create item.");
+    }
   };
 
   const updateItem = async (id, newName) => {
-    await api.put(`/meta/${metaType}/${id}`, { name: newName });
-    fetchItems();
+    try {
+      await api.put(`/meta/${metaType}/${id}`, { name: newName });
+      fetchItems();
+    } catch {
+      alert("Failed to update item.");
+    }
   };
 
   const deleteItem = async (id) => {
-    await api.delete(`/meta/${metaType}/${id}`);
-    fetchItems();
+    if (!window.confirm("Are you sure you want to delete this item?")) return;
+    try {
+      await api.delete(`/meta/${metaType}/${id}`);
+      fetchItems();
+    } catch {
+      alert("Failed to delete item.");
+    }
   };
 
   useEffect(() => {
@@ -46,20 +63,29 @@ const fetchItems = async () => {
   return (
     <div className="p-4 space-y-4">
       <h2 className="text-xl font-semibold capitalize">{metaType}</h2>
+      
+      {loading && <p>Loading {metaType}...</p>}
+      {error && <p className="text-red-600">{error}</p>}
+
       <div className="flex gap-2">
         <input
           className="border p-2 rounded w-full"
           placeholder={`New ${metaType}`}
           value={name}
           onChange={(e) => setName(e.target.value)}
+          disabled={loading}
         />
         <button
           onClick={createItem}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          disabled={loading || !name.trim()}
+          className={`px-4 py-2 rounded text-white ${
+            loading || !name.trim() ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500"
+          }`}
         >
           Add
         </button>
       </div>
+      
       <ul>
         {items.map((item) => (
           <li key={item._id} className="flex justify-between py-2 border-b">

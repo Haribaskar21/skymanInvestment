@@ -1,8 +1,8 @@
-// src/pages/admin/NewsForm.jsx
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
+import { motion } from 'framer-motion';
 
 const NewsForm = () => {
   const { id } = useParams();
@@ -18,7 +18,6 @@ const NewsForm = () => {
 
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState('');
-
   const [categories, setCategories] = useState([]);
   const [tagsOptions, setTagsOptions] = useState([]);
 
@@ -72,55 +71,63 @@ const NewsForm = () => {
     }
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    let imageFilename = formData.image || '';
+    try {
+      let imageFilename = formData.image || '';
 
-    if (image) {
-      const formDataImage = new FormData();
-      formDataImage.append('image', image);
+      if (image) {
+        const formDataImage = new FormData();
+        formDataImage.append('image', image);
 
-      const uploadRes = await api.post('/upload', formDataImage, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+        const uploadRes = await api.post('/upload', formDataImage, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
 
-      imageFilename = uploadRes.data.filename;
+        imageFilename = uploadRes.data.filename;
+      }
+
+      const payload = {
+        ...formData,
+        image: imageFilename,
+      };
+
+      delete payload.imageUrl;
+
+      if (id) {
+        await api.put(`/news/${id}`, payload);
+        toast.success('News updated!');
+      } else {
+        await api.post('/news', payload);
+        toast.success('News created!');
+      }
+
+      navigate('/admin/news');
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast.error('Error saving news');
     }
-
-    const payload = {
-      ...formData,
-      image: imageFilename,
-    };
-
-    delete payload.imageUrl;
-
-    if (id) {
-      await api.put(`/news/${id}`, payload);
-      toast.success('News updated!');
-    } else {
-      await api.post('/news', payload);
-      toast.success('News created!');
-    }
-
-    navigate('/admin/news');
-  } catch (error) {
-    console.error('Submission error:', error);
-    toast.error('Error saving news');
-  }
-};
-
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 p-4 max-w-xl mx-auto">
+    <motion.form
+      onSubmit={handleSubmit}
+      className="space-y-6 p-6 bg-white shadow-xl rounded-2xl max-w-2xl mx-auto mt-10"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+    >
+      <h2 className="text-2xl font-semibold text-center text-gray-800">
+        {id ? 'Edit News Post' : 'Create News Post'}
+      </h2>
 
       <input
         name="title"
         value={formData.title}
         onChange={handleChange}
         placeholder="Title"
-        className="input w-full"
+        className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
 
@@ -129,19 +136,18 @@ const handleSubmit = async (e) => {
         value={formData.content}
         onChange={handleChange}
         placeholder="Content"
-        className="textarea w-full"
         rows={6}
+        className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
 
-      {/* Category dropdown */}
-      <label className="block">
-        <span className="text-sm font-medium text-gray-700">Category</span>
+      <div>
+        <label className="block mb-1 text-sm font-medium text-gray-700">Category</label>
         <select
           name="category"
           value={formData.category}
           onChange={handleChange}
-          className="select w-full mt-1"
+          className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         >
           <option value="" disabled>Select category</option>
@@ -149,49 +155,51 @@ const handleSubmit = async (e) => {
             <option key={cat._id} value={cat._id}>{cat.name}</option>
           ))}
         </select>
-      </label>
+      </div>
 
-      {/* Tags multi-select */}
-      <label className="block">
-        <span className="text-sm font-medium text-gray-700">Tags</span>
+      <div>
+        <label className="block mb-1 text-sm font-medium text-gray-700">Tags</label>
         <select
           multiple
           name="tags"
           value={formData.tags}
           onChange={handleTagsChange}
-          className="select w-full mt-1"
+          className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
           size={tagsOptions.length > 5 ? 5 : tagsOptions.length}
         >
           {tagsOptions.map(tag => (
             <option key={tag._id} value={tag._id}>{tag.name}</option>
           ))}
         </select>
-      </label>
+      </div>
 
-      {/* Image upload */}
-      <label className="block">
-        <span className="text-sm font-medium text-gray-700">Featured Image</span>
+      <div>
+        <label className="block mb-1 text-sm font-medium text-gray-700">Featured Image</label>
         <input
           type="file"
           accept="image/*"
           onChange={handleImageChange}
-          className="mt-1 block w-full"
+          className="w-full p-2 border border-gray-300 rounded-lg"
         />
-      </label>
+      </div>
 
-      {/* Image preview */}
       {imagePreview && (
         <img
           src={imagePreview}
           alt="Preview"
-          className="mt-2 max-h-48 object-contain border rounded"
+          className="mt-4 max-h-48 object-contain rounded-lg border"
         />
       )}
 
-      <button type="submit" className="btn btn-primary w-full">
+      <motion.button
+        type="submit"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-md transition"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      >
         {id ? 'Update News' : 'Create News'}
-      </button>
-    </form>
+      </motion.button>
+    </motion.form>
   );
 };
 

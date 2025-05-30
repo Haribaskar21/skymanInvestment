@@ -1,6 +1,7 @@
 // src/pages/admin/BlogForm.jsx
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
 
@@ -72,55 +73,61 @@ const BlogForm = () => {
     }
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    let imageFilename = formData.image || '';
+    try {
+      let imageFilename = formData.image || '';
 
-    if (image) {
-      const formDataImage = new FormData();
-      formDataImage.append('image', image);
+      if (image) {
+        const formDataImage = new FormData();
+        formDataImage.append('image', image);
 
-      const uploadRes = await api.post('/upload', formDataImage, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+        const uploadRes = await api.post('/upload', formDataImage, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
 
-      imageFilename = uploadRes.data.filename;
+        imageFilename = uploadRes.data.filename;
+      }
+
+      const payload = {
+        ...formData,
+        image: imageFilename,
+      };
+
+      delete payload.imageUrl;
+
+      if (id) {
+        await api.put(`/blogs/${id}`, payload);
+        toast.success('blogs updated!');
+      } else {
+        await api.post('/blogs', payload);
+        toast.success('blogs created!');
+      }
+
+      navigate('/admin/blogs');
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast.error('Error saving blogs');
     }
-
-    const payload = {
-      ...formData,
-      image: imageFilename,
-    };
-
-    delete payload.imageUrl;
-
-    if (id) {
-      await api.put(`/blogs/${id}`, payload);
-      toast.success('blogs updated!');
-    } else {
-      await api.post('/blogs', payload);
-      toast.success('blogs created!');
-    }
-
-    navigate('/admin/blogs');
-  } catch (error) {
-    console.error('Submission error:', error);
-    toast.error('Error saving blogs');
-  }
-};
-
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 p-4 max-w-xl mx-auto">
+    <motion.form 
+      onSubmit={handleSubmit} 
+      initial={{ opacity: 0, y: 20 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ duration: 0.5 }} 
+      className="space-y-6 p-6 max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-200"
+    >
+      <h2 className="text-2xl font-bold text-center">{id ? 'Edit Blog Post' : 'Create New Blog Post'}</h2>
 
       <input
         name="title"
         value={formData.title}
         onChange={handleChange}
-        placeholder="Title"
-        className="input w-full"
+        placeholder="Blog Title"
+        className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         required
       />
 
@@ -128,20 +135,19 @@ const handleSubmit = async (e) => {
         name="content"
         value={formData.content}
         onChange={handleChange}
-        placeholder="Content"
-        className="textarea w-full"
+        placeholder="Blog Content"
+        className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         rows={6}
         required
       />
 
-      {/* Category dropdown */}
-      <label className="block">
-        <span className="text-sm font-medium text-gray-700">Category</span>
+      <div>
+        <label className="block mb-1 font-medium">Category</label>
         <select
           name="category"
           value={formData.category}
           onChange={handleChange}
-          className="select w-full mt-1"
+          className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           required
         >
           <option value="" disabled>Select category</option>
@@ -149,50 +155,50 @@ const handleSubmit = async (e) => {
             <option key={cat._id} value={cat._id}>{cat.name}</option>
           ))}
         </select>
-      </label>
+      </div>
 
-      {/* Tags multi-select */}
-      <label className="block">
-        <span className="text-sm font-medium text-gray-700">Tags</span>
+      <div>
+        <label className="block mb-1 font-medium">Tags</label>
         <select
           multiple
           name="tags"
           value={formData.tags}
           onChange={handleTagsChange}
-          className="select w-full mt-1"
+          className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           size={tagsOptions.length > 5 ? 5 : tagsOptions.length}
         >
           {tagsOptions.map(tag => (
             <option key={tag._id} value={tag._id}>{tag.name}</option>
           ))}
         </select>
-      </label>
+      </div>
 
-      {/* Image upload */}
-      <label className="block">
-        <span className="text-sm font-medium text-gray-700">Featured Image</span>
+      <div>
+        <label className="block mb-1 font-medium">Featured Image</label>
         <input
           type="file"
           accept="image/*"
           onChange={handleImageChange}
-          className="mt-1 block w-full"
+          className="w-full"
         />
-      </label>
+        {imagePreview && (
+          <img
+            src={imagePreview}
+            alt="Preview"
+            className="mt-3 max-h-48 w-full object-contain border rounded"
+          />
+        )}
+      </div>
 
-      {/* Image preview */}
-      {imagePreview && (
-        <img
-          src={imagePreview}
-          alt="Preview"
-          className="mt-2 max-h-48 object-contain border rounded"
-        />
-      )}
-
-      <button type="submit" className="btn btn-primary w-full">
-        {id ? 'Update Blogs' : 'Create Blogs'}
-
-      </button>
-    </form>
+      <motion.button 
+        whileHover={{ scale: 1.02 }} 
+        whileTap={{ scale: 0.98 }}
+        type="submit"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-semibold transition"
+      >
+        {id ? 'Update Blog' : 'Create Blog'}
+      </motion.button>
+    </motion.form>
   );
 };
 
