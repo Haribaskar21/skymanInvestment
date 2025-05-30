@@ -108,10 +108,10 @@ const News = () => {
             >
               <img
                 src={
-                  item.image?.startsWith('http')
-                    ? item.image
-                    : item.image
-                    ? `http://localhost:5000/uploads/${item.image}`
+                  blog.image?.startsWith('http')
+                    ? blog.image
+                    : blog.image
+                    ? `http://localhost:5000/uploads/${blog.image}`
                     : placeholder
                 }
                 alt={item.title}
