@@ -53,7 +53,7 @@ exports.getBlogById = async (req, res) => {
 
 exports.updateBlog = async (req, res) => {
   const { id } = req.params;
-  const { title, content } = req.body;
+  const { title, content, category, tags, image } = req.body;
   const updateData = { title, content, category, tags };
 
   if (image !== undefined) updateData.image = image; // update image URL if provided

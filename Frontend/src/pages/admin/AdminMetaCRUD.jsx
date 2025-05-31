@@ -29,7 +29,7 @@ export default function AdminMetaCRUD({ metaType }) {
   const createItem = async () => {
     if (!name.trim()) return;
     try {
-      await api.post(`/meta/${metaType}`, { name });
+      await api.post(`/meta/${metaType}`, { name: name.trim() });
       setName("");
       fetchItems();
     } catch {
@@ -38,8 +38,9 @@ export default function AdminMetaCRUD({ metaType }) {
   };
 
   const updateItem = async (id, newName) => {
+    if (!newName?.trim()) return;
     try {
-      await api.put(`/meta/${metaType}/${id}`, { name: newName });
+      await api.put(`/meta/${metaType}/${id}`, { name: newName.trim() });
       fetchItems();
     } catch {
       alert("Failed to update item.");
@@ -61,7 +62,7 @@ export default function AdminMetaCRUD({ metaType }) {
   }, []);
 
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-4 space-y-4 border rounded shadow-sm">
       <h2 className="text-xl font-semibold capitalize">{metaType}</h2>
       
       {loading && <p>Loading {metaType}...</p>}
@@ -70,7 +71,7 @@ export default function AdminMetaCRUD({ metaType }) {
       <div className="flex gap-2">
         <input
           className="border p-2 rounded w-full"
-          placeholder={`New ${metaType}`}
+          placeholder={`New ${metaType.slice(0, -1)}`}
           value={name}
           onChange={(e) => setName(e.target.value)}
           disabled={loading}
@@ -95,14 +96,16 @@ export default function AdminMetaCRUD({ metaType }) {
                 className="bg-yellow-400 px-2 py-1 rounded text-white"
                 onClick={() => {
                   const newName = prompt("New name:", item.name);
-                  if (newName) updateItem(item._id, newName);
+                  if (newName?.trim()) updateItem(item._id, newName);
                 }}
+                disabled={loading}
               >
                 Edit
               </button>
               <button
                 className="bg-red-500 px-2 py-1 rounded text-white"
                 onClick={() => deleteItem(item._id)}
+                disabled={loading}
               >
                 Delete
               </button>

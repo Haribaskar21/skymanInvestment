@@ -81,13 +81,13 @@ const BlogForm = () => {
 
       if (image) {
         const formDataImage = new FormData();
-        formDataImage.append('image', image);
+formDataImage.append('image', image);
 
-        const uploadRes = await api.post('/upload', formDataImage, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+const uploadRes = await api.post('/upload', formDataImage, {
+  headers: { 'Content-Type': 'multipart/form-data' },
+});
 
-        imageFilename = uploadRes.data.filename;
+imageFilename = uploadRes.data.imageUrl;
       }
 
       const payload = {
@@ -107,7 +107,10 @@ const BlogForm = () => {
 
       navigate('/admin/blogs');
     } catch (error) {
+
       console.error('Submission error:', error);
+console.error('Error response:', error.response);
+
       toast.error('Error saving blogs');
     }
   };

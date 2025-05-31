@@ -29,6 +29,7 @@ import MutualFundAdvisor from './pages/MutualFundAdvisor';
 import BondsPage from './pages/BondsPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import Dashboard from './pages/admin/AdminDashboard';
+import AdminMetaManage from './pages/admin/AdminMetaManage';
 import AdminBlogList from './pages/admin/AdminBlogList';
 import AdminNewsList from './pages/admin/AdminNewsList';
 
@@ -111,6 +112,7 @@ export default function App() {
         {/* Admin protected layout and nested pages */}
         <Route element={<AdminRoute><AdminLayout /></AdminRoute>}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/meta" element={<AdminMetaManage />} />
           <Route
     path="/admin/blogs"
     element={

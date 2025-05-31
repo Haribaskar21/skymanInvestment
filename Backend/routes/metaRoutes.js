@@ -1,59 +1,82 @@
-// routes/meta.js
 const express = require('express');
 const router = express.Router();
 
-// Shared in-memory storage
-const metaStore = {
-  categories: [
-    { _id: 'cat1', name: 'Technology' },
-    { _id: 'cat2', name: 'Politics' },
-  ],
-  tags: [
-    { _id: 'tag1', name: 'Breaking' },
-    { _id: 'tag2', name: 'Opinion' },
-  ],
+const Category = require('../models/Category');
+const Tag = require('../models/Tag');
+
+// Helper function to get model by metaType
+const getModel = (metaType) => {
+  if (metaType === 'categories') return Category;
+  if (metaType === 'tags') return Tag;
+  return null;
 };
 
 // GET all
-router.get('/:metaType', (req, res) => {
+router.get('/:metaType', async (req, res) => {
   const { metaType } = req.params;
-  if (!['categories', 'tags'].includes(metaType)) {
-    return res.status(400).json({ error: 'Invalid metaType' });
+  const Model = getModel(metaType);
+  if (!Model) return res.status(400).json({ error: 'Invalid metaType' });
+
+  try {
+    const items = await Model.find().sort({ createdAt: -1 });
+    res.json(items);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-  res.json(metaStore[metaType]);
 });
 
 // POST create
-router.post('/:metaType', (req, res) => {
+router.post('/:metaType', async (req, res) => {
   const { metaType } = req.params;
   const { name } = req.body;
-  if (!name || !['categories', 'tags'].includes(metaType)) {
-    return res.status(400).json({ error: 'Invalid request' });
-  }
 
-  const newItem = { _id: `id${Date.now()}`, name };
-  metaStore[metaType].push(newItem);
-  res.status(201).json(newItem);
+  const Model = getModel(metaType);
+  if (!Model || !name) return res.status(400).json({ error: 'Invalid request' });
+
+  try {
+    const exists = await Model.findOne({ name });
+    if (exists) return res.status(400).json({ error: `${metaType.slice(0, -1)} already exists` });
+
+    const newItem = new Model({ name });
+    await newItem.save();
+    res.status(201).json(newItem);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // PUT update
-router.put('/:metaType/:id', (req, res) => {
+router.put('/:metaType/:id', async (req, res) => {
   const { metaType, id } = req.params;
   const { name } = req.body;
 
-  const list = metaStore[metaType];
-  const idx = list.findIndex(i => i._id === id);
-  if (idx === -1) return res.status(404).json({ error: 'Not found' });
+  const Model = getModel(metaType);
+  if (!Model || !name) return res.status(400).json({ error: 'Invalid request' });
 
-  list[idx].name = name;
-  res.json(list[idx]);
+  try {
+    const updated = await Model.findByIdAndUpdate(id, { name }, { new: true });
+    if (!updated) return res.status(404).json({ error: 'Not found' });
+
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // DELETE
-router.delete('/:metaType/:id', (req, res) => {
+router.delete('/:metaType/:id', async (req, res) => {
   const { metaType, id } = req.params;
-  metaStore[metaType] = metaStore[metaType].filter(i => i._id !== id);
-  res.status(204).send();
+  const Model = getModel(metaType);
+  if (!Model) return res.status(400).json({ error: 'Invalid metaType' });
+
+  try {
+    const deleted = await Model.findByIdAndDelete(id);
+    if (!deleted) return res.status(404).json({ error: 'Not found' });
+
+    res.status(204).send();
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 module.exports = router;

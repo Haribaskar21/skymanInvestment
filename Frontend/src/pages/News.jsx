@@ -44,14 +44,14 @@ const News = () => {
 
       if (selectedCategory && selectedTag) {
         filtered = filtered.filter(
-          (item) =>
-            item.category === selectedCategory &&
-            item.tags?.includes(selectedTag)
+          (news) =>
+            news.category === selectedCategory &&
+            news.tags?.includes(selectedTag)
         );
       } else if (selectedCategory) {
-        filtered = filtered.filter((item) => item.category === selectedCategory);
+        filtered = filtered.filter((news) => news.category === selectedCategory);
       } else if (selectedTag) {
-        filtered = filtered.filter((item) => item.tags?.includes(selectedTag));
+        filtered = filtered.filter((news) => news.tags?.includes(selectedTag));
       }
 
       setNews(filtered);
@@ -95,8 +95,8 @@ const News = () => {
 
       {/* News Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {news.map((item, index) => (
-          <Link to={`/news/${item._id}`} key={item._id}>
+        {news.map((news, index) => (
+          <Link to={`/news/${news._id}`} key={news._id}>
             <motion.div
               whileHover={{ scale: 1.03 }}
               initial={{ opacity: 0, y: 30 }}
@@ -108,23 +108,23 @@ const News = () => {
             >
               <img
                 src={
-                  blog.image?.startsWith('http')
-                    ? blog.image
-                    : blog.image
-                    ? `http://localhost:5000/uploads/${blog.image}`
+                  news.image?.startsWith('http')
+                    ? news.image
+                    : news.image
+                    ? `http://localhost:5000/uploads/${news.image}`
                     : placeholder
                 }
-                alt={item.title}
+                alt={news.title}
                 className="w-full h-48 object-cover rounded mb-3"
               />
               <h2 className="text-lg font-semibold text-gray-800 line-clamp-2">
-                {item.title}
+                {news.title}
               </h2>
               <p className="text-sm text-gray-500 mb-1">
-                {new Date(item.date).toLocaleDateString()}
+                {new Date(news.date).toLocaleDateString()}
               </p>
               <p className="text-sm text-gray-600 line-clamp-3">
-                {item.content.slice(0, 100)}...
+                {news.content.slice(0, 100)}...
               </p>
             </motion.div>
           </Link>

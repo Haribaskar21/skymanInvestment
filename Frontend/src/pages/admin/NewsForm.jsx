@@ -78,14 +78,14 @@ const NewsForm = () => {
       let imageFilename = formData.image || '';
 
       if (image) {
-        const formDataImage = new FormData();
-        formDataImage.append('image', image);
+       const formDataImage = new FormData();
+formDataImage.append('image', image);
 
-        const uploadRes = await api.post('/upload', formDataImage, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+const uploadRes = await api.post('/upload', formDataImage, {
+  headers: { 'Content-Type': 'multipart/form-data' },
+});
 
-        imageFilename = uploadRes.data.filename;
+imageFilename = uploadRes.data.imageUrl;
       }
 
       const payload = {
