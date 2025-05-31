@@ -11,7 +11,7 @@ const NewsTicker = () => {
   }, []);
 
   return (
-    <div className="relative bg-white shadow-lg text-gray-700 overflow-hidden py-3 px-6 rounded-xl border border-gray-200 select-none">
+    <div className="relative bg-white shadow-lg text-gray-700 overflow-hidden py-3 px-6 border border-gray-200 select-none">
       {/* Gradient edge overlays */}
       <div className="pointer-events-none absolute top-0 left-0 h-full w-20 bg-gradient-to-r from-white via-white to-transparent z-10" />
       <div className="pointer-events-none absolute top-0 right-0 h-full w-20 bg-gradient-to-l from-white via-white to-transparent z-10" />
