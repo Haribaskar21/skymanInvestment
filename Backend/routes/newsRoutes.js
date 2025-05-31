@@ -8,6 +8,9 @@ const {
   updateNews,
   deleteNews,
 } = require('../controllers/newsController');
+console.log('verifyAdmin:', verifyAdmin);
+console.log('deleteNews:', deleteNews);
+
 
 // Public routes
 router.get('/', getAllNews);

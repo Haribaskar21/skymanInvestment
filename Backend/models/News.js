@@ -8,6 +8,7 @@ const contentSchema = new mongoose.Schema({
   category: String,
   tags: [String],
   image: String, 
+  link: String, 
 });
 
 module.exports = mongoose.model('News', contentSchema);

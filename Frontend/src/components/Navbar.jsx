@@ -84,9 +84,9 @@ export default function Navbar() {
                   <Link to="/more#book" className="text-black hover:text-gray-500 transition">
                     Book Services
                   </Link>
-                  <Link to="/news" className="text-black hover:text-gray-500 transition">
+                  {/* <Link to="/news" className="text-black hover:text-gray-500 transition">
                     News & updates
-                  </Link>
+                  </Link> */}
                   <Link to="/calculators" className="text-black hover:text-gray-500 transition">
                     Calculators
                   </Link>
@@ -114,26 +114,6 @@ export default function Navbar() {
           </motion.div>
 
           {/* Admin Login / Dashboard / Logout */}
-{isAdminLoggedIn && (
-  <>
-    <Link
-      to="/admin/dashboard"
-      className="text-sm bg-[#004d6e] text-white px-4 py-2 rounded-full hover:bg-[#00bcd4] transition"
-    >
-      Dashboard
-    </Link>
-    <button
-      onClick={() => {
-        localStorage.removeItem('token');
-        window.location.href = '/';
-      }}
-      className="text-sm bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
-    >
-      Logout
-    </button>
-  </>
-)}
-
 
           {/* Get in Touch Button */}
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
@@ -170,9 +150,9 @@ export default function Navbar() {
               <Link to="/more#book" className="block px-2 py-1 hover:bg-gray-100 rounded">
                 Book Services
               </Link>
-              <Link to="/news" className="block px-2 py-1 hover:bg-gray-100 rounded">
+              {/* <Link to="/news" className="block px-2 py-1 hover:bg-gray-100 rounded">
                 News & Updates
-              </Link>
+              </Link> */}
               <Link to="/calculators" className="block px-2 py-1 hover:bg-gray-100 rounded">
                 Calculators
               </Link>
@@ -196,25 +176,6 @@ export default function Navbar() {
           </Link>
 
           {/* Admin login/logout */}
-{isAdminLoggedIn && (
-  <>
-    <Link
-      to="/admin/dashboard"
-      className="text-sm bg-[#004d6e] text-white px-4 py-2 rounded-full hover:bg-[#00bcd4] transition"
-    >
-      Dashboard
-    </Link>
-    <button
-      onClick={() => {
-        localStorage.removeItem('token');
-        window.location.href = '/';
-      }}
-      className="text-sm bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
-    >
-      Logout
-    </button>
-  </>
-)}
 
         </nav>
 
@@ -319,7 +280,7 @@ export default function Navbar() {
                     >
                       Book Services
                     </Link>
-                    <Link
+                    {/* <Link
                       to="/news"
                       onClick={() => {
                         setIsMenuOpen(false);
@@ -328,7 +289,7 @@ export default function Navbar() {
                       className="block text-black hover:text-gray-600 transition"
                     >
                       News & updates
-                    </Link>
+                    </Link> */}
                     <Link
                       to="/calculators"
                       onClick={() => {
@@ -391,26 +352,6 @@ export default function Navbar() {
             >
               Contact
             </Link>
-
-           {isAdminLoggedIn && (
-  <>
-    <Link
-      to="/admin/dashboard"
-      className="text-sm bg-[#004d6e] text-white px-4 py-2 rounded-full hover:bg-[#00bcd4] transition"
-    >
-      Dashboard
-    </Link>
-    <button
-      onClick={() => {
-        localStorage.removeItem('token');
-        window.location.href = '/';
-      }}
-      className="text-sm bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
-    >
-      Logout
-    </button>
-  </>
-)}
 
             <Link
               to="/contact"

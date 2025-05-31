@@ -4,6 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
+// At the top of BlogForm.jsx
+import {LexicalEditor} from '../../components/LexicalEditor';
+
 
 const BlogForm = () => {
   const { id } = useParams();
@@ -134,15 +137,10 @@ console.error('Error response:', error.response);
         required
       />
 
-      <textarea
-        name="content"
-        value={formData.content}
-        onChange={handleChange}
-        placeholder="Blog Content"
-        className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        rows={6}
-        required
-      />
+<LexicalEditor
+  value={formData.content}
+  onChange={(content) => setFormData(prev => ({ ...prev, content }))}
+/>
 
       <div>
         <label className="block mb-1 font-medium">Category</label>

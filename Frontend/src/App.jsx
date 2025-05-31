@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // AOS styles
+import 'aos/dist/aos.css';
 
-import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { Toaster } from 'react-hot-toast';
@@ -14,7 +14,6 @@ import ServicesSection from './pages/Services';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import Terms from './pages/Terms';
 import RefundPolicy from './pages/RefundPolicy';
-// import BookServices from './pages/BookServices';
 import News from './pages/News';
 import NewsDetail from './pages/NewsDetail';
 import Calculators from './pages/Calculators';
@@ -49,8 +48,9 @@ import BlogTags from './pages/admin/BlogTags';
 import NewsCategories from './pages/admin/NewsCategories';
 import NewsTags from './pages/admin/NewsTags';
 
-
 export default function App() {
+  const location = useLocation();
+
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -63,10 +63,16 @@ export default function App() {
     AOS.refresh();
   }, []);
 
+  // Hide Navbar and Footer on all /admin routes
+  const hideNavAndFooter = location.pathname.startsWith('/admin');
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
-      <Navbar />
-      <PageTitleSetter /> {/* <- Dynamic titles here */}
+      {/* Conditionally render Navbar */}
+      {!hideNavAndFooter && <Navbar />}
+
+      <PageTitleSetter />
+
       <main className="flex-grow pt-20">
         <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
         <Routes>
@@ -94,49 +100,47 @@ export default function App() {
           <Route path="/calculators/swp" element={<SwpCalculator />} />
           <Route path="/calculators/future-value" element={<FutureValueCalculator />} />
           <Route path="/calculators/loan-emi" element={<LoanEMICalculator />} />
-        {/* Public admin login */}
-        <Route path="/secret-admin-login" element={<AdminLogin />} />
-        <Route path="/admin/blogs/create" element={<BlogForm />} />
-<Route path="/admin/blogs/edit/:id" element={<BlogForm isEdit />} />
-<Route path="/admin/news/create" element={<NewsForm />} />
-<Route path="/admin/news/edit/:id" element={<NewsForm isEdit />} />
-// example in your route config
-<Route path="/admin/categories" element={<BlogCategories />} />
-<Route path="/admin/tags" element={<BlogTags />} />
-<Route path="/admin/categories" element={<NewsCategories />} />
-<Route path="/admin/tags" element={<NewsTags />} />
 
+          {/* Public admin login */}
+          <Route path="/secret-admin-login" element={<AdminLogin />} />
 
+          <Route path="/admin/blogs/create" element={<BlogForm />} />
+          <Route path="/admin/blogs/edit/:id" element={<BlogForm isEdit />} />
+          <Route path="/admin/news/create" element={<NewsForm />} />
+          <Route path="/admin/news/edit/:id" element={<NewsForm isEdit />} />
+          <Route path="/admin/categories" element={<BlogCategories />} />
+          <Route path="/admin/tags" element={<BlogTags />} />
+          <Route path="/admin/categories" element={<NewsCategories />} />
+          <Route path="/admin/tags" element={<NewsTags />} />
 
-
-        {/* Admin protected layout and nested pages */}
-        <Route element={<AdminRoute><AdminLayout /></AdminRoute>}>
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route path="/admin/meta" element={<AdminMetaManage />} />
-          <Route
-    path="/admin/blogs"
-    element={
-      <AdminRoute>
-        <AdminBlogList />
-      </AdminRoute>
-    }
-  />
-  <Route
-    path="/admin/news"
-    element={
-      <AdminRoute>
-        <AdminNewsList />
-      </AdminRoute>
-    }
-  />
-          {/* <Route path="/admin/blogs" element={<BlogList />} />
-          <Route path="/admin/news" element={<NewsList />} /> */}
-        </Route>
+          {/* Admin protected layout and nested pages */}
+          <Route element={<AdminRoute><AdminLayout /></AdminRoute>}>
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/meta" element={<AdminMetaManage />} />
+            <Route
+              path="/admin/blogs"
+              element={
+                <AdminRoute>
+                  <AdminBlogList />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/news"
+              element={
+                <AdminRoute>
+                  <AdminNewsList />
+                </AdminRoute>
+              }
+            />
+          </Route>
         </Routes>
       </main>
-      <Footer />
+
+      {/* Conditionally render Footer */}
+      {!hideNavAndFooter && <Footer />}
+
       <ScrollToTopButton />
     </div>
   );
 }
-

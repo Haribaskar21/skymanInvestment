@@ -10,35 +10,17 @@ const NewsForm = () => {
 
   const [formData, setFormData] = useState({
     title: '',
-    content: '',
-    category: '',
-    tags: [],
-    image: '',
+    link: '',
   });
-
-  const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState('');
-  const [categories, setCategories] = useState([]);
-  const [tagsOptions, setTagsOptions] = useState([]);
-
-  useEffect(() => {
-    const fetchCategories = api.get('/meta/categories');
-    const fetchTags = api.get('/meta/tags');
-
-    Promise.all([fetchCategories, fetchTags])
-      .then(([catRes, tagRes]) => {
-        setCategories(catRes.data);
-        setTagsOptions(tagRes.data);
-      })
-      .catch(() => toast.error('Failed to load categories or tags'));
-  }, []);
 
   useEffect(() => {
     if (id) {
       api.get(`/news/${id}`)
         .then(res => {
-          setFormData(res.data);
-          if (res.data.imageUrl) setImagePreview(res.data.imageUrl);
+          setFormData({ 
+            title: res.data.title || '', 
+            link: res.data.link || '' 
+          });
         })
         .catch(() => toast.error('Failed to load news item'));
     }
@@ -49,60 +31,16 @@ const NewsForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleTagsChange = (e) => {
-    const options = e.target.options;
-    const selectedTags = [];
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].selected) selectedTags.push(options[i].value);
-    }
-    setFormData(prev => ({ ...prev, tags: selectedTags }));
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
-      reader.readAsDataURL(file);
-    } else {
-      setImagePreview('');
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      let imageFilename = formData.image || '';
-
-      if (image) {
-       const formDataImage = new FormData();
-formDataImage.append('image', image);
-
-const uploadRes = await api.post('/upload', formDataImage, {
-  headers: { 'Content-Type': 'multipart/form-data' },
-});
-
-imageFilename = uploadRes.data.imageUrl;
-      }
-
-      const payload = {
-        ...formData,
-        image: imageFilename,
-      };
-
-      delete payload.imageUrl;
-
       if (id) {
-        await api.put(`/news/${id}`, payload);
+        await api.put(`/news/${id}`, formData);
         toast.success('News updated!');
       } else {
-        await api.post('/news', payload);
+        await api.post('/news', formData);
         toast.success('News created!');
       }
-
       navigate('/admin/news');
     } catch (error) {
       console.error('Submission error:', error);
@@ -131,65 +69,15 @@ imageFilename = uploadRes.data.imageUrl;
         required
       />
 
-      <textarea
-        name="content"
-        value={formData.content}
+      <input
+        type="url"
+        name="link"
+        value={formData.link}
         onChange={handleChange}
-        placeholder="Content"
-        rows={6}
+        placeholder="https://example.com"
         className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
-
-      <div>
-        <label className="block mb-1 text-sm font-medium text-gray-700">Category</label>
-        <select
-          name="category"
-          value={formData.category}
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        >
-          <option value="" disabled>Select category</option>
-          {categories.map(cat => (
-            <option key={cat._id} value={cat._id}>{cat.name}</option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label className="block mb-1 text-sm font-medium text-gray-700">Tags</label>
-        <select
-          multiple
-          name="tags"
-          value={formData.tags}
-          onChange={handleTagsChange}
-          className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          size={tagsOptions.length > 5 ? 5 : tagsOptions.length}
-        >
-          {tagsOptions.map(tag => (
-            <option key={tag._id} value={tag._id}>{tag.name}</option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label className="block mb-1 text-sm font-medium text-gray-700">Featured Image</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          className="w-full p-2 border border-gray-300 rounded-lg"
-        />
-      </div>
-
-      {imagePreview && (
-        <img
-          src={imagePreview}
-          alt="Preview"
-          className="mt-4 max-h-48 object-contain rounded-lg border"
-        />
-      )}
 
       <motion.button
         type="submit"

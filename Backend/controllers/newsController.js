@@ -16,17 +16,15 @@ const upload = multer({ storage }).single('image');
 
 exports.upload = upload;
 
-exports.createNews = async (req, res) => {
-  const { title, content, category, tags, image } = req.body;
 
-  // tags may come as array or string, adjust accordingly
+exports.createNews = async (req, res) => {
+  const { title, content, category, tags, image, link } = req.body;
   const tagsArray = Array.isArray(tags) ? tags : tags ? tags.split(',').map(t => t.trim()) : [];
 
-  const news = new News({ title, content, category, tags: tagsArray, image });
+  const news = new News({ title, content, category, tags: tagsArray, image, link });
   await news.save();
   res.status(201).json(news);
 };
-
 
 exports.getAllNews = async (req, res) => {
   const newsList = await News.find();
@@ -38,16 +36,15 @@ exports.getAllNews = async (req, res) => {
   res.json(newsWithUrls);
 };
 
-
 exports.getNewsById = async (req, res) => {
   try {
     const news = await News.findById(req.params.id);
-    if (!news) {
-      return res.status(404).json({ message: 'news not found' });
-    }
-        const newsObj = news.toObject();
+    if (!news) return res.status(404).json({ message: 'news not found' });
+
+    const newsObj = news.toObject();
     newsObj.imageUrl = news.image ? `${req.protocol}://${req.get('host')}/uploads/${news.image}` : '';
-    
+    newsObj.link = news.link || ''; // ✅ ensure link is always sent
+
     res.json(newsObj);
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
@@ -56,11 +53,9 @@ exports.getNewsById = async (req, res) => {
 
 exports.updateNews = async (req, res) => {
   const { id } = req.params;
-  const { title, content, category, tags, image } = req.body; // image URL string
-  const updateData = { title, content, category, tags };
+  const { title, content, category, tags, image, link } = req.body;
 
-  if (image !== undefined) updateData.image = image; // update image URL if provided
-
+  const updateData = { title, content, category, tags, image, link };
   const news = await News.findByIdAndUpdate(id, updateData, { new: true });
   res.json(news);
 };

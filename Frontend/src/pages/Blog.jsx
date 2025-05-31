@@ -50,6 +50,8 @@ const Blog = () => {
         filtered = filtered.filter(blog => blog.tags.includes(selectedTag));
       }
 
+      filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+
       setBlogs(filtered);
     } catch (err) {
       console.error('Failed to fetch blogs:', err);
