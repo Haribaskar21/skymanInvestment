@@ -11,13 +11,13 @@ const NewsTicker = () => {
   }, []);
 
   return (
-    <div className="relative bg-white shadow-lg text-gray-700 overflow-hidden py-3 px-6 border border-gray-200 select-none">
-      {/* Gradient edge overlays */}
-      <div className="pointer-events-none absolute top-0 left-0 h-full w-20 bg-gradient-to-r from-white via-white to-transparent z-10" />
-      <div className="pointer-events-none absolute top-0 right-0 h-full w-20 bg-gradient-to-l from-white via-white to-transparent z-10" />
+    <div className="relative bg-[#f9fafb] overflow-hidden py-4 px-6 sm:px-12 border-y border-gray-200 shadow-sm select-none">
+      {/* Side gradient fades */}
+      <div className="pointer-events-none absolute top-0 left-0 h-full w-16 sm:w-24 bg-gradient-to-r from-[#f9fafb] via-[#f9fafb] to-transparent z-10" />
+      <div className="pointer-events-none absolute top-0 right-0 h-full w-16 sm:w-24 bg-gradient-to-l from-[#f9fafb] via-[#f9fafb] to-transparent z-10" />
 
       <div
-        className="inline-block whitespace-nowrap animate-marquee text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-semibold text-lg"
+        className="inline-block whitespace-nowrap animate-marquee text-gray-800 font-medium tracking-wide text-sm sm:text-base"
         style={{ paddingLeft: '100%' }}
         aria-label="Latest news headlines marquee"
       >
@@ -27,7 +27,7 @@ const NewsTicker = () => {
             href={news.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="mx-8 hover:underline hover:text-blue-600 transition-all duration-300 cursor-pointer"
+            className="mx-6 sm:mx-10 text-[#1d8cf8] hover:text-blue-700 transition-colors duration-300"
           >
             {news.title}
           </a>
@@ -40,16 +40,11 @@ const NewsTicker = () => {
           100% { transform: translateX(-100%); }
         }
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 25s linear infinite;
           will-change: transform;
         }
         .animate-marquee:hover {
           animation-play-state: paused;
-        }
-        @media (max-width: 640px) {
-          .animate-marquee {
-            font-size: 1rem;
-          }
         }
       `}</style>
     </div>
