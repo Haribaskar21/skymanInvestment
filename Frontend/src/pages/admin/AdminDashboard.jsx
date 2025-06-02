@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../api/axios";
+import AdminAnnouncements from "../../components/AdminAnnouncements";
+
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
@@ -44,6 +46,8 @@ const AdminDashboard = () => {
         <StatCard title="Categories" value={stats.categories} />
         <StatCard title="Tags" value={stats.tags} />
       </div>
+      <AdminAnnouncements />
+
     </div>
   );
 };

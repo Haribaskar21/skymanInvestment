@@ -4,8 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
-// At the top of BlogForm.jsx
-import {LexicalEditor} from '../../components/LexicalEditor';
+import TiptapEditor from '../../components/TiptapEditor';
+
 
 
 const BlogForm = () => {
@@ -137,7 +137,7 @@ console.error('Error response:', error.response);
         required
       />
 
-<LexicalEditor
+<TiptapEditor
   value={formData.content}
   onChange={(content) => setFormData(prev => ({ ...prev, content }))}
 />
