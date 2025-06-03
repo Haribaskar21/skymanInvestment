@@ -121,9 +121,10 @@ const Blog = () => {
               <p className="text-sm text-gray-500 mb-1">
                 {new Date(blog.date).toLocaleDateString()}
               </p>
-              <p className="text-sm text-gray-600 line-clamp-3">
-                {blog.content.slice(0, 100)}...
-              </p>
+              <div
+  className="text-sm text-gray-600 line-clamp-3"
+  dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 100) + '...' }}
+/>
             </motion.div>
           </Link>
         ))}
