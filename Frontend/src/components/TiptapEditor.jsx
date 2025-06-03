@@ -87,6 +87,14 @@ const TiptapEditor = ({ content, onChange }) => {
     }
   }, [showLinkInput, editor]);
 
+  useEffect(() => {
+  if (editor && content !== editor.getHTML()) {
+    editor.commands.setContent(content, false);  // false = don't emit update events to avoid loops
+  }
+}, [content, editor]);
+
+
+
   if (!editor) return null;
 
   const fontSizes = ["12px", "14px", "16px", "18px", "24px", "32px"];

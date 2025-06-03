@@ -30,7 +30,7 @@ const BlogDetail = () => {
       />
       <h1 className="text-3xl font-bold mb-2">{blog.title}</h1>
       <p className="text-sm text-gray-600 mb-4">{new Date(blog.date).toLocaleDateString()}</p>
-      <div className="prose max-w-none">{blog.content}</div>
+      <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: blog.content }} />
     </div>
   );
 };

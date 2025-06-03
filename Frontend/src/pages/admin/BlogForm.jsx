@@ -118,8 +118,6 @@ console.error('Error response:', error.response);
     }
   };
 
-  const [form, setForm] = useState({ content: "" });
-
 
   return (
     <motion.form 
@@ -141,9 +139,10 @@ console.error('Error response:', error.response);
       />
 
 <TiptapEditor
-  content={form.content}
-  onChange={(val) => setForm({ ...form, content: val })}
+  content={formData.content}
+  onChange={(val) => setFormData(prev => ({ ...prev, content: val }))}
 />
+
 
 
       <div>
