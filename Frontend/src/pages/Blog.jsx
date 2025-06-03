@@ -15,7 +15,7 @@ const Blog = () => {
   const [selectedTag, setSelectedTag] = useState('');
 
   useEffect(() => {
-    AOS.init({ duration: 600, easing: 'ease-in-out' });
+    AOS.init({ duration: 700, easing: 'ease-in-out' });
     fetchMeta();
     fetchPosts();
   }, []);
@@ -39,7 +39,6 @@ const Blog = () => {
 
   const fetchPosts = async () => {
     try {
-      // Fetch all blogs from API (you can also pass filters to backend if it supports AND)
       const res = await api.get('/blogs');
       let filtered = res.data;
 
@@ -51,7 +50,6 @@ const Blog = () => {
       }
 
       filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-
       setBlogs(filtered);
     } catch (err) {
       console.error('Failed to fetch blogs:', err);
@@ -59,18 +57,21 @@ const Blog = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-8">Blog</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-12 tracking-tight">
+        Latest Insights & Stories
+      </h1>
 
       {/* Filters */}
-      <div className="flex flex-col md:flex-row gap-4 items-center justify-center mb-10">
+      <div className="flex flex-col md:flex-row gap-6 items-center justify-center mb-12">
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/3"
+          className="appearance-none border border-gray-300 rounded-lg px-5 py-3 text-gray-700 text-base w-full md:w-1/3 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+          aria-label="Filter by category"
         >
           <option value="">All Categories</option>
-          {categories.map((cat) => (
+          {categories.map(cat => (
             <option key={cat._id} value={cat._id}>
               {cat.name}
             </option>
@@ -80,10 +81,11 @@ const Blog = () => {
         <select
           value={selectedTag}
           onChange={(e) => setSelectedTag(e.target.value)}
-          className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/3"
+          className="appearance-none border border-gray-300 rounded-lg px-5 py-3 text-gray-700 text-base w-full md:w-1/3 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+          aria-label="Filter by tag"
         >
           <option value="">All Tags</option>
-          {tagsOptions.map((tag) => (
+          {tagsOptions.map(tag => (
             <option key={tag._id} value={tag._id}>
               {tag.name}
             </option>
@@ -92,39 +94,72 @@ const Blog = () => {
       </div>
 
       {/* Blog Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {blogs.map((blog, index) => (
-          <Link to={`/blog/${blog._id}`} key={blog._id}>
+          <Link
+            to={`/blog/${blog._id}`}
+            key={blog._id}
+            aria-label={`Read more about ${blog.title}`}
+          >
             <motion.div
-              whileHover={{ scale: 1.03 }}
-              initial={{ opacity: 0, y: 30 }}
+              whileHover={{ scale: 1.05, boxShadow: '0 20px 25px rgba(59, 130, 246, 0.2)' }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               data-aos="fade-up"
-              className="border rounded-xl shadow-sm p-4 hover:shadow-lg transition-all bg-white"
+              className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col h-full group cursor-pointer"
             >
-              <img
-                src={
-                  blog.image?.startsWith('http')
-                    ? blog.image
-                    : blog.image
-                    ? `http://localhost:5000/uploads/${blog.image}`
-                    : placeholder
-                }
-                alt={blog.title}
-                className="w-full h-48 object-cover rounded mb-3"
-              />
-              <h2 className="text-lg font-semibold text-gray-800 line-clamp-2">
-                {blog.title}
-              </h2>
-              <p className="text-sm text-gray-500 mb-1">
-                {new Date(blog.date).toLocaleDateString()}
-              </p>
-              <div
-  className="text-sm text-gray-600 line-clamp-3"
-  dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 100) + '...' }}
-/>
+              <div className="relative w-full h-56 overflow-hidden rounded-t-2xl">
+                <img
+                  src={
+                    blog.image?.startsWith('http')
+                      ? blog.image
+                      : blog.image
+                      ? `http://localhost:5000/uploads/${blog.image}`
+                      : placeholder
+                  }
+                  alt={blog.title}
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="flex flex-col flex-grow p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
+                  {blog.title}
+                </h2>
+
+                <p className="text-sm text-indigo-600 font-medium mb-3">
+                  {new Date(blog.date).toLocaleDateString(undefined, {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </p>
+
+                <p
+                  className="text-gray-600 text-sm flex-grow line-clamp-4"
+                  dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 130) + '...' }}
+                />
+
+                <div className="mt-5">
+                  <span className="inline-block bg-indigo-100 text-indigo-800 text-xs font-semibold mr-2 px-3 py-1 rounded-full">
+                    {categories.find(c => c._id === blog.category)?.name || 'Uncategorized'}
+                  </span>
+                  {blog.tags.map(tagId => {
+                    const tagName = tagsOptions.find(t => t._id === tagId)?.name;
+                    return tagName ? (
+                      <span
+                        key={tagId}
+                        className="inline-block bg-gray-200 text-gray-800 text-xs font-semibold mr-2 px-3 py-1 rounded-full"
+                      >
+                        #{tagName}
+                      </span>
+                    ) : null;
+                  })}
+                </div>
+              </div>
             </motion.div>
           </Link>
         ))}
