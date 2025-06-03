@@ -23,7 +23,7 @@ export default function Home() {
  useEffect(() => {
   const fetchLatestBlogs = async () => {
     try {
-      const res = await api.get('/blogs?limit=3&sort=asc'); // oldest first, limit 3
+      const res = await api.get('/blogs?limit=3&sort=desc'); // oldest first, limit 3
       setLatestBlogs(res.data);
     } catch (err) {
       console.error('Failed to fetch latest blogs:', err);
@@ -202,7 +202,7 @@ export default function Home() {
           {loading ? (
             <p className="text-center text-gray-500">Loading latest blogs...</p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20" data-aos="fade-up">
               {latestBlogs.map(({ _id, title, category, image }) => (
                 <div
                   key={_id}
