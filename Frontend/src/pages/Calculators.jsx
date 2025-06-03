@@ -54,22 +54,38 @@ const Calculators = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white py-10 px-4 md:px-8 lg:px-16">
-      <h1 className="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-10">
+    <div className="min-h-screen bg-white py-12 px-6 md:px-12 lg:px-20">
+      <h1
+        className="text-4xl font-extrabold text-center mb-12"
+        style={{ color: "#1C3C6D" }}
+      >
         Financial Calculators
       </h1>
-      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {calculators.map((calc, index) => (
           <Link
             to={`/calculators/${calc.path}`}
             key={index}
-            className="bg-blue-100 border border-blue-200 rounded-2xl shadow-md p-6 hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
             data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+            className="rounded-3xl border-2 p-6 shadow-lg transform transition-transform duration-300 hover:scale-[1.04] cursor-pointer"
+            style={{
+              borderColor: "#26BF64",
+              backgroundColor: "#E6F4EA",
+              color: "#1C3C6D",
+            }}
           >
-            <h2 className="text-xl font-semibold text-blue-900 mb-2">
+            <h2 className="text-2xl font-semibold mb-3" style={{ color: "#1C3C6D" }}>
               {calc.title}
             </h2>
-            <p className="text-gray-700">{calc.description}</p>
+            <p className="text-md leading-relaxed" style={{ color: "#23523C" }}>
+              {calc.description}
+            </p>
+            <div
+              className="mt-4 inline-block font-semibold"
+              style={{ color: "#26BF64" }}
+            >
+              ➔ Try it out
+            </div>
           </Link>
         ))}
       </div>

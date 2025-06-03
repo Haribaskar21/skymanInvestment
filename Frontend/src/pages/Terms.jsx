@@ -13,10 +13,11 @@ const TermsAndConditions = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="bg-gray-100 text-gray-800 px-6 py-12 max-w-6xl mx-auto"
+      className="bg-[#e6f4ed] text-[#1C3C6D] px-6 py-12 max-w-6xl mx-auto"
     >
       <motion.h1
-        className="text-4xl font-bold text-center text-blue-900 mb-10"
+        className="text-4xl font-bold text-center mb-10"
+        style={{ color: '#1C3C6D' }}
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -24,7 +25,7 @@ const TermsAndConditions = () => {
         Terms and Conditions
       </motion.h1>
 
-      <div className="space-y-6 text-justify leading-relaxed" data-aos="fade-up">
+      <div className="space-y-6 text-justify leading-relaxed" data-aos="fade-up" style={{ color: '#274157' }}>
         <p>
           This document is an electronic record in terms of Information Technology Act, 2000 and rules there under as
           applicable and the amended provisions pertaining to electronic records in various statutes as amended by the
@@ -63,13 +64,15 @@ const TermsAndConditions = () => {
           natural or legal person who has agreed to become a user/buyer on the Platform.
         </p>
 
-        <p className="font-semibold text-lg mt-8">ACCESSING, BROWSING OR OTHERWISE USING THE PLATFORM INDICATES YOUR AGREEMENT TO ALL THE TERMS AND CONDITIONS UNDER THESE TERMS OF USE, SO PLEASE READ THE TERMS OF USE CAREFULLY BEFORE PROCEEDING.</p>
+        <p className="font-semibold text-lg mt-8" style={{ color: '#1C3C6D' }}>
+          ACCESSING, BROWSING OR OTHERWISE USING THE PLATFORM INDICATES YOUR AGREEMENT TO ALL THE TERMS AND CONDITIONS UNDER THESE TERMS OF USE, SO PLEASE READ THE TERMS OF USE CAREFULLY BEFORE PROCEEDING.
+        </p>
 
         <p>
           The use of Platform and/or availing of our Services is subject to the following Terms of Use:
         </p>
 
-        <ul className="list-disc list-inside space-y-2">
+        <ul className="list-disc list-inside space-y-2" style={{ color: '#274157' }}>
           <li>To access and use the Services, you agree to provide true, accurate and complete information to us during and after registration, and you shall be responsible for all acts done through the use of your registered account on the Platform.</li>
           <li>Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials offered on this website or through the Services, for any specific purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.</li>
           <li>Your use of our Services and the Platform is solely and entirely at your own risk and discretion for which we shall not be liable to you in any manner. You are required to independently assess and ensure that the Services meet your requirements</li>
@@ -82,20 +85,19 @@ const TermsAndConditions = () => {
           <li>You shall indemnify and hold harmless Platform Owner, its affiliates, group companies (as applicable) and their respective officers, directors, agents, and employees, from any claim or demand, or actions including reasonable attorneys’ fees, made by any third party or penalty imposed due to or arising out of Your breach of this Terms of Use, privacy Policy and other Policies, or Your violation of any law, rules or regulations or the rights (including infringement of intellectual property rights) of a third party.</li>
           <li>In no event will the Platform Owner be liable for any indirect, consequential, incidental, special or punitive damages, including without limitation damages for loss of profits or revenues, business interruption, loss of business opportunities, loss of data or loss of other economic interests, whether in contract, negligence, tort or otherwise, arising from the use of or inability to use the Services, however caused and whether arising in contract, tort, negligence, warranty or otherwise, exceed the amount paid by You for using the Services giving rise to the cause of action or Rupees One Hundred (Rs. 100) whichever is less</li>
           <li>Notwithstanding anything contained in these Terms of Use, the parties shall not be liable for any failure to perform an obligation under these Terms if performance is prevented or delayed by a force majeure event.</li>
-        <li>
-          These Terms and any dispute or claim relating to it, or its enforceability, shall be governed by and construed in
-          accordance with the laws of India.
-        </li>
-        <li>
-          All disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the
-          courts in Chennai, Tamil Nadu.
-        </li>
-        <li>
-          All concerns or communications relating to these Terms must be communicated to us using the contact information
-          provided on this website.
-        </li>
+          <li>
+            These Terms and any dispute or claim relating to it, or its enforceability, shall be governed by and construed in
+            accordance with the laws of India.
+          </li>
+          <li>
+            All disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the
+            courts in Chennai, Tamil Nadu.
+          </li>
+          <li>
+            All concerns or communications relating to these Terms must be communicated to us using the contact information
+            provided on this website.
+          </li>
         </ul>
-
       </div>
     </motion.div>
   );

@@ -28,10 +28,10 @@ const FutureValueCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen py-10 px-4">
-      <div className="max-w-xl mx-auto bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+    <div className="min-h-screen py-10 px-4 bg-[#F0F5FA]"> {/* subtle light bg */}
+      <div className="max-w-xl mx-auto bg-white shadow-lg rounded-2xl p-6 border border-[#1C3C6D]">
         <motion.h1
-          className="text-2xl font-bold text-center text-yellow-700 mb-6"
+          className="text-2xl font-bold text-center text-[#1C3C6D] mb-6"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -40,7 +40,7 @@ const FutureValueCalculator = () => {
 
         <div className="space-y-4" data-aos="fade-up">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[#1C3C6D] mb-1">
               Current Annual Expenses (₹):
             </label>
             <input
@@ -48,12 +48,12 @@ const FutureValueCalculator = () => {
               value={currentExpense}
               onChange={(e) => setCurrentExpense(e.target.value)}
               placeholder="Enter your current annual expense"
-              className="w-full p-3 border rounded-md"
+              className="w-full p-3 border border-[#26BF64] rounded-md focus:outline-none focus:ring-2 focus:ring-[#26BF64]"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[#1C3C6D] mb-1">
               Annual Inflation Rate (%):
             </label>
             <input
@@ -61,12 +61,12 @@ const FutureValueCalculator = () => {
               value={inflationRate}
               onChange={(e) => setInflationRate(e.target.value)}
               placeholder="Enter expected inflation rate"
-              className="w-full p-3 border rounded-md"
+              className="w-full p-3 border border-[#26BF64] rounded-md focus:outline-none focus:ring-2 focus:ring-[#26BF64]"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[#1C3C6D] mb-1">
               Number of Years:
             </label>
             <input
@@ -74,7 +74,7 @@ const FutureValueCalculator = () => {
               value={years}
               onChange={(e) => setYears(e.target.value)}
               placeholder="Enter number of years"
-              className="w-full p-3 border rounded-md"
+              className="w-full p-3 border border-[#26BF64] rounded-md focus:outline-none focus:ring-2 focus:ring-[#26BF64]"
             />
           </div>
         </div>
@@ -82,7 +82,7 @@ const FutureValueCalculator = () => {
         <div className="text-center mt-6" data-aos="fade-up">
           <button
             onClick={calculateFutureValue}
-            className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 px-6 rounded-md"
+            className="bg-[#26BF64] hover:bg-[#1C3C6D] text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300"
           >
             Calculate Future Value
           </button>
@@ -94,10 +94,10 @@ const FutureValueCalculator = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mt-8"
           >
-            <p className="text-lg font-medium text-gray-700">
+            <p className="text-lg font-medium text-[#1C3C6D]">
               Estimated Future Annual Expenses:
             </p>
-            <p className="text-3xl font-bold text-yellow-700">₹ {futureValue}</p>
+            <p className="text-3xl font-bold text-[#26BF64]">₹ {futureValue}</p>
           </motion.div>
         )}
       </div>

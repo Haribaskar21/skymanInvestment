@@ -28,19 +28,22 @@ const InvestmentCagrCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
-      <div className="max-w-xl mx-auto bg-white shadow-lg rounded-2xl p-6 border border-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-[#E6F3EC] to-[#D9E6F2] py-10 px-4">
+      <div
+        className="max-w-xl mx-auto bg-white shadow-lg rounded-2xl p-6 border border-[#cce5d6]"
+        data-aos="fade-up"
+      >
         <motion.h1
-          className="text-2xl font-bold text-center text-green-700 mb-6"
+          className="text-2xl font-bold text-center text-[#1C3C6D] mb-6"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
           Investment CAGR Calculator (INR)
         </motion.h1>
 
-        <div className="space-y-4" data-aos="fade-up">
+        <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[#1C3C6D] mb-1">
               Initial Investment (₹):
             </label>
             <input
@@ -48,12 +51,12 @@ const InvestmentCagrCalculator = () => {
               value={initialInvestment}
               onChange={(e) => setInitialInvestment(e.target.value)}
               placeholder="Enter initial amount"
-              className="w-full p-3 border rounded-md"
+              className="w-full p-3 border border-[#26BF64] rounded-md focus:outline-none focus:ring-2 focus:ring-[#26BF64]"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[#1C3C6D] mb-1">
               Final Value (₹):
             </label>
             <input
@@ -61,12 +64,12 @@ const InvestmentCagrCalculator = () => {
               value={finalValue}
               onChange={(e) => setFinalValue(e.target.value)}
               placeholder="Enter final value"
-              className="w-full p-3 border rounded-md"
+              className="w-full p-3 border border-[#26BF64] rounded-md focus:outline-none focus:ring-2 focus:ring-[#26BF64]"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[#1C3C6D] mb-1">
               Number of Years:
             </label>
             <input
@@ -74,15 +77,15 @@ const InvestmentCagrCalculator = () => {
               value={years}
               onChange={(e) => setYears(e.target.value)}
               placeholder="Enter number of years"
-              className="w-full p-3 border rounded-md"
+              className="w-full p-3 border border-[#26BF64] rounded-md focus:outline-none focus:ring-2 focus:ring-[#26BF64]"
             />
           </div>
         </div>
 
-        <div className="text-center mt-6" data-aos="fade-up">
+        <div className="text-center mt-6">
           <button
             onClick={calculateCAGR}
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-md"
+            className="bg-[#26BF64] hover:bg-[#229958] text-white font-semibold py-3 px-6 rounded-md transition-all shadow-md"
           >
             Calculate CAGR
           </button>
@@ -94,8 +97,8 @@ const InvestmentCagrCalculator = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mt-8"
           >
-            <p className="text-lg font-medium text-gray-700">Your CAGR is:</p>
-            <p className="text-3xl font-bold text-green-700">{cagr}%</p>
+            <p className="text-lg font-medium text-[#1C3C6D]">Your CAGR is:</p>
+            <p className="text-3xl font-bold text-[#26BF64]">{cagr}%</p>
           </motion.div>
         )}
       </div>

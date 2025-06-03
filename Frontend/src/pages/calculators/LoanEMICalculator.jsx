@@ -56,10 +56,10 @@ const LoanEMICalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-indigo-50 py-10 px-4">
-      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-6">
+    <div className="min-h-screen bg-[#E6F3EC] py-10 px-4">
+      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-6 border border-[#cce5d6]">
         <motion.h1
-          className="text-2xl md:text-3xl font-bold text-center text-indigo-800 mb-6"
+          className="text-2xl md:text-3xl font-bold text-center text-[#1C3C6D] mb-6"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -72,28 +72,28 @@ const LoanEMICalculator = () => {
             value={loanAmount}
             onChange={(e) => setLoanAmount(e.target.value)}
             placeholder="Enter Loan Amount"
-            className="p-3 border rounded-md w-full"
+            className="p-3 border border-[#26BF64] rounded-md w-full focus:outline-none focus:ring-2 focus:ring-[#26BF64]"
           />
           <input
             type="number"
             value={interestRate}
             onChange={(e) => setInterestRate(e.target.value)}
             placeholder="Enter Interest Rate"
-            className="p-3 border rounded-md w-full"
+            className="p-3 border border-[#26BF64] rounded-md w-full focus:outline-none focus:ring-2 focus:ring-[#26BF64]"
           />
           <input
             type="number"
             value={loanDuration}
             onChange={(e) => setLoanDuration(e.target.value)}
             placeholder="Enter Loan Duration (Months)"
-            className="p-3 border rounded-md w-full"
+            className="p-3 border border-[#26BF64] rounded-md w-full focus:outline-none focus:ring-2 focus:ring-[#26BF64]"
           />
         </div>
 
         <div className="text-center mb-8" data-aos="fade-up">
           <button
             onClick={calculateEMI}
-            className="bg-indigo-700 text-white px-6 py-2 rounded hover:bg-indigo-800"
+            className="bg-[#26BF64] text-white px-6 py-2 rounded hover:bg-[#219850] transition-shadow shadow-md"
           >
             Calculate EMI
           </button>
@@ -105,42 +105,42 @@ const LoanEMICalculator = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="bg-indigo-100 p-4 rounded shadow">
-              <h3 className="text-lg font-semibold text-indigo-800">Monthly EMI</h3>
-              <p className="text-xl font-bold mt-2 text-indigo-900">₹ {emi}</p>
+            <div className="bg-[#d9f0db] p-4 rounded shadow border border-[#a7d4a2]">
+              <h3 className="text-lg font-semibold text-[#1C3C6D]">Monthly EMI</h3>
+              <p className="text-xl font-bold mt-2 text-[#26BF64]">₹ {emi}</p>
             </div>
-            <div className="bg-indigo-100 p-4 rounded shadow">
-              <h3 className="text-lg font-semibold text-indigo-800">Principal Component</h3>
-              <p className="text-xl font-bold mt-2 text-indigo-900">₹ {principalTotal}</p>
+            <div className="bg-[#d9f0db] p-4 rounded shadow border border-[#a7d4a2]">
+              <h3 className="text-lg font-semibold text-[#1C3C6D]">Principal Component</h3>
+              <p className="text-xl font-bold mt-2 text-[#26BF64]">₹ {principalTotal}</p>
             </div>
-            <div className="bg-indigo-100 p-4 rounded shadow">
-              <h3 className="text-lg font-semibold text-indigo-800">Interest Component</h3>
-              <p className="text-xl font-bold mt-2 text-indigo-900">₹ {interestTotal}</p>
+            <div className="bg-[#d9f0db] p-4 rounded shadow border border-[#a7d4a2]">
+              <h3 className="text-lg font-semibold text-[#1C3C6D]">Interest Component</h3>
+              <p className="text-xl font-bold mt-2 text-[#26BF64]">₹ {interestTotal}</p>
             </div>
           </motion.div>
         )}
 
         {schedule.length > 0 && (
           <div className="overflow-x-auto" data-aos="fade-up">
-            <h2 className="text-xl font-semibold text-indigo-800 mb-4">
+            <h2 className="text-xl font-semibold text-[#1C3C6D] mb-4">
               EMI Payment Schedule
             </h2>
-            <table className="w-full text-sm text-left border border-gray-200 rounded-lg">
-              <thead className="bg-indigo-200 text-indigo-900">
+            <table className="w-full text-sm text-left border border-[#cce5d6] rounded-lg">
+              <thead className="bg-[#a3d18f] text-[#1C3C6D]">
                 <tr>
-                  <th className="p-2 border">Month</th>
-                  <th className="p-2 border">Principal Paid (₹)</th>
-                  <th className="p-2 border">Interest Paid (₹)</th>
-                  <th className="p-2 border">Remaining Balance (₹)</th>
+                  <th className="p-2 border border-[#cce5d6]">Month</th>
+                  <th className="p-2 border border-[#cce5d6]">Principal Paid (₹)</th>
+                  <th className="p-2 border border-[#cce5d6]">Interest Paid (₹)</th>
+                  <th className="p-2 border border-[#cce5d6]">Remaining Balance (₹)</th>
                 </tr>
               </thead>
               <tbody>
                 {schedule.map((row) => (
-                  <tr key={row.month} className="odd:bg-white even:bg-indigo-50">
-                    <td className="p-2 border">{row.month}</td>
-                    <td className="p-2 border">{row.principal}</td>
-                    <td className="p-2 border">{row.interest}</td>
-                    <td className="p-2 border">{row.balance}</td>
+                  <tr key={row.month} className="odd:bg-white even:bg-[#e9f7e9]">
+                    <td className="p-2 border border-[#cce5d6]">{row.month}</td>
+                    <td className="p-2 border border-[#cce5d6]">{row.principal}</td>
+                    <td className="p-2 border border-[#cce5d6]">{row.interest}</td>
+                    <td className="p-2 border border-[#cce5d6]">{row.balance}</td>
                   </tr>
                 ))}
               </tbody>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const InsuranceServices = () => {
   return (
-    <section className="py-16">
+    <section className="py-16 bg-[#F7FAFC]"> {/* subtle off-white background */}
       <div className="max-w-6xl mx-auto px-4">
         {/* General Insurance Section */}
         <motion.div
@@ -15,7 +15,7 @@ const InsuranceServices = () => {
           viewport={{ once: true }}
           className="mb-20"
         >
-          <h2 className="text-4xl font-extrabold text-center mb-4 text-blue-800">
+          <h2 className="text-4xl font-extrabold text-center mb-4 text-[#1C3C6D]">
             General Insurance
           </h2>
           <p className="text-center mb-6 text-gray-700 text-lg">
@@ -31,14 +31,14 @@ const InsuranceServices = () => {
 
           <div className="text-center mb-10">
             <Link to="https://docs.google.com/forms/d/e/1FAIpQLSeI6RpaQrURKicxaAN2Y9t3hMf8qmWextq883ydrlfwk0qwng/viewform">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg shadow-md hover:bg-blue-700 transition"
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#26BF64] text-white px-8 py-3 rounded-lg shadow-md hover:bg-green-700 transition"
               >
-              Enter Your Details
-            </motion.button>
-                </Link>
+                Enter Your Details
+              </motion.button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 place-items-center mb-8">
@@ -56,7 +56,7 @@ const InsuranceServices = () => {
             ))}
           </div>
 
-          <div className="bg-yellow-100 border border-yellow-300 p-4 rounded text-center text-sm text-gray-800 shadow-sm">
+          <div className="bg-[#E5F8E7] border border-[#26BF64] p-4 rounded text-center text-sm text-[#1C3C6D] shadow-sm">
             💸 We match your quotes and offer <strong>5% cashback</strong> on base premium,
             on the 31st day from policy issuance if you buy the policy from us.
           </div>
@@ -69,7 +69,7 @@ const InsuranceServices = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-extrabold text-center mb-4 text-blue-800">
+          <h2 className="text-4xl font-extrabold text-center mb-4 text-[#1C3C6D]">
             Term Insurance
           </h2>
           <p className="text-center mb-6 text-gray-700 text-lg">
@@ -86,14 +86,14 @@ const InsuranceServices = () => {
 
           <div className="text-center mb-10">
             <Link to="https://docs.google.com/forms/d/e/1FAIpQLSeyUGM3xu5Co4DWsNLjw9mNYLzwzYCtIxF1svFclb4yeYjsSQ/viewform">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg shadow-md hover:bg-blue-700 transition"
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#26BF64] text-white px-8 py-3 rounded-lg shadow-md hover:bg-green-700 transition"
               >
-              Enter Your Details
-            </motion.button>
-                </Link>
+                Enter Your Details
+              </motion.button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
@@ -107,7 +107,8 @@ const InsuranceServices = () => {
               />
             ))}
           </div>
-                    <div className="bg-yellow-100 mt-10 border border-yellow-300 p-4 rounded text-center text-sm text-gray-800 shadow-sm">
+
+          <div className="bg-[#E5F8E7] mt-10 border border-[#26BF64] p-4 rounded text-center text-sm text-[#1C3C6D] shadow-sm">
             💸 We match your quotes and offer <strong>10% cashback</strong> on base premium,
             on the 31st day from policy issuance if you buy the policy from us.
           </div>

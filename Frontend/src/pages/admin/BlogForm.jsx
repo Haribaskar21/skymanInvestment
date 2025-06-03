@@ -118,6 +118,9 @@ console.error('Error response:', error.response);
     }
   };
 
+  const [form, setForm] = useState({ content: "" });
+
+
   return (
     <motion.form 
       onSubmit={handleSubmit} 
@@ -138,9 +141,10 @@ console.error('Error response:', error.response);
       />
 
 <TiptapEditor
-  value={formData.content}
-  onChange={(content) => setFormData(prev => ({ ...prev, content }))}
+  content={form.content}
+  onChange={(val) => setForm({ ...form, content: val })}
 />
+
 
       <div>
         <label className="block mb-1 font-medium">Category</label>

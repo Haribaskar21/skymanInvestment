@@ -7,12 +7,9 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Mobile menu toggle
   const [isMoreMobileOpen, setIsMoreMobileOpen] = useState(false); // Mobile More dropdown
 
-  // Admin logged in if token exists
-  const isAdminLoggedIn = !!localStorage.getItem('token');
-
   return (
     <motion.header
-      className="top-0 w-full bg-gray-100 text-black z-50"
+      className="top-0 w-full text-black z-50"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, ease: 'easeOut' }}
@@ -20,40 +17,40 @@ export default function Navbar() {
       <div className="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <img src='logos/Logo.png' alt="Skyman Investments Logo" className="h-14 w-auto" />
+          <img src="logos/Logo.png" alt="Skyman Investments Logo" className="h-20 w-auto" />
           <div>
             <Link
               to="/"
-              className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r bg-gray-600"
+              className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1C3C6D] to-[#26BF64]"
             >
               Skyman
             </Link>
-            <p className="text-transparent bg-clip-text bg-gradient-to-r bg-gray-600">Investments</p>
+            <p className="text-transparent bg-clip-text bg-gradient-to-r from-[#1C3C6D] to-[#26BF64]">Investments</p>
           </div>
         </div>
 
         {/* Desktop Menu - lg and above */}
-        <nav className="hidden lg:flex space-x-8 text-black font-medium relative items-center">
+        <nav className="hidden lg:flex space-x-8 font-medium relative items-center">
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
-            <Link to="/" className="hover:text-gray-500 transition">
+            <Link to="/" className="hover:text-[#26BF64] transition">
               Home
             </Link>
           </motion.div>
 
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
-            <Link to="/investing" className="hover:text-gray-500 transition">
+            <Link to="/investing" className="hover:text-[#26BF64] transition">
               Investing
             </Link>
           </motion.div>
 
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
-            <Link to="/services" className="hover:text-gray-500 transition">
+            <Link to="/services" className="hover:text-[#26BF64] transition">
               Services
             </Link>
           </motion.div>
 
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
-            <Link to="/blog" className="hover:text-gray-500 transition">
+            <Link to="/blog" className="hover:text-[#26BF64] transition">
               Blog
             </Link>
           </motion.div>
@@ -65,7 +62,7 @@ export default function Navbar() {
             onMouseLeave={() => setIsMoreOpen(false)}
           >
             <motion.span
-              className="cursor-pointer hover:text-gray-500 transition select-none"
+              className="cursor-pointer hover:text-[#26BF64] transition select-none"
               whileHover={{ scale: 1.1 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
@@ -81,25 +78,22 @@ export default function Navbar() {
                   transition={{ duration: 0.3 }}
                   className="absolute top-8 left-0 bg-white shadow-lg border rounded-md p-4 w-64 grid grid-cols-2 gap-3 text-sm z-50"
                 >
-                  <Link to="/more#book" className="text-black hover:text-gray-500 transition">
+                  <Link to="/more#book" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
                     Book Services
                   </Link>
-                  {/* <Link to="/news" className="text-black hover:text-gray-500 transition">
-                    News & updates
-                  </Link> */}
-                  <Link to="/calculators" className="text-black hover:text-gray-500 transition">
+                  <Link to="/calculators" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
                     Calculators
                   </Link>
-                  <Link to="/privacy-policy" className="text-black hover:text-gray-500 transition">
+                  <Link to="/privacy-policy" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
                     Privacy Policy
                   </Link>
-                  <Link to="/terms" className="text-black hover:text-gray-500 transition">
+                  <Link to="/terms" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
                     Terms & Conditions
                   </Link>
-                  <Link to="/refund-policy" className="text-black hover:text-gray-500 transition">
+                  <Link to="/refund-policy" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
                     Refund Policy
                   </Link>
-                  <Link to="/offers" className="text-black hover:text-gray-500 transition">
+                  <Link to="/offers" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
                     Offers
                   </Link>
                 </motion.div>
@@ -108,18 +102,16 @@ export default function Navbar() {
           </div>
 
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
-            <Link to="/contact" className="hover:text-gray-500 transition">
+            <Link to="/contact" className="hover:text-[#26BF64] transition">
               Contact
             </Link>
           </motion.div>
-
-          {/* Admin Login / Dashboard / Logout */}
 
           {/* Get in Touch Button */}
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
             <Link
               to="/contact"
-              className="bg-[#004d6e] text-white px-4 py-2 rounded-full text-sm hover:bg-[#00bcd4] transition"
+              className="bg-[#1C3C6D] text-white px-4 py-2 rounded-full text-sm hover:bg-[#26BF64] transition"
             >
               Get in Touch
             </Link>
@@ -128,62 +120,56 @@ export default function Navbar() {
 
         {/* Tablet Menu - md only */}
         <nav className="hidden md:flex lg:hidden space-x-6 font-medium items-center">
-          <Link to="/" className="hover:text-gray-500 transition">
+          <Link to="/" className="hover:text-[#26BF64] transition">
             Home
           </Link>
-          <Link to="/investing" className="hover:text-gray-500 transition">
+          <Link to="/investing" className="hover:text-[#26BF64] transition">
             Investing
           </Link>
-          <Link to="/services" className="hover:text-gray-500 transition">
+          <Link to="/services" className="hover:text-[#26BF64] transition">
             Services
           </Link>
 
           {/* Simple dropdown for blog and more */}
           <div className="relative group">
-            <span className="cursor-pointer hover:text-gray-500 transition select-none">
+            <span className="cursor-pointer hover:text-[#26BF64] transition select-none">
               More ▾
             </span>
             <div className="absolute hidden group-hover:block bg-white shadow-lg rounded p-3 mt-1 w-48 z-50">
-              <Link to="/blog" className="block px-2 py-1 hover:bg-gray-100 rounded">
+              <Link to="/blog" className="block px-2 py-1 hover:bg-[#26BF64] hover:text-white rounded transition">
                 Blog
               </Link>
-              <Link to="/more#book" className="block px-2 py-1 hover:bg-gray-100 rounded">
+              <Link to="/more#book" className="block px-2 py-1 hover:bg-[#26BF64] hover:text-white rounded transition">
                 Book Services
               </Link>
-              {/* <Link to="/news" className="block px-2 py-1 hover:bg-gray-100 rounded">
-                News & Updates
-              </Link> */}
-              <Link to="/calculators" className="block px-2 py-1 hover:bg-gray-100 rounded">
+              <Link to="/calculators" className="block px-2 py-1 hover:bg-[#26BF64] hover:text-white rounded transition">
                 Calculators
               </Link>
-              <Link to="/privacy-policy" className="block px-2 py-1 hover:bg-gray-100 rounded">
+              <Link to="/privacy-policy" className="block px-2 py-1 hover:bg-[#26BF64] hover:text-white rounded transition">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="block px-2 py-1 hover:bg-gray-100 rounded">
+              <Link to="/terms" className="block px-2 py-1 hover:bg-[#26BF64] hover:text-white rounded transition">
                 Terms
               </Link>
-              <Link to="/refund-policy" className="block px-2 py-1 hover:bg-gray-100 rounded">
+              <Link to="/refund-policy" className="block px-2 py-1 hover:bg-[#26BF64] hover:text-white rounded transition">
                 Refund Policy
               </Link>
-              <Link to="/offers" className="block px-2 py-1 hover:bg-gray-100 rounded">
+              <Link to="/offers" className="block px-2 py-1 hover:bg-[#26BF64] hover:text-white rounded transition">
                 Offers
               </Link>
             </div>
           </div>
 
-          <Link to="/contact" className="hover:text-gray-500 transition">
+          <Link to="/contact" className="hover:text-[#26BF64] transition">
             Contact
           </Link>
-
-          {/* Admin login/logout */}
-
         </nav>
 
         {/* Mobile Menu Button - below md */}
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-black focus:outline-none"
+            className="text-[#1C3C6D] focus:outline-none"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
@@ -192,7 +178,7 @@ export default function Navbar() {
                 className="h-8 w-8"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="#1C3C6D"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -202,7 +188,7 @@ export default function Navbar() {
                 className="h-8 w-8"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="#1C3C6D"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
@@ -219,42 +205,42 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-gray-100 border-t border-gray-300"
+            className="md:hidden bg-white border-t border-[#1C3C6D]"
           >
             <Link
               to="/"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-6 py-3 border-b border-gray-300"
+              className="block px-6 py-3 border-b border-[#1C3C6D] text-[#1C3C6D] hover:bg-[#26BF64] hover:text-white transition"
             >
               Home
             </Link>
             <Link
               to="/investing"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-6 py-3 border-b border-gray-300"
+              className="block px-6 py-3 border-b border-[#1C3C6D] text-[#1C3C6D] hover:bg-[#26BF64] hover:text-white transition"
             >
               Investing
             </Link>
             <Link
               to="/services"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-6 py-3 border-b border-gray-300"
+              className="block px-6 py-3 border-b border-[#1C3C6D] text-[#1C3C6D] hover:bg-[#26BF64] hover:text-white transition"
             >
               Services
             </Link>
             <Link
               to="/blog"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-6 py-3 border-b border-gray-300"
+              className="block px-6 py-3 border-b border-[#1C3C6D] text-[#1C3C6D] hover:bg-[#26BF64] hover:text-white transition"
             >
               Blog
             </Link>
 
             {/* Mobile More dropdown */}
-            <div className="border-b border-gray-300">
+            <div className="border-b border-[#1C3C6D]">
               <button
                 onClick={() => setIsMoreMobileOpen(!isMoreMobileOpen)}
-                className="w-full flex justify-between items-center px-6 py-3 text-left font-medium"
+                className="w-full flex justify-between items-center px-6 py-3 text-left font-medium text-[#1C3C6D]"
               >
                 More
                 <span className={`transition-transform duration-300 ${isMoreMobileOpen ? 'rotate-180' : ''}`}>
@@ -268,7 +254,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="pl-6 pb-4 flex flex-col space-y-2"
+                    className="pl-6 pb-4 flex flex-col space-y-2 text-[#1C3C6D]"
                   >
                     <Link
                       to="/more#book"
@@ -276,27 +262,17 @@ export default function Navbar() {
                         setIsMenuOpen(false);
                         setIsMoreMobileOpen(false);
                       }}
-                      className="block text-black hover:text-gray-600 transition"
+                      className="block hover:text-[#26BF64] transition"
                     >
                       Book Services
                     </Link>
-                    {/* <Link
-                      to="/news"
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                        setIsMoreMobileOpen(false);
-                      }}
-                      className="block text-black hover:text-gray-600 transition"
-                    >
-                      News & updates
-                    </Link> */}
                     <Link
                       to="/calculators"
                       onClick={() => {
                         setIsMenuOpen(false);
                         setIsMoreMobileOpen(false);
                       }}
-                      className="block text-black hover:text-gray-600 transition"
+                      className="block hover:text-[#26BF64] transition"
                     >
                       Calculators
                     </Link>
@@ -306,7 +282,7 @@ export default function Navbar() {
                         setIsMenuOpen(false);
                         setIsMoreMobileOpen(false);
                       }}
-                      className="block text-black hover:text-gray-600 transition"
+                      className="block hover:text-[#26BF64] transition"
                     >
                       Privacy Policy
                     </Link>
@@ -316,7 +292,7 @@ export default function Navbar() {
                         setIsMenuOpen(false);
                         setIsMoreMobileOpen(false);
                       }}
-                      className="block text-black hover:text-gray-600 transition"
+                      className="block hover:text-[#26BF64] transition"
                     >
                       Terms & Conditions
                     </Link>
@@ -326,7 +302,7 @@ export default function Navbar() {
                         setIsMenuOpen(false);
                         setIsMoreMobileOpen(false);
                       }}
-                      className="block text-black hover:text-gray-600 transition"
+                      className="block hover:text-[#26BF64] transition"
                     >
                       Refund Policy
                     </Link>
@@ -336,7 +312,7 @@ export default function Navbar() {
                         setIsMenuOpen(false);
                         setIsMoreMobileOpen(false);
                       }}
-                      className="block text-black hover:text-gray-600 transition"
+                      className="block hover:text-[#26BF64] transition"
                     >
                       Offers
                     </Link>
@@ -348,7 +324,7 @@ export default function Navbar() {
             <Link
               to="/contact"
               onClick={() => setIsMenuOpen(false)}
-              className="block px-6 py-3 border-b border-gray-300"
+              className="block px-6 py-3 border-b border-[#1C3C6D] text-[#1C3C6D] hover:bg-[#26BF64] hover:text-white transition"
             >
               Contact
             </Link>
@@ -356,7 +332,7 @@ export default function Navbar() {
             <Link
               to="/contact"
               onClick={() => setIsMenuOpen(false)}
-              className="block mt-3 mb-6 mx-6 px-4 py-3 rounded bg-[#004d6e] text-white text-center text-sm hover:bg-[#00bcd4] transition"
+              className="block mt-3 mb-6 mx-6 px-4 py-3 rounded bg-[#1C3C6D] text-white text-center text-sm hover:bg-[#26BF64] transition"
             >
               Get in Touch
             </Link>

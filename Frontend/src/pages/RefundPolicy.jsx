@@ -9,9 +9,9 @@ export default function RefundPolicy() {
   }, []);
 
   return (
-    <section className="min-h-screen bg-gray-100 py-16 px-6 md:px-24 text-gray-800">
+    <section className="min-h-screen bg-[#f0f7f4] py-16 px-6 md:px-24 text-[#1C3C6D]">
       <motion.h1
-        className="text-4xl font-bold text-center text-blue-900 mb-10"
+        className="text-4xl font-bold text-center mb-10"
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -19,7 +19,8 @@ export default function RefundPolicy() {
         Refund Policy
       </motion.h1>
 
-      <div className="max-w-5xl mx-auto bg-gray-100 rounded-xl  p-8 space-y-10">
+      <div className="max-w-5xl mx-auto bg-white rounded-xl p-8 space-y-10 shadow-md">
+        {/* Uncomment and replace image if needed */}
         {/* <img
           src="https://cdn.pixabay.com/photo/2017/09/22/19/30/online-2779500_1280.jpg"
           alt="Refund Policy"
@@ -28,28 +29,28 @@ export default function RefundPolicy() {
         /> */}
 
         <div data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-          <h2 className="text-2xl font-semibold text-blue-800 mb-3">At Skyman Investments</h2>
-          <p>
+          <h2 className="text-2xl font-semibold mb-3 text-[#1C3C6D]">At Skyman Investments</h2>
+          <p className="text-[#345a48]">
             At Skyman Investments we strive to provide exceptional financial services to our clients. To ensure clarity and transparency regarding our refund process, we have established the following Refund Policy.
           </p>
         </div>
 
         <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="100">
-          <h2 className="text-2xl font-semibold text-blue-800 mb-3">Refund Eligibility</h2>
-          <p>
+          <h2 className="text-2xl font-semibold mb-3 text-[#1C3C6D]">Refund Eligibility</h2>
+          <p className="text-[#345a48]">
             <strong>Refund Requests Before Service:</strong> You may request a refund for services that have not yet been provided. To be eligible for a refund, your request must be submitted in writing prior to the commencement of the service.
           </p>
-          <p className="mt-4">
+          <p className="mt-4 text-[#345a48]">
             <strong>No Refunds After Service Commencement:</strong> Once our services have been initiated or completed, no refunds will be issued under any circumstances. This policy applies to all services offered by Skyman Investments.
           </p>
         </div>
 
         <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="200">
-          <h2 className="text-2xl font-semibold text-blue-800 mb-3">How to Request a Refund</h2>
-          <p>
+          <h2 className="text-2xl font-semibold mb-3 text-[#1C3C6D]">How to Request a Refund</h2>
+          <p className="text-[#345a48]">
             To request a refund before the service is provided, please follow these steps:
           </p>
-          <ul className="list-disc list-inside mt-3 space-y-2">
+          <ul className="list-disc list-inside mt-3 space-y-2 text-[#345a48]">
             <li>Contact our customer support team at [Contact Information].</li>
             <li>Provide your account details and a clear explanation of your refund request.</li>
             <li>We will review your request and respond within 7 working days.</li>
@@ -58,13 +59,13 @@ export default function RefundPolicy() {
         </div>
 
         <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="300">
-          <h2 className="text-2xl font-semibold text-blue-800 mb-3">Changes to This Policy</h2>
-          <p>
+          <h2 className="text-2xl font-semibold mb-3 text-[#1C3C6D]">Changes to This Policy</h2>
+          <p className="text-[#345a48]">
             We reserve the right to update or modify this Refund Policy at any time. Any changes will be posted on this page, and we encourage you to review it periodically.
           </p>
         </div>
 
-        <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="400">
+        <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="400" className="text-[#345a48]">
           <p>
             Thank you for choosing Skyman Investments. We appreciate your understanding of our refund policy. If you have any questions or need further assistance, please feel free to contact us.
           </p>
