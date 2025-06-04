@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -55,7 +55,7 @@ const fontFamilies = [
 
 const fontSizes = ["12px", "14px", "16px", "18px", "20px", "24px", "28px"];
 
-const TiptapEditor = () => {
+const TiptapEditor = ({content, onChange}) => {
   const [fontFamilyIndex, setFontFamilyIndex] = useState(0);
   const [fontSize, setFontSize] = useState("16px");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -77,8 +77,20 @@ const TiptapEditor = () => {
       Image,
       Placeholder.configure({ placeholder: "Compose your message…" }),
     ],
-    content: "<p></p>",
+    content: content || "<p></p>",
+    onUpdate: ({ editor }) => {
+  const html = editor.getHTML();
+  onChange?.(html);
+},
+
   });
+
+  
+  useEffect(() => {
+    if (editor && content !== editor.getHTML()) {
+      editor.commands.setContent(content || "<p></p>");
+    }
+  }, [content, editor]);
 
   const handleImageUpload = (e) => {
     const file = e.target.files?.[0];

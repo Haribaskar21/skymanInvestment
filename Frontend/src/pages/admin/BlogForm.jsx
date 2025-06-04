@@ -147,8 +147,12 @@ console.error('Error response:', error.response);
 
 <TiptapEditor
   content={formData.content}
-  onChange={(val) => setFormData(prev => ({ ...prev, content: val }))}
+  onChange={(val) => {
+    console.log('Editor HTML content:', val);
+    setFormData(prev => ({ ...prev, content: val }));
+  }}
 />
+
 
 
 
