@@ -40,7 +40,7 @@ export default function Home() {
       <NewsTicker />
 
       {/* Hero Section */}
-      <section className="relative mt-10 bg-gray-100 flex flex-col w-full items-center justify-center gap-10">
+      <section className="relative mt-16 bg-gray-100 flex flex-col w-full items-center justify-center gap-10">
         <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center z-10">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

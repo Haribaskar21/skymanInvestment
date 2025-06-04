@@ -58,3 +58,22 @@
 .btn {
   @apply px-2 py-1 text-sm border rounded hover:bg-gray-100;
 }
+
+
+.toolbar-btn {
+  @apply text-sm px-2 py-1 rounded hover:bg-gray-100 focus:outline-none transition-all;
+}
+
+.toolbar-select {
+  @apply text-sm px-2 py-1 border border-gray-300 rounded;
+}
+
+.btn-icon {
+  @apply inline-flex items-center justify-center w-8 h-8 rounded hover:bg-gray-200 active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#26BF64] cursor-pointer;
+  user-select: none;
+}
+
+.btn-select {
+  @apply text-sm px-2 py-1 rounded border border-gray-300 bg-white text-gray-700;
+}
+
