@@ -78,7 +78,7 @@ const BlogDetail = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7 }}
-      className="max-w-4xl mx-auto p-8 bg-white rounded-3xl shadow-2xl border border-indigo-100"
+      className="max-w-4xl mx-auto p-8 rounded-3xl shadow-2xl border border-black  "
     >
       <div className="relative w-full h-64 sm:h-96 rounded-2xl overflow-hidden mb-10 shadow-lg bg-gradient-to-tr from-indigo-50 via-white to-indigo-50 border border-indigo-200">
         <img
