@@ -19,6 +19,8 @@ export default function Home() {
 
   const [latestBlogs, setLatestBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [news, setNews] = useState([]);
+
 
  useEffect(() => {
   const fetchLatestBlogs = async () => {
@@ -34,10 +36,37 @@ export default function Home() {
   fetchLatestBlogs();
 }, []);
 
+useEffect(() => {
+  const fetchLatestBlogs = async () => {
+    try {
+      const res = await api.get('/blogs?limit=3&sort=desc');
+      setLatestBlogs(res.data);
+    } catch (err) {
+      console.error('Failed to fetch latest blogs:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchNews = async () => {
+    try {
+      const res = await api.get('/news'); // adjust endpoint as needed
+      setNews(res.data || []);
+    } catch (err) {
+      console.error('Failed to fetch news:', err);
+    }
+  };
+
+  fetchLatestBlogs();
+  fetchNews();
+}, []);
+
+
 
   return (
     <div>
-      <NewsTicker />
+      {news.length > 0 && <NewsTicker news={news} />}
+
 
       {/* Hero Section */}
       <section className="relative mt-16 bg-gray-100 flex flex-col w-full items-center justify-center gap-10">
