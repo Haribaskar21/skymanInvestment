@@ -42,13 +42,19 @@ const BlogForm = () => {
     if (id) {
       api.get(`/blogs/${id}`)
         .then(res => {
-          setFormData(res.data);
-          if (res.data.imageUrl) setImagePreview(res.data.imageUrl);
-        })
-        .catch(() => toast.error('Failed to load Blogs item'));
-    }
-  }, [id]);
+         const data = res.data;
 
+        // Fix: Fallback to <p></p> if content is empty
+        setFormData({
+          ...data,
+          content: data.content?.trim() || '<p></p>',
+        });
+
+        if (data.imageUrl) setImagePreview(data.imageUrl);
+      })
+      .catch(() => toast.error('Failed to load Blogs item'));
+  }
+}, [id]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -96,6 +102,7 @@ imageFilename = uploadRes.data.imageUrl;
       const payload = {
         ...formData,
         image: imageFilename,
+        content: formData.content?.trim() || '<p></p>',
       };
 
       delete payload.imageUrl;

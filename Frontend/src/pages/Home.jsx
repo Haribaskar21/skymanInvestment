@@ -193,37 +193,67 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Latest Blog Posts */}
-        <div className="mt-20 max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-extrabold text-center bg-gradient-to-r from-[#26BF64] via-[#1C3C6D] to-[#1C3C6D] bg-clip-text text-transparent mb-12 animate-gradient-x">
-            Latest Blog Posts
-          </h2>
+{/* Latest Blog Posts */}
+<div className="mt-20 max-w-7xl mx-auto px-4">
+  <h2 className="text-4xl font-extrabold text-center bg-gradient-to-r from-[#26BF64] via-[#1C3C6D] to-[#1C3C6D] bg-clip-text text-transparent mb-12 animate-gradient-x">
+    Latest Blog Posts
+  </h2>
 
-          {loading ? (
-            <p className="text-center text-gray-500">Loading latest blogs...</p>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20" data-aos="fade-up">
-              {latestBlogs.map(({ _id, title, category, image }) => (
-                <div
-                  key={_id}
-                  className="bg-white rounded-lg shadow-md hover:shadow-lg transition cursor-pointer"
-                >
-                  <Link to={`/blog/${_id}`}>
-                    <img
-                      className="w-full h-48 rounded-t-lg object-cover"
-                      src={image}
-                      alt={title}
-                    />
-                    <div className="p-4">
-                      <h3 className="font-bold text-lg mb-1 text-[#1C3C6D]">{title}</h3>
-                      <p className="text-sm text-gray-500">{category}</p>
-                    </div>
-                  </Link>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+  {loading ? (
+    <p className="text-center text-gray-500">Loading latest blogs...</p>
+  ) : (
+    <div
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20"
+      data-aos="fade-up"
+    >
+      {latestBlogs.map(({ _id, title, content, image }) => {
+        // Helper to strip HTML tags from content string
+        const stripHtml = (html) => {
+          if (!html) return "";
+          const tmp = document.createElement("DIV");
+          tmp.innerHTML = html;
+          return tmp.textContent || tmp.innerText || "";
+        };
+
+        // Get plain text and truncate to 100 chars
+        const plainText = stripHtml(content);
+        const shortContent =
+          plainText.length > 100
+            ? plainText.slice(0, 100) + "..."
+            : plainText;
+
+        // Fallback image if missing
+        const imageSrc =
+          image && image.length > 0
+            ? image
+            : "/assets/placeholder-image.png";
+
+        return (
+          <div
+            key={_id}
+            className="bg-white rounded-lg shadow-md hover:shadow-lg transition cursor-pointer"
+          >
+            <Link to={`/blog/${_id}`}>
+              <img
+                className="w-full h-48 rounded-t-lg object-cover"
+                src={imageSrc}
+                alt={title}
+                loading="lazy"
+              />
+              <div className="p-4">
+                <h3 className="font-bold text-lg mb-1 text-[#1C3C6D]">
+                  {title}
+                </h3>
+                <p className="text-sm text-gray-500">{shortContent}</p>
+              </div>
+            </Link>
+          </div>
+        );
+      })}
+    </div>
+  )}
+</div>
+
       </section>
     </div>
   );
