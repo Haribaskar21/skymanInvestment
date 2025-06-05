@@ -47,10 +47,12 @@ import BlogCategories from './pages/admin/BlogCategories';
 import BlogTags from './pages/admin/BlogTags';
 import NewsCategories from './pages/admin/NewsCategories';
 import NewsTags from './pages/admin/NewsTags';
+import ScrollToTop from './components/ScrollToTop'; // ✅ Make sure the path is correct
+
 
 export default function App() {
   const location = useLocation();
-
+  
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -62,12 +64,13 @@ export default function App() {
     });
     AOS.refresh();
   }, []);
-
+  
   // Hide Navbar and Footer on all /admin routes
   const hideNavAndFooter = location.pathname.startsWith('/admin');
-
+  
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
+      <ScrollToTop />
       {/* Conditionally render Navbar */}
       {!hideNavAndFooter && <Navbar />}
 

@@ -246,10 +246,10 @@ export default function Home() {
             Schedule your consultation with our professionals today.
           </p>
           <Link
-            to="https://api.whatsapp.com/send/?phone=9629596296&text&type=phone_number&app_absent=0"
+            to="/contact"
             className="inline-block bg-[#26BF64] hover:bg-white hover:text-[#1C3C6D] text-white border border-white px-6 py-3 rounded-full font-semibold transition duration-300"
           >
-            Schedule a Consultation
+            Contact Us
           </Link>
         </div>
       </section>
