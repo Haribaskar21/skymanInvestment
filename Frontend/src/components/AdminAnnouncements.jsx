@@ -151,7 +151,7 @@ const AdminAnnouncements = () => {
         className="text-3xl font-extrabold text-cyan-800 mb-8 flex items-center gap-3 select-none"
       >
         <FiCheckCircle className="text-cyan-600" aria-hidden="true" />
-        Company Announcements
+        TechSlideITS Announcements
       </h2>
 
       {announcements.length === 0 ? (
