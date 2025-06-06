@@ -237,6 +237,39 @@ export default function Home() {
             </div>
           </div>
         </div>
+        
+        {/* Testimonials */}
+<div className="mt-20 bg-gradient-to-r from-[#e0f7ec] to-[#f0f4fd] py-16 px-6 rounded-2xl max-w-7xl mx-auto shadow-md" data-aos="fade-up">
+  <h2 className="text-4xl font-bold text-center text-[#1C3C6D] mb-12">What Our Clients Say</h2>
+  <div className="grid md:grid-cols-3 gap-6 text-center">
+    {[
+      {
+        quote: "Skyman’s personalized financial advice changed my life. I feel secure about my future now.",
+        name: "Ananya M.",
+        title: "Entrepreneur"
+      },
+      {
+        quote: "Their strategies helped me manage risk smartly. Transparent and very professional.",
+        name: "Ravi K.",
+        title: "Senior Engineer"
+      },
+      {
+        quote: "From insurance to investments, Skyman is my trusted partner for all financial matters.",
+        name: "Meera J.",
+        title: "Freelancer"
+      }
+    ].map((testimonial, i) => (
+      <div key={i} className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <p className="italic text-gray-700 mb-4">“{testimonial.quote}”</p>
+        <div className="text-[#26BF64] font-semibold">{testimonial.name}</div>
+        <div className="text-sm text-gray-500">{testimonial.title}</div>
+      </div>
+    ))}
+  </div>
+</div>
+
+
+
 
         {/* Get in Touch */}
         <div className="mt-20 bg-[#1C3C6D] text-white py-16 px-6 rounded-2xl max-w-6xl mx-auto text-center shadow-lg" data-aos="fade-up">
