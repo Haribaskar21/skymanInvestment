@@ -163,7 +163,9 @@ export default function Home() {
                       <img className="w-full h-48 rounded-t-lg object-cover" src={imageSrc} alt={title} loading="lazy" />
                       <div className="p-4">
                         <h3 className="font-bold text-lg mb-1 text-[#1C3C6D]">{title}</h3>
-                        <p className="text-sm text-gray-500">{shortContent}</p>
+                        <p className="text-sm text-gray-500 line-clamp-3 overflow-hidden">
+                          {shortContent}
+                        </p>
                       </div>
                     </Link>
                   </div>
@@ -293,10 +295,6 @@ export default function Home() {
         {
           q: "What support do I get after investing?",
           a: "We offer ongoing support including portfolio reviews, tax planning help, insurance advice, and 24/7 support through our client portal.",
-        },
-        {
-          q: "Can I track my investments online?",
-          a: "Yes, once you’re onboarded, you’ll get access to our secure portal where you can monitor your portfolio performance in real-time.",
         },
       ].map((faq, i) => (
         <details
