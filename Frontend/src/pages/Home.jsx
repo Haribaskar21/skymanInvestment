@@ -268,8 +268,58 @@ export default function Home() {
   </div>
 </div>
 
-
-
+{/* FAQ Section */}
+<section className="py-24 bg-[#f8fdfb]" data-aos="fade-up">
+  <div className="max-w-5xl mx-auto px-6">
+    <h2 className="text-4xl font-bold text-[#1C3C6D] mb-12 text-center">Frequently Asked Questions</h2>
+    <div className="space-y-4">
+      {[
+        {
+          q: "How do I open a Demat account?",
+          a: "You can open a Demat account by contacting our support team. We'll help you fill out the application, verify your KYC documents, and get started in no time.",
+        },
+        {
+          q: "What is the minimum amount I need to invest?",
+          a: "There is no minimum investment required. You can start with any amount you're comfortable with. Our advisors will guide you based on your financial goals.",
+        },
+        {
+          q: "Do you offer customized investment plans?",
+          a: "Absolutely. We tailor our investment strategies based on your age, income, risk appetite, and long-term objectives.",
+        },
+        {
+          q: "Is my investment safe with Skyman Investments?",
+          a: "Yes, we prioritize your security and only work with SEBI-registered financial institutions. Your investments are tracked and reported with complete transparency.",
+        },
+        {
+          q: "What support do I get after investing?",
+          a: "We offer ongoing support including portfolio reviews, tax planning help, insurance advice, and 24/7 support through our client portal.",
+        },
+        {
+          q: "Can I track my investments online?",
+          a: "Yes, once you’re onboarded, you’ll get access to our secure portal where you can monitor your portfolio performance in real-time.",
+        },
+      ].map((faq, i) => (
+        <details
+          key={i}
+          className="group border border-gray-200 rounded-xl p-5 bg-white hover:shadow-lg transition duration-300"
+        >
+          <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-[#26BF64]">
+            <span>{faq.q}</span>
+            <svg
+              className="w-5 h-5 text-[#1C3C6D] transition-transform duration-300 group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p className="mt-3 text-gray-700 leading-relaxed">{faq.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
 
         {/* Get in Touch */}
         <div className="mt-20 bg-[#1C3C6D] text-white py-16 px-6 rounded-2xl max-w-6xl mx-auto text-center shadow-lg" data-aos="fade-up">
