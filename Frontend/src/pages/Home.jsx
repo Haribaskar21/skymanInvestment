@@ -269,7 +269,7 @@ export default function Home() {
 </div>
 
 {/* FAQ Section */}
-<section className="py-24 bg-[#f8fdfb]" data-aos="fade-up">
+<section className="py-24 " data-aos="fade-up">
   <div className="max-w-5xl mx-auto px-6">
     <h2 className="text-4xl font-bold text-[#1C3C6D] mb-12 text-center">Frequently Asked Questions</h2>
     <div className="space-y-4">

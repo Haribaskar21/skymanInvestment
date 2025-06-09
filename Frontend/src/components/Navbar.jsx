@@ -16,15 +16,16 @@ export default function Navbar() {
     >
       <div className="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center">
           <img src="logos/Logo.png" alt="Skyman Investments Logo" className="h-20 w-auto" />
           <div>
-            <Link
-              to="/"
-              className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1C3C6D] to-[#26BF64]"
-            >
-              Skyman
-            </Link>
+<Link
+  to="/"
+  className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1C3C6D] to-[#26BF64]"
+>
+  Skyman<sup className=" font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1C3C6D] to-[#26BF64] align-super ">®</sup>
+</Link>
+
             <p className="text-transparent bg-clip-text bg-gradient-to-r from-[#1C3C6D] to-[#26BF64]">Investments</p>
           </div>
         </div>
