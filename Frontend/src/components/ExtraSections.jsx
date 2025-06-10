@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function ExtraSections() {
   const stats = [
@@ -12,17 +13,17 @@ export default function ExtraSections() {
     {
       name: "Arjun Singh",
       role: "Chief Investment Officer",
-      img: "https://via.placeholder.com/150",
+      img: "assets/3.jpeg",
     },
     {
       name: "Priya Menon",
       role: "Senior Financial Advisor",
-      img: "https://via.placeholder.com/150",
+      img: "assets/2.jpeg",
     },
     {
       name: "Rahul Kapoor",
       role: "Risk Management Lead",
-      img: "https://via.placeholder.com/150",
+      img: "assets/project-1.jpg",
     },
   ];
 
@@ -54,33 +55,37 @@ export default function ExtraSections() {
 
   return (
     <>
+
       {/* --- Quick Stats --- */}
-      <section className="py-16">
+      <section className="py-16 bg-gradient-to-r from-[#F0FFF4] to-[#F0F8FF]">
         <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
-            <div key={i}>
-              <h3 className="text-4xl font-bold text-[#26BF64]">{s.value}</h3>
-              <p className="text-gray-600 mt-2">{s.label}</p>
+            <div key={i} className="transition transform hover:scale-105 duration-300">
+              <h3 className="text-4xl font-extrabold text-[#26BF64] drop-shadow-lg">
+                {s.value}
+              </h3>
+              <p className="text-[#1C3C6D] mt-2 font-medium">{s.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* --- Meet Our Team ---
-      <section className="py-16 bg-[#f9fafa]">
-        <div className="max-w-6xl mx-auto text-center mb-12">
-          <h2 className="text-4xl font-bold text-[#1C3C6D]">Meet Our Team</h2>
+      {/* --- Meet Our Team --- */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto text-center mb-14">
+          <h2 className="text-4xl font-extrabold text-[#1C3C6D]">Meet Our Team</h2>
+          <p className="text-gray-500 mt-2">Experts committed to your financial growth</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 max-w-6xl mx-auto">
           {team.map((person, i) => (
             <div
               key={i}
-              className="bg-white p-6 rounded-xl shadow-md text-center"
+              className="bg-[#F9FAFB] p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition duration-300"
             >
               <img
                 src={person.img}
                 alt={person.name}
-                className="w-28 h-28 rounded-full mx-auto mb-4"
+                className="w-28 h-28 rounded-full mx-auto mb-4 object-cover border-4 border-[#26BF64]"
               />
               <h3 className="text-xl font-semibold text-[#1C3C6D]">
                 {person.name}
@@ -89,36 +94,38 @@ export default function ExtraSections() {
             </div>
           ))}
         </div>
-      </section> */}
+      </section>
 
       {/* --- Pricing Plans --- */}
-      <section className="py-20">
-        <div className="text-center max-w-4xl mx-auto mb-12">
-          <h2 className="text-4xl font-bold text-[#1C3C6D]">Our Pricing Plans</h2>
+      <section className="py-20 bg-[#F8F9FC]">
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <h2 className="text-4xl font-extrabold text-[#1C3C6D]">Our Pricing Plans</h2>
           <p className="text-gray-600 mt-4">
-            Choose the plan that fits your financial journey best.
+            Choose a plan that aligns with your investment goals.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 max-w-6xl mx-auto">
           {plans.map((plan, i) => (
             <div
               key={i}
-              className="border-2 border-[#26BF64] rounded-xl p-8 flex flex-col items-center"
+              className="bg-white border-2 border-[#26BF64] rounded-2xl p-8 shadow-md hover:shadow-xl transition duration-300 flex flex-col"
             >
-              <h3 className="text-2xl font-bold text-[#1C3C6D]">
+              <h3 className="text-2xl font-bold text-[#1C3C6D] text-center">
                 {plan.name}
               </h3>
-              <div className="text-3xl font-bold text-[#26BF64] my-4">
+              <div className="text-3xl font-bold text-[#26BF64] my-6 text-center">
                 {plan.price}
               </div>
-              <ul className="text-gray-600 mb-6 space-y-2 text-sm">
+              <ul className="text-gray-700 space-y-3 mb-6">
                 {plan.features.map((f, idx) => (
-                  <li key={idx}>✔ {f}</li>
+                  <li key={idx} className="flex items-center gap-2">
+                    <FaCheckCircle className="text-[#26BF64]" /> {f}
+                  </li>
                 ))}
               </ul>
               <Link
                 to="/contact"
-                className="mt-auto bg-[#26BF64] text-white px-6 py-3 rounded-full hover:bg-[#1C3C6D]"
+                className="mt-auto block bg-[#26BF64] text-white text-center px-6 py-3 rounded-full font-semibold hover:bg-[#1C3C6D]"
               >
                 Select Plan
               </Link>
@@ -127,7 +134,7 @@ export default function ExtraSections() {
         </div>
       </section>
 
-      {/* --- Newsletter Signup --- */}
+          {/* --- Newsletter Signup --- */}
       <section className="py-16 text-center">
         <h2 className="text-3xl font-bold text-[#1C3C6D]">Stay Updated</h2>
         <p className="text-gray-600 mt-2">
