@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import cursor from "/assets/icon1.png";
 import lightning from "/assets/icon2.png";
 import { useEffect, useState } from 'react';
+import ExtraSections from "../components/ExtraSections";
 import api from '../api/axios';
 import NewsTicker from '../components/NewsTicker';
 
@@ -269,6 +270,7 @@ export default function Home() {
     ))}
   </div>
 </div>
+<ExtraSections />
 
 {/* FAQ Section */}
 <section className="py-24 " data-aos="fade-up">
