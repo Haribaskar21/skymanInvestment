@@ -10,6 +10,9 @@ import TextStyle from "@tiptap/extension-text-style";
 import FontFamily from "@tiptap/extension-font-family";
 import Placeholder from "@tiptap/extension-placeholder";
 import History from "@tiptap/extension-history";
+import BulletList from "@tiptap/extension-bullet-list";
+import OrderedList from "@tiptap/extension-ordered-list";
+import ListItem from "@tiptap/extension-list-item";
 import EmojiPicker from "emoji-picker-react";
 import Image from "@tiptap/extension-image";
 import FontSize from "./FontSize";
@@ -65,24 +68,30 @@ const TiptapEditor = ({content, onChange}) => {
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
-      Underline,
-      Link.configure({ openOnClick: false }),
-      TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Highlight,
-      Color,
-      TextStyle,
-      FontFamily,
-      FontSize,
-      Image,
-      Placeholder.configure({ placeholder: "Compose your message…" }),
-    ],
+    StarterKit.configure({
+      bulletList: false,
+      orderedList: false,
+      listItem: false,
+    }),
+    BulletList,
+    OrderedList,
+    ListItem,
+    Underline,
+    Link.configure({ openOnClick: false }),
+    TextAlign.configure({ types: ["heading", "paragraph"] }),
+    Highlight,
+    Color,
+    TextStyle,
+    FontFamily,
+    FontSize,
+    Image,
+    Placeholder.configure({ placeholder: "Compose your message…" }),
+  ],
     content: content || "<p></p>",
     onUpdate: ({ editor }) => {
   const html = editor.getHTML();
   onChange?.(html);
 },
-
   });
 
   
@@ -259,6 +268,27 @@ const TiptapEditor = ({content, onChange}) => {
         </button>
 
         <button
+  type="button"
+  onClick={() => editor.chain().focus().toggleBulletList().run()}
+  className="btn-icon"
+  title="Bullet List"
+  aria-label="Bullet List"
+>
+  ••
+</button>
+
+<button
+  type="button"
+  onClick={() => editor.chain().focus().toggleOrderedList().run()}
+  className="btn-icon"
+  title="Ordered List"
+  aria-label="Ordered List"
+>
+  1.
+</button>
+
+
+        <button
           type="button"
           onClick={() => setShowEmojiPicker((prev) => !prev)}
           className="btn-icon"
@@ -344,10 +374,14 @@ const TiptapEditor = ({content, onChange}) => {
       )}
 
       {/* Editor Content */}
-      <EditorContent
-        editor={editor}
-        className="min-h-[300px] px-4 py-3 focus:outline-none prose max-w-full"
-      />
+     <EditorContent
+  editor={editor}
+  className="min-h-[300px] px-4 py-3 focus:outline-none prose max-w-full
+    [&_ul]:list-disc [&_ul]:pl-6 
+    [&_ol]:list-decimal [&_ol]:pl-6 
+    [&_li]:mb-1"
+/>
+
 
       {/* Send Button (Fixed at bottom right like Gmail) */}
       <div className="flex justify-end px-4 py-3 border-t border-gray-200 bg-gray-50">

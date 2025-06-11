@@ -96,9 +96,10 @@ export default function BlogDetail() {
       </div>
 
       {/* Content */}
-      <div className="prose prose-indigo prose-lg px-8 py-10 max-w-none leading-relaxed">
-        <div dangerouslySetInnerHTML={{ __html: blog.content }} />
-      </div>
+      <div className="px-8 py-10 max-w-none leading-relaxed space-y-4 text-gray-800 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:mb-2">
+  <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+</div>
+
 
       {/* Back Button */}
       <div className="px-8 pb-10">
