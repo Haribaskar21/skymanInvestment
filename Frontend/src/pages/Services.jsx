@@ -15,15 +15,31 @@ const slugify = (str) =>
 const services = [
   {
     title: "Demat Account",
-    image:
-      "https://static.wixstatic.com/media/cbaed5_a65c6b5622134db1b0db0a6076f4cc77~mv2.jpg/v1/fill/w_247,h_111,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Demat%20Account%20Image.jpg",
+    image: "assets/demat.webp", // Stock chart – represents a Demat/holdings account
   },
-  { title: "Insurance", image: "assets/insurance.avif" },
-  { title: "Financial Planning", image: "assets/finance-plan.avif" },
-  { title: "Bonds", image: "assets/bonds.avif" },
-  { title: "Tax Services", image: "assets/income.avif" },
-  { title: "Mutual Funds", image: "assets/mutual.avif" },
+  {
+    title: "Insurance",
+    image: "assets/insurance.png", // Family under umbrella – clear insurance icon :contentReference[oaicite:1]{index=1}
+  },
+  {
+    title: "Financial Planning",
+    image: "assets/financial.png", // Person with a growth chart
+  },
+  {
+    title: "Bonds",
+    image: "https://cdn.iconscout.com/icon/free/png-512/bonds-1869658-1584964.png", // certificate scroll :contentReference[oaicite:5]{index=5}
+  },
+  {
+    title: "Tax Services",
+    image: "https://cdn-icons-png.flaticon.com/512/5571/5571677.png", // tax form with calculator :contentReference[oaicite:6]{index=6}
+  },
+  {
+    title: "Mutual Funds",
+    // 💰 Hand with coin & graph – symbolizing pooled investments
+    image: "https://www.clipartmax.com/png/full/239-2392380_mutual-fund-icon-mutual-funds-icon-transparent.png",
+  },
 ];
+
 
 const bookServices = [
   { title: "🧾 Income Tax", price: "₹23,600", gst: "18%" },

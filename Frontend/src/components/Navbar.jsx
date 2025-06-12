@@ -17,16 +17,14 @@ export default function Navbar() {
       <div className="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
-          <img src="logos/Logo.png" alt="Skyman Investments Logo" className="h-20 w-auto" />
+          <img src="logos/Logo.png" alt="Skyman Investments Logo" className="h-25 w-auto" />
           <div>
 <Link
   to="/"
-  className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1C3C6D] to-[#26BF64]"
+  className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#26BF64] to-[#1C3C6D]"
 >
-  Skyman<sup className=" font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1C3C6D] to-[#26BF64] align-super ">®</sup>
+  Skyman Investments
 </Link>
-
-            <p className="text-transparent bg-clip-text bg-gradient-to-r from-[#1C3C6D] to-[#26BF64]">Investments</p>
           </div>
         </div>
 
@@ -56,6 +54,12 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
+          <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
+            <Link to="/calculators" className="hover:text-[#26BF64] transition">
+              Calculators
+            </Link>
+          </motion.div>
+
           {/* More Dropdown */}
           <div
             className="relative"
@@ -79,12 +83,6 @@ export default function Navbar() {
                   transition={{ duration: 0.3 }}
                   className="absolute top-8 left-0 bg-white shadow-lg border rounded-md p-4 w-64 grid grid-cols-2 gap-3 text-sm z-50"
                 >
-                  <Link to="/more#book" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
-                    Book Services
-                  </Link>
-                  <Link to="/calculators" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
-                    Calculators
-                  </Link>
                   <Link to="/privacy-policy" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
                     Privacy Policy
                   </Link>
@@ -139,9 +137,6 @@ export default function Navbar() {
             <div className="absolute hidden group-hover:block bg-white shadow-lg rounded p-3 mt-1 w-48 z-50">
               <Link to="/blog" className="block px-2 py-1 hover:bg-[#26BF64] hover:text-white rounded transition">
                 Blog
-              </Link>
-              <Link to="/more#book" className="block px-2 py-1 hover:bg-[#26BF64] hover:text-white rounded transition">
-                Book Services
               </Link>
               <Link to="/calculators" className="block px-2 py-1 hover:bg-[#26BF64] hover:text-white rounded transition">
                 Calculators
@@ -236,6 +231,13 @@ export default function Navbar() {
             >
               Blog
             </Link>
+            <Link
+              to="/calculators"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-6 py-3 border-b border-[#1C3C6D] text-[#1C3C6D] hover:bg-[#26BF64] hover:text-white transition"
+            >
+              Calculators
+            </Link>
 
             {/* Mobile More dropdown */}
             <div className="border-b border-[#1C3C6D]">
@@ -257,26 +259,6 @@ export default function Navbar() {
                     transition={{ duration: 0.3 }}
                     className="pl-6 pb-4 flex flex-col space-y-2 text-[#1C3C6D]"
                   >
-                    <Link
-                      to="/more#book"
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                        setIsMoreMobileOpen(false);
-                      }}
-                      className="block hover:text-[#26BF64] transition"
-                    >
-                      Book Services
-                    </Link>
-                    <Link
-                      to="/calculators"
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                        setIsMoreMobileOpen(false);
-                      }}
-                      className="block hover:text-[#26BF64] transition"
-                    >
-                      Calculators
-                    </Link>
                     <Link
                       to="/privacy-policy"
                       onClick={() => {

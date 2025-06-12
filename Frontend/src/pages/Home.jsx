@@ -72,7 +72,7 @@ export default function Home() {
           className="mt-10 w-full z-10 flex flex-col items-center justify-center relative"
         >
           <img
-            src="assets/stretching-card.png"
+            src="assets/cards- (1).png"
             alt="Card Stretch"
             className="w-full max-w-screen object-contain"
           />
