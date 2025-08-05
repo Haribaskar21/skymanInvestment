@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import cursor from "/assets/icon1.png";
 import lightning from "/assets/icon2.png";
 import { useEffect, useState } from 'react';
-import ExtraSections from "../components/ExtraSections";
 import api from '../api/axios';
 import NewsTicker from '../components/NewsTicker';
 
@@ -32,10 +31,11 @@ export default function Home() {
 
   return (
     <div>
+      {/* News Ticker */}
       {news.length > 0 && <NewsTicker news={news} />}
 
       {/* Hero Section */}
-      <section className="relative mt-16 bg-gray-100 flex flex-col w-full items-center justify-center gap-10 overflow-hidden">
+      <section className="relative bg-gray-100 flex flex-col w-full items-center justify-center gap-10 overflow-hidden">
         <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center z-10">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -43,7 +43,7 @@ export default function Home() {
             transition={{ delay: 0.3, duration: 1 }}
             className="text-6xl md:text-5xl font-bold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#26BF64] to-[#1C3C6D]"
           >
-            Empowering Your Financial Future
+            Empowering Your Financial Future with Insight, Integrity & Innovation 
           </motion.h1>
 
           <motion.div className="hidden md:block absolute left-[280px] top-[170px]" drag>
@@ -85,50 +85,79 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Mission & Services */}
-      <section className="py-16 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="text-black p-8 rounded-2xl bg-[#e3f4e8] shadow-md" data-aos="fade-right">
-            <h2 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#26BF64] to-[#1C3C6D] mb-6">
-              Our Mission
-            </h2>
-            <p className="text-xl leading-relaxed text-gray-700">
-              At <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#26BF64] to-[#1C3C6D]">Skyman Investments</span>, our mission is to empower our clients by
-              offering them the tools and knowledge necessary to build wealth, manage risk, and protect their financial well-being.
-              We are committed to providing <span className="font-semibold">transparent, trustworthy, and reliable</span> services,
-              always putting our clients' interests first.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-12">Our Services</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                { icon: "📂", title: "Demat Account", text: "Hold and manage shares electronically.", link: "/demat-account", color: "#b6e1b4", textColor: "black" },
-                { icon: "🛡️", title: "Insurance", text: "Comprehensive plans for life and assets.", link: "/insurance", color: "#1C3C6D", textColor: "white" },
-                { icon: "💰", title: "Tax Services", text: "Efficient planning and filing services.", link: "/tax-services", color: "#1C3C6D", textColor: "white" },
-                { icon: "📅", title: "Financial Planning", text: "Smart budgeting and investment advice.", link: "/financial-planning", color: "#b6e1b4", textColor: "black" },
-              ].map((service, i) => (
-                <div key={service.title} className={`bg-[${service.color}] text-${service.textColor} p-6 rounded-2xl shadow-md`} data-aos="fade-up" data-aos-delay={i * 50}>
-                  <Link to={service.link}>
-                    <div className="text-5xl mb-4">{service.icon}</div>
-                    <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                    <p className="text-sm">{service.text}</p>
-                  </Link>
-                </div>
-              ))}
+{/* MISSION & SERVICES */}
+<section className="py-20 px-6 max-w-7xl mx-auto">
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    {/* Left Column: Mission & Trusted Partner */}
+    <div className="flex flex-col gap-10">
+      {/* Mission Statement */}
+      <div className="bg-[#e3f4e8] p-10 rounded-3xl shadow-lg" data-aos="fade-right">
+        <h2 className="text-6xl font-extrabold bg-gradient-to-r from-[#26BF64] to-[#1C3C6D] text-transparent bg-clip-text mb-6 drop-shadow-md">
+          Our Mission
+        </h2>
+        <p className="text-xl leading-relaxed text-gray-800 max-w-lg">
+          To empower every client with the tools, knowledge, and confidence needed to make sound financial decisions.
+          We are committed to delivering <span className="font-semibold">transparent, reliable, and personalized</span> financial
+          solutions that align with your unique goals.
+        </p>
+      </div>
+      {/* Trusted Partner Description */}
+      <div className="bg-white p-8 rounded-3xl shadow-md border border-green-200 max-w-lg" data-aos="fade-right" data-aos-delay="100">
+        <h3 className="text-3xl font-semibold text-[#1C3C6D] mb-4">
+          Your Trusted Partner in Financial Growth
+        </h3>
+        <p className="text-lg text-gray-700 leading-relaxed">
+          At <span className="font-semibold text-[#26BF64]">Skyman Investments</span>, we believe that financial success starts with clarity, strategy,
+          and personalized guidance.
+          As a trusted name in comprehensive financial services, we are dedicated to helping individuals, families, and businesses build wealth, manage risk,
+          and secure their financial future.
+          Whether you’re planning for retirement, expanding your investment portfolio, or navigating complex business finances,
+          our experts are here to guide you every step of the way.
+        </p>
+      </div>
+    </div>
+    {/* Right Column: Core Services */}
+    <div>
+      <h2 className="text-4xl font-bold text-gray-900 mb-12 tracking-tight drop-shadow-sm">
+        Our Core Services
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        {[
+          { icon: "📂", title: "Investment Management", text: "Custom-tailored portfolio strategies, growth-oriented and risk-adjusted investment options, ongoing monitoring and performance analysis.", color: "#b6e1b4", textColor: "#171717" },
+          { icon: "🛡️", title: "Retirement Planning", text: "Retirement readiness assessments, tax-efficient savings strategies, income distribution and legacy planning.", color: "#1C3C6D", textColor: "#FFFFFF" },
+          { icon: "💰", title: "Financial Planning", text: "Holistic financial plans tailored to life goals, tax-saving strategies and expense management, estate and education planning.", color: "#1C3C6D", textColor: "#FFFFFF" },
+          { icon: "📅", title: "Insurance Solutions", text: "Life, health, and general insurance products, asset protection and liability coverage, custom insurance reviews for every life stage.", color: "#b6e1b4", textColor: "#171717" },
+          { icon: "🏢", title: "Corporate Financial Services", text: "Strategic business financial planning, cash flow optimization and capital structuring, succession planning and risk management for businesses.", color: "#b6e1b4", textColor: "#171717" },
+        ].map((service, i) => (
+          <div
+            key={service.title}
+            style={{ backgroundColor: service.color, color: service.textColor }}
+            className="p-7 rounded-3xl shadow-lg border-l-4 border-[#26BF64] transform hover:scale-[1.03] transition-transform duration-300 cursor-pointer"
+            data-aos="fade-up"
+            data-aos-delay={i * 60}
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <span className="text-5xl">{service.icon}</span>
+              <h3 className="text-xl font-extrabold tracking-tight">{service.title}</h3>
             </div>
+            <p className="text-sm leading-relaxed">{service.text}</p>
           </div>
-        </div>
+        ))}
+      </div>
+    </div>
+  </div>
 
-        {/* Why Choose Us */}
+
+
+        {/* WHY CHOOSE US */}
         <div className="mt-20 p-10 rounded-2xl" data-aos="fade-up" style={{ backgroundColor: '#e6f2f1' }}>
-          <h2 className="text-4xl font-bold text-center text-[#26BF64] mb-10">Why Choose Us?</h2>
-          <div className="grid md:grid-cols-3 gap-8 text-center">
+          <h2 className="text-4xl font-bold text-center text-[#26BF64] mb-10">Why Choose Skyman Investments?</h2>
+          <div className="grid md:grid-cols-4 gap-8 text-center">
             {[
-              { icon: "🤝", title: "Personalized Approach", text: "We build strong relationships to understand your goals." },
-              { icon: "👨‍💼", title: "Experienced Professionals", text: "Years of industry experience backing your decisions." },
-              { icon: "💡", title: "Innovative Solutions", text: "Modern strategies tailored to your financial journey." },
+              { icon: "🤝", title: "Personalized Approach", text: "We build long-term relationships by understanding your goals deeply and creating strategies that reflect your financial priorities." },
+              { icon: "👨‍💼", title: "Experienced Professionals", text: "Our team includes certified financial advisors, investment analysts, and insurance experts with decades of combined expertise." },
+              { icon: "💡", title: "Innovative Solutions", text: "We use cutting-edge tools and real-time market data to deliver efficient, forward-thinking strategies." },
+              { icon: "👥", title: "Client-First Philosophy", text: "Transparency, honesty, and integrity are at the heart of every solution we offer." },
             ].map((item, i) => (
               <div key={item.title} className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition" data-aos="fade-up" data-aos-delay={i * 100}>
                 <div className="text-6xl mb-4">{item.icon}</div>
@@ -144,7 +173,6 @@ export default function Home() {
           <h2 className="text-4xl font-extrabold text-center bg-gradient-to-r from-[#26BF64] via-[#1C3C6D] to-[#1C3C6D] bg-clip-text text-transparent mb-12 animate-gradient-x">
             Latest Blog Posts
           </h2>
-
           {loading ? (
             <p className="text-center text-gray-500">Loading latest blogs...</p>
           ) : (
@@ -157,7 +185,6 @@ export default function Home() {
                 };
                 const shortContent = stripHtml(content).slice(0, 100) + "...";
                 const imageSrc = image?.length > 0 ? image : "/assets/placeholder-image.png";
-
                 return (
                   <div key={_id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition cursor-pointer">
                     <Link to={`/blog/${_id}`}>
@@ -176,167 +203,223 @@ export default function Home() {
           )}
         </div>
 
-{/* About Us */}
-<div className="relative mt-24 max-w-6xl mx-auto px-4" data-aos="fade-up">
-  <div className="absolute inset-0 bg-gradient-to-r from-[#e6f4ec] to-[#f0f6fc] rounded-3xl -z-10 shadow-inner"></div>
-
-  <div className="p-10 rounded-3xl shadow-xl bg-white/90 backdrop-blur-md border border-gray-200">
-    <h2 className="text-5xl font-extrabold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#26BF64] to-[#1C3C6D]">
-      About Us
-    </h2>
-
-    <div className="flex flex-col md:flex-row items-center gap-10 mt-10">
-      <div className="flex-shrink-0">
-        <motion.img
-          src="logos/Logo.png" // replace with your brand icon or relevant image
-          alt="Skyman Icon"
-          className="w-32 h-32 border-4 border-[#26BF64] shadow-lg"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        />
-      </div>
-
-      <div className="text-center md:text-left">
-        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          <span className="font-bold text-[#1C3C6D]">Skyman Investments</span> is a trusted leader in
-          comprehensive financial services, dedicated to helping individuals, families, and businesses
-          achieve their goals with confidence. We specialize in strategic planning, smart investing, and
-          risk management tailored to your journey.
-        </p>
-
-        <div className="mt-6 bg-[#e8f8f0] text-[#1C3C6D] font-medium text-sm p-4 border-l-4 border-[#26BF64] rounded">
-          “Empowering your financial future with integrity, innovation, and trust — that’s our promise.”
+        {/* ABOUT US */}
+        <div className="relative mt-24 max-w-6xl mx-auto px-4" data-aos="fade-up">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#e6f4ec] to-[#f0f6fc] rounded-3xl -z-10 shadow-inner"></div>
+          <div className="p-10 rounded-3xl shadow-xl bg-white/90 backdrop-blur-md border border-gray-200">
+            <h2 className="text-5xl font-extrabold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#26BF64] to-[#1C3C6D]">
+              About Us
+            </h2>
+            <div className="flex flex-col md:flex-row items-center gap-10 mt-10">
+              <div className="flex-shrink-0">
+                <motion.img
+                  src="logos/Logo.png"
+                  alt="Skyman Icon"
+                  className="w-32 h-32 border-4 border-[#26BF64] shadow-lg"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                />
+              </div>
+              <div className="text-center md:text-left">
+                <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
+                  <span className="font-bold text-[#1C3C6D]">Skyman Investments</span> is a trusted leader in
+                  comprehensive financial services, dedicated to helping individuals, families, and businesses
+                  achieve their goals with confidence. We specialize in strategic planning, smart investing, and
+                  risk management tailored to your journey.
+                </p>
+                <div className="mt-6 bg-[#e8f8f0] text-[#1C3C6D] font-medium text-sm p-4 border-l-4 border-[#26BF64] rounded">
+                  “Empowering your financial future with integrity, innovation, and trust — that’s our promise.”
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-
-        {/* Our Values */}
+        {/* OUR GUIDING VALUES */}
         <div className="mt-20 bg-[#f0fdf4] py-16 px-6 rounded-2xl max-w-7xl mx-auto shadow-md" data-aos="fade-up">
-          <h2 className="text-4xl font-bold text-center text-[#1C3C6D] mb-12">Our Values</h2>
+          <h2 className="text-4xl font-bold text-center text-[#1C3C6D] mb-12">Our Guiding Values</h2>
           <div className="grid md:grid-cols-4 gap-6 text-center">
             <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
               <div className="text-5xl mb-4">🔍</div>
               <h3 className="text-xl font-bold mb-2 text-[#26BF64]">Integrity</h3>
-              <p className="text-sm text-gray-600">We uphold honesty and transparency in all our actions.</p>
+              <p className="text-sm text-gray-600">We hold ourselves to the highest standards of honesty and ethical conduct.</p>
             </div>
             <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
               <div className="text-5xl mb-4">🎯</div>
               <h3 className="text-xl font-bold mb-2 text-[#26BF64]">Commitment</h3>
-              <p className="text-sm text-gray-600">Your goals are our goals — we work relentlessly for you.</p>
+              <p className="text-sm text-gray-600">We are devoted to our clients’ long-term financial well-being.</p>
             </div>
             <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
               <div className="text-5xl mb-4">🏆</div>
               <h3 className="text-xl font-bold mb-2 text-[#26BF64]">Excellence</h3>
-              <p className="text-sm text-gray-600">We strive for exceptional quality in every interaction.</p>
+              <p className="text-sm text-gray-600">Every service we offer is executed with precision and professionalism.</p>
             </div>
             <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
               <div className="text-5xl mb-4">🤝</div>
               <h3 className="text-xl font-bold mb-2 text-[#26BF64]">Trust</h3>
-              <p className="text-sm text-gray-600">We build lasting relationships based on trust and care.</p>
+              <p className="text-sm text-gray-600">Built through transparency, consistency, and results.</p>
             </div>
           </div>
         </div>
-        
-        {/* Testimonials */}
-<div className="mt-20 bg-gradient-to-r from-[#e0f7ec] to-[#f0f4fd] py-16 px-6 rounded-2xl max-w-7xl mx-auto shadow-md" data-aos="fade-up">
-  <h2 className="text-4xl font-bold text-center text-[#1C3C6D] mb-12">What Our Clients Say</h2>
-  <div className="grid md:grid-cols-3 gap-6 text-center">
-    {[
-      {
-        quote: "Skyman’s personalized financial advice changed my life. I feel secure about my future now.",
-        name: "Ananya M.",
-        title: "Entrepreneur"
-      },
-      {
-        quote: "Their strategies helped me manage risk smartly. Transparent and very professional.",
-        name: "Ravi K.",
-        title: "Senior Engineer"
-      },
-      {
-        quote: "From insurance to investments, Skyman is my trusted partner for all financial matters.",
-        name: "Meera J.",
-        title: "Freelancer"
-      }
-    ].map((testimonial, i) => (
-      <div key={i} className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-        <p className="italic text-gray-700 mb-4">“{testimonial.quote}”</p>
-        <div className="text-[#26BF64] font-semibold">{testimonial.name}</div>
-        <div className="text-sm text-gray-500">{testimonial.title}</div>
-      </div>
-    ))}
-  </div>
-</div>
-<ExtraSections />
 
-{/* FAQ Section */}
-<section className="py-24 " data-aos="fade-up">
-  <div className="max-w-5xl mx-auto px-6">
-    <h2 className="text-4xl font-bold text-[#1C3C6D] mb-12 text-center">Frequently Asked Questions</h2>
-    <div className="space-y-4">
-      {[
-        {
-          q: "How do I open a Demat account?",
-          a: "You can open a Demat account by contacting our support team. We'll help you fill out the application, verify your KYC documents, and get started in no time.",
-        },
-        {
-          q: "What is the minimum amount I need to invest?",
-          a: "There is no minimum investment required. You can start with any amount you're comfortable with. Our advisors will guide you based on your financial goals.",
-        },
-        {
-          q: "Do you offer customized investment plans?",
-          a: "Absolutely. We tailor our investment strategies based on your age, income, risk appetite, and long-term objectives.",
-        },
-        {
-          q: "Is my investment safe with Skyman Investments?",
-          a: "Yes, we prioritize your security and only work with SEBI-registered financial institutions. Your investments are tracked and reported with complete transparency.",
-        },
-        {
-          q: "What support do I get after investing?",
-          a: "We offer ongoing support including portfolio reviews, tax planning help, insurance advice, and 24/7 support through our client portal.",
-        },
-      ].map((faq, i) => (
-        <details
-          key={i}
-          className="group border border-gray-200 rounded-xl p-5 bg-white hover:shadow-lg transition duration-300"
-        >
-          <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-[#26BF64]">
-            <span>{faq.q}</span>
-            <svg
-              className="w-5 h-5 text-[#1C3C6D] transition-transform duration-300 group-open:rotate-180"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </summary>
-          <p className="mt-3 text-gray-700 leading-relaxed">{faq.a}</p>
-        </details>
-      ))}
-    </div>
+        {/* TESTIMONIALS */}
+        <div className="mt-20 bg-gradient-to-r from-[#e0f7ec] to-[#f0f4fd] py-16 px-6 rounded-2xl max-w-7xl mx-auto shadow-md" data-aos="fade-up">
+          <h2 className="text-4xl font-bold text-center text-[#1C3C6D] mb-12">What Our Clients Say</h2>
+          <div className="grid md:grid-cols-3 gap-6 text-center">
+            {[
+              {
+                quote: "Skyman’s personalized financial advice changed my life. I feel secure about my future now.",
+                name: "Ananya M.",
+                title: "Entrepreneur"
+              },
+              {
+                quote: "Their strategies helped me manage risk smartly. Transparent and very professional.",
+                name: "Ravi K.",
+                title: "Senior Engineer"
+              },
+              {
+                quote: "From insurance to investments, Skyman is my trusted partner for all financial matters.",
+                name: "Meera J.",
+                title: "Freelancer"
+              }
+            ].map((testimonial, i) => (
+              <div key={i} className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                <p className="italic text-gray-700 mb-4">“{testimonial.quote}”</p>
+                <div className="text-[#26BF64] font-semibold">{testimonial.name}</div>
+                <div className="text-sm text-gray-500">{testimonial.title}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FAQ SECTION */}
+        <section className="py-24 " data-aos="fade-up">
+          <div className="max-w-5xl mx-auto px-6">
+            <h2 className="text-4xl font-bold text-[#1C3C6D] mb-12 text-center">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {[
+                {
+                  q: "How do I open a Demat account?",
+                  a: "You can open a Demat account by contacting our support team. We'll help you fill out the application, verify your KYC documents, and get started in no time.",
+                },
+                {
+                  q: "What is the minimum amount I need to invest?",
+                  a: "There is no minimum investment required. You can start with any amount you're comfortable with. Our advisors will guide you based on your financial goals.",
+                },
+                {
+                  q: "Do you offer customized investment plans?",
+                  a: "Absolutely. We tailor our investment strategies based on your age, income, risk appetite, and long-term objectives.",
+                },
+                {
+                  q: "Is my investment safe with Skyman Investments?",
+                  a: "Yes, we prioritize your security and only work with SEBI-registered financial institutions. Your investments are tracked and reported with complete transparency.",
+                },
+                {
+                  q: "What support do I get after investing?",
+                  a: "We offer ongoing support including portfolio reviews, tax planning help, insurance advice, and 24/7 support through our client portal.",
+                },
+              ].map((faq, i) => (
+                <details
+                  key={i}
+                  className="group border border-gray-200 rounded-xl p-5 bg-white hover:shadow-lg transition duration-300"
+                >
+                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-[#26BF64]">
+                    <span>{faq.q}</span>
+                    <svg
+                      className="w-5 h-5 text-[#1C3C6D] transition-transform duration-300 group-open:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  <p className="mt-3 text-gray-700 leading-relaxed">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+{/* CALL TO ACTION */}
+<section
+  className="relative mt-16 rounded-3xl max-w-4xl mx-auto py-16 px-6 text-center bg-gradient-to-r from-[#1C3C6D] to-[#14532d] text-white shadow-2xl overflow-hidden"
+  data-aos="fade-up"
+>
+  {/* Background animated circles */}
+  <div className="absolute top-[-30px] left-[-30px] w-56 h-56 rounded-full bg-green-700 opacity-40 animate-pulse-slow blur-3xl pointer-events-none"></div>
+  <div className="absolute bottom-[-40px] right-[-30px] w-72 h-72 rounded-full bg-green-800 opacity-30 animate-pulse-slow blur-2xl pointer-events-none"></div>
+
+  {/* Heading with glowing shadow */}
+  <h2 className="relative text-3xl sm:text-4xl font-extrabold mb-6 tracking-wide drop-shadow-[0_0_10px_rgba(38,191,100,0.8)]">
+    <span className="inline-flex items-center justify-center gap-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-6 w-6 text-green-400 animate-bounce"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+        aria-hidden="true"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+      Let’s Shape Your Financial Future – Together
+    </span>
+  </h2>
+
+  {/* Paragraph with subtle text shadow */}
+  <p className="text-base sm:text-lg max-w-3xl mx-auto leading-relaxed text-gray-200 drop-shadow-md mb-6">
+    Your financial journey deserves a partner who listens, plans, and acts in your best interest.
+    <br />
+    <span className="font-semibold text-white">
+      At Skyman Investments, we’re more than advisors—we’re your dedicated financial allies.
+    </span>
+  </p>
+
+  {/* Contact details with divider */}
+  <div className="mx-auto max-w-sm text-gray-300 text-sm space-y-4 border-t border-b border-green-500 py-6">
+    <p>
+      <span className="font-semibold">Visit Us:</span> F2, Ashok Manor, 4, Annai Nagar, Selaiyur, Chennai – 600073
+    </p>
+    <p>
+      <span className="font-semibold">Email:</span>{" "}
+      <a href="mailto:info@skymaninvestments.com" className="underline hover:text-green-400 transition">
+        info@skymaninvestments.com
+      </a>
+    </p>
+    <p>
+      <span className="font-semibold">Call Us:</span>{" "}
+      <a href="tel:+919840885001" className="underline hover:text-green-400 transition">
+        +91-9840885001
+      </a>
+    </p>
   </div>
+
+  {/* Call to Action Text */}
+  <p className="mt-10 max-w-2xl mx-auto text-base font-semibold text-white drop-shadow-lg">
+    Schedule a Free Consultation today and take the first step towards a secure and successful financial future.
+  </p>
+
+  {/* Button with gradient and shining effect */}
+  <Link
+    to="/contact"
+    aria-label="Contact Skyman Investments"
+    className="mt-8 inline-block px-10 py-3 rounded-full font-semibold text-base uppercase tracking-wide bg-gradient-to-r from-green-400 via-green-600 to-green-500 shadow-lg shadow-green-500/60 relative overflow-hidden transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300"
+  >
+    <span className="relative z-10">Contact Us</span>
+
+    {/* Shining animation overlay */}
+    <span
+      aria-hidden="true"
+      className="absolute top-0 left-[-75%] h-full w-3/4 bg-white opacity-20 blur-xl transform rotate-12 transition-all duration-700 group-hover:left-full"
+    ></span>
+  </Link>
 </section>
 
-        {/* Get in Touch */}
-        <div className="mt-20 bg-[#1C3C6D] text-white py-16 px-6 rounded-2xl max-w-6xl mx-auto text-center shadow-lg" data-aos="fade-up">
-          <h2 className="text-4xl font-bold mb-6">Get in Touch</h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto">
-            Ready to take the next step in your financial journey? Whether you're just starting or seeking expert advice, we’re here to help.
-            Schedule your consultation with our professionals today.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-block bg-[#26BF64] hover:bg-white hover:text-[#1C3C6D] text-white border border-white px-6 py-3 rounded-full font-semibold transition duration-300"
-          >
-            Contact Us
-          </Link>
-        </div>
+
       </section>
     </div>
   );
 }
-   

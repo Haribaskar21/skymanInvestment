@@ -26,6 +26,7 @@ import InsuranceServices from './pages/InsuranceServices';
 import FinancialPlanning from './pages/FinancialPlanning';
 import MutualFundAdvisor from './pages/MutualFundAdvisor';
 import BondsPage from './pages/BondsPage';
+import TaxServices from './pages/TaxServices';
 import AdminLogin from './pages/admin/AdminLogin';
 import Dashboard from './pages/admin/AdminDashboard';
 import AdminMetaManage from './pages/admin/AdminMetaManage';
@@ -96,6 +97,7 @@ export default function App() {
           <Route path="/financial-planning" element={<FinancialPlanning />} />
           <Route path="/mutual-funds" element={<MutualFundAdvisor />} />
           <Route path="/bonds" element={<BondsPage />} />
+          <Route path="/tax-services" element={<TaxServices />} />
           <Route path="/calculators/sip-calculator" element={<SipCalculator />} />
           <Route path="/calculators/lumpsum" element={<LumpsumCalculator />} />
           <Route path="/calculators/loan-amortization" element={<LoanAmortizationPage />} />

@@ -77,7 +77,7 @@ export default function ExtraSections() {
         </div>
       </section>
 
-      {/* --- Meet Our Team --- */}
+      {/* --- Meet Our Team ---
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto text-center mb-14">
           <motion.h2
@@ -121,7 +121,7 @@ export default function ExtraSections() {
             </motion.div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* --- Pricing Plans --- */}
       <section className="py-20 bg-[#F8F9FC]">

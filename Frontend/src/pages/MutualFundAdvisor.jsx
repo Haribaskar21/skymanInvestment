@@ -9,7 +9,7 @@ const MutualFundAdvisor = () => {
   }, []);
 
   return (
-    <div className="text-[#1C3C6D] py-10 px-4 bg-white">
+    <div className="text-[#1C3C6D] px-4 bg-white">
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}

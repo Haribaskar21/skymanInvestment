@@ -17,49 +17,53 @@ export default function OffersPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Insurance Offers
+        OFFER
       </motion.h1>
 
       <div className="max-w-5xl mx-auto bg-[#e6f0e9] rounded-xl p-8 space-y-8 shadow-lg">
-        {/* Uncomment and replace with your image if needed
-        <img
-          src="https://cdn.pixabay.com/photo/2017/10/10/21/46/insurance-2836389_1280.jpg"
-          alt="Insurance Offers"
-          className="rounded-xl w-full mb-6"
-          data-aos="zoom-in"
-        /> 
-        */}
-
         <div data-aos="fade-up">
-          <h2 className="text-2xl font-semibold mb-3 text-[#1C3C6D]">Why buy insurance from us?</h2>
-          <p className="text-[#3a5555]">
-            We offer personalized insurance plans with competitive rates, cashback offers, and complete assistance.
+          <h2 className="text-2xl font-semibold mb-3 text-[#1C3C6D]">Why Buy Insurance from Us?</h2>
+          <p className="font-medium text-[#26BF64] mb-1">
+            Secure Your Future with Confidence — We’ve Got You Covered!
           </p>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="100">
-          <h2 className="text-2xl font-semibold mb-3 text-[#1C3C6D]">Types of Insurance Available:</h2>
-          <ul className="list-disc list-inside space-y-2 text-[#3a5555]">
+        <div data-aos="fade-up" data-aos-delay="50">
+          <h2 className="text-2xl font-semibold mb-3 text-[#1C3C6D]">Types of Insurance We Offer:</h2>
+          <ul className="list-disc list-inside space-y-1 text-[#3a5555]">
             <li>Vehicle Insurance</li>
             <li>Health Insurance</li>
             <li>Term Insurance</li>
-            <li>Corporate Insurance - Health/Term/Accident</li>
+            <li>Corporate Insurance (Health / Term / Accident)</li>
             <li>Key Person Insurance</li>
             <li>Shopkeepers Policy</li>
           </ul>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="200">
-          <p className="mt-4 text-[#3a5555]">
-            Please send us the quote you received from other vendors. We will match that and offer you the cashback.
-          </p>
+        <div data-aos="fade-up" data-aos-delay="100" className="rounded-xl bg-[#d9f6df] p-4 shadow">
+          <h3 className="text-xl font-semibold text-[#1C3C6D] mb-2">Exclusive Cashback Offers Just for You!</h3>
+          <ul className="list-disc list-inside space-y-1 text-[#274157]">
+            <li><strong>Get 10% Cashback on Term Insurance</strong></li>
+            <li><strong>Get 5% Cashback on Health &amp; Vehicle Insurance</strong></li>
+          </ul>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="300" className="space-y-2 text-[#3a5555]">
-          <p><strong>🎯 10% Cashback</strong> on Term insurance</p>
-          <p><strong>🚗 5% Cashback</strong> on Health and Vehicle insurance</p>
-          <p><strong>🎯 Customized quotes</strong> based on your budget</p>
-          <p><strong>📋 End-to-end support</strong> until policy issuance</p>
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h3 className="text-2xl font-semibold mb-3 text-[#1C3C6D]">Why Choose Us?</h3>
+          <ul className="list-none space-y-2 text-[#274157]">
+            <li>✔ <strong>We Match Any Quote</strong> – Share your vendor quote &amp; we’ll match it!</li>
+            <li>✔ <strong>Cashback Guarantee</strong> – Get cashback straight to your account</li>
+            <li>✔ <strong>Customized Quotes</strong> – Tailored insurance plans as per your budget</li>
+            <li>✔ <strong>End-to-End Support</strong> – From quote to policy issuance, we’re with you</li>
+          </ul>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="250" className="py-4">
+          <div className="rounded-xl bg-[#eafaf4] py-4 px-3 text-center text-[#345a48] font-semibold text-lg">
+            Send Us Your Quote Now &amp; Get the Best Deal Instantly!
+            <br />
+            <span className="text-[#1C3C6D] font-normal">Let us beat the market for you — savings &amp; support, all in one place!</span>
+          </div>
         </div>
 
         <motion.div

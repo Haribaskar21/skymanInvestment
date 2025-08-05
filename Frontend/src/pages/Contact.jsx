@@ -34,7 +34,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="container mx-auto px-6 py-12">
+    <div className="container mx-auto px-6">
       {/* Header & Contact Info */}
       <section className="py-20 rounded-2xl bg-[#f0f6f3] px-4">
         <div className="max-w-6xl mx-auto">

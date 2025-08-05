@@ -1,11 +1,23 @@
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
 
 export default function Navbar() {
   const [isMoreOpen, setIsMoreOpen] = useState(false); // Desktop More dropdown
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Mobile menu toggle
   const [isMoreMobileOpen, setIsMoreMobileOpen] = useState(false); // Mobile More dropdown
+  const moreRef = useRef(null);
+
+  // Close 'More' dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (moreRef.current && !moreRef.current.contains(event.target)) {
+        setIsMoreOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <motion.header
@@ -19,12 +31,12 @@ export default function Navbar() {
         <div className="flex items-center">
           <img src="logos/Logo.png" alt="Skyman Investments Logo" className="h-25 w-auto" />
           <div>
-<Link
-  to="/"
-  className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#26BF64] to-[#1C3C6D]"
->
-  Skyman Investments
-</Link>
+            <Link
+              to="/"
+              className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#26BF64] to-[#1C3C6D]"
+            >
+              Skyman Investments
+            </Link>
           </div>
         </div>
 
@@ -60,16 +72,23 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
-          {/* More Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setIsMoreOpen(true)}
-            onMouseLeave={() => setIsMoreOpen(false)}
-          >
+          {/* More Dropdown - click to toggle */}
+          <div className="relative" ref={moreRef}>
             <motion.span
               className="cursor-pointer hover:text-[#26BF64] transition select-none"
               whileHover={{ scale: 1.1 }}
               transition={{ type: 'spring', stiffness: 300 }}
+              onClick={() => setIsMoreOpen(prev => !prev)}
+              aria-expanded={isMoreOpen}
+              aria-haspopup="menu"
+              role="button"
+              tabIndex={0}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setIsMoreOpen(prev => !prev);
+                }
+              }}
             >
               More ▾
             </motion.span>
@@ -82,17 +101,18 @@ export default function Navbar() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
                   className="absolute top-8 left-0 bg-white shadow-lg border rounded-md p-4 w-64 grid grid-cols-2 gap-3 text-sm z-50"
+                  role="menu"
                 >
-                  <Link to="/privacy-policy" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
+                  <Link to="/privacy-policy" className="text-[#1C3C6D] hover:text-[#26BF64] transition" role="menuitem">
                     Privacy Policy
                   </Link>
-                  <Link to="/terms" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
+                  <Link to="/terms" className="text-[#1C3C6D] hover:text-[#26BF64] transition" role="menuitem">
                     Terms & Conditions
                   </Link>
-                  <Link to="/refund-policy" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
+                  <Link to="/refund-policy" className="text-[#1C3C6D] hover:text-[#26BF64] transition" role="menuitem">
                     Refund Policy
                   </Link>
-                  <Link to="/offers" className="text-[#1C3C6D] hover:text-[#26BF64] transition">
+                  <Link to="/offers" className="text-[#1C3C6D] hover:text-[#26BF64] transition" role="menuitem">
                     Offers
                   </Link>
                 </motion.div>
