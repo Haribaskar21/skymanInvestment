@@ -32,7 +32,7 @@
     "aos": "^2.3.4",
     "axios": "^1.9.0",
     "emoji-picker-react": "^4.12.2",
-    "framer-motion": "^12.12.2",
+    "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
     "jwt-decode": "^4.0.0",
     "lexical": "^0.31.2",
@@ -43,6 +43,7 @@
     "react-email-editor": "^1.7.11",
     "react-hot-toast": "^2.5.2",
     "react-icons": "^5.5.0",
+    "react-parallax-tilt": "^1.7.304",
     "react-router-dom": "^7.6.0",
     "tailwindcss": "^4.1.7"
   },

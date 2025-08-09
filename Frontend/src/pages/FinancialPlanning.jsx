@@ -2,10 +2,67 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+// Section Card for each financial planning section
+const SectionCard = ({ section, idx }) => (
+  <section
+    className={`
+      relative 
+      bg-gradient-to-tr from-white via-[#f3f7fb] to-[#e7ecf7]
+      rounded-3xl shadow-xl border border-blue-100
+      p-7 md:p-10 mb-10
+      transition-transform duration-300
+      hover:scale-[1.02]
+    `}
+    data-aos={idx % 2 === 0 ? "fade-right" : "fade-left"}
+  >
+    <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C3C6D] mb-4 tracking-tight flex items-center gap-2">
+      {section.title}
+    </h2>
+    {section.content && (
+      <p className="text-gray-700 text-lg md:text-xl mb-6 leading-relaxed">
+        {section.content}
+      </p>
+    )}
+
+    {section.list && (
+      <ul className="list-disc pl-6 space-y-3 text-gray-700 text-base md:text-lg marker:text-blue-400">
+        {section.list.map((item, i) => (
+          <li
+            key={i}
+            className="transition-colors duration-200 hover:text-[#1C3C6D]"
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {section.button && (
+      <a
+        href={section.button.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`
+          inline-block mt-8 px-8 py-3
+          rounded-full
+          bg-gradient-to-br from-green-600 via-green-500 to-green-700
+          text-white font-extrabold text-lg shadow-lg
+          hover:scale-105 focus:scale-105 transition-all duration-200
+          hover:from-green-700 hover:to-green-600
+        `}
+      >
+        {section.button.label}
+      </a>
+    )}
+  </section>
+);
+
 const FinancialPlanning = () => {
   useEffect(() => {
     AOS.init({ duration: 900, once: true });
   }, []);
+
+  // ...same sections as before...
 
   const sections = [
     {
@@ -138,44 +195,28 @@ const FinancialPlanning = () => {
   ];
 
   return (
-    <div className="px-4 md:px-20 max-w-7xl mx-auto py-12">
-      <h1 className="text-4xl font-bold text-[#1C3C6D] mb-14 text-center">
-        Financial Planning Services
-      </h1>
-
-      {sections.map((section, idx) => (
-        <div
-          key={idx}
-          className="mb-12 p-10 rounded-3xl border border-blue-100 bg-white shadow-lg"
-          data-aos={idx % 2 === 0 ? "fade-right" : "fade-left"}
+    <main className="max-w-5xl mx-auto px-4 sm:px-6 md:px-12 lg:px-8">
+      {/* Header */}
+      <header className="mb-16 text-center" data-aos="fade-down">
+        <h1
+          className="
+          text-4xl md:text-5xl font-black
+          text-transparent bg-clip-text bg-gradient-to-r from-[#26BF64] to-[#1C3C6D]
+          tracking-tight drop-shadow-sm
+          "
         >
-          <h2 className="text-3xl font-semibold text-blue-900 mb-6">{section.title}</h2>
+          Financial Planning Services
+        </h1>
+        <div className="w-20 mx-auto mt-4 h-1.5 rounded bg-gradient-to-r from-sky-400 to-[#1C3C6D] opacity-80 animate-pulse" />
+      </header>
 
-          {section.content && (
-            <p className="text-gray-700 text-lg mb-6 leading-relaxed">{section.content}</p>
-          )}
-
-          {section.list && (
-            <ul className="list-disc pl-6 space-y-3 text-gray-700">
-              {section.list.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          )}
-
-          {section.button && (
-            <a
-              href={section.button.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-8 px-8 py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition"
-            >
-              {section.button.label}
-            </a>
-          )}
-        </div>
-      ))}
-    </div>
+      {/* Section Cards */}
+      <div>
+        {sections.map((section, idx) => (
+          <SectionCard section={section} idx={idx} key={idx} />
+        ))}
+      </div>
+    </main>
   );
 };
 

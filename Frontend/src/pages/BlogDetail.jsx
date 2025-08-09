@@ -21,7 +21,10 @@ export default function BlogDetail() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin h-12 w-12 border-4 border-indigo-500 border-t-transparent rounded-full" />
+        <div
+          className="animate-spin h-12 w-12 border-4 border-[#1C3C6D] border-t-transparent rounded-full"
+          aria-label="Loading spinner"
+        />
       </div>
     );
   }
@@ -30,7 +33,10 @@ export default function BlogDetail() {
     return (
       <div className="text-center py-16">
         <p className="text-lg text-gray-600 mb-4">Oops! Blog post not found.</p>
-        <Link to="/blog" className="inline-flex items-center px-6 py-3 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition">
+        <Link
+          to="/blog"
+          className="inline-flex items-center px-6 py-3 bg-[#1C3C6D] text-white rounded-lg hover:bg-[#14406e] transition"
+        >
           ← Back to Blog
         </Link>
       </div>
@@ -56,6 +62,7 @@ export default function BlogDetail() {
           }
           alt={blog.title}
           className="w-full h-full object-cover object-center"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
         <h1 className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 text-white text-3xl sm:text-5xl font-extrabold leading-tight max-w-4xl drop-shadow-xl">
@@ -65,9 +72,20 @@ export default function BlogDetail() {
 
       {/* Meta Info */}
       <div className="px-8 pt-8 text-sm text-gray-600 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b pb-6">
-        <div className="flex items-center gap-2 text-indigo-600 font-medium">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-7H3v7a2 2 0 002 2z" />
+        <div className="flex items-center gap-2 text-[#1C3C6D] font-medium">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-7H3v7a2 2 0 002 2z"
+            />
           </svg>
           {new Date(blog.date).toLocaleDateString(undefined, {
             year: 'numeric',
@@ -79,7 +97,7 @@ export default function BlogDetail() {
         {/* Category + Tags */}
         <div className="flex flex-wrap items-center gap-3">
           {/* Category */}
-          <span className="inline-block bg-gradient-to-r from-indigo-100 to-indigo-200 text-indigo-800 px-4 py-1.5 rounded-full font-semibold text-sm uppercase tracking-wide shadow-sm">
+          <span className="inline-block bg-gradient-to-r from-[#d9e8fb] to-[#bbd3f9] text-[#1C3C6D] px-4 py-1.5 rounded-full font-semibold text-sm uppercase tracking-wide shadow-sm">
             {blog.categoryName && blog.categoryName !== 'Uncategorized' ? blog.categoryName : 'General'}
           </span>
 
@@ -87,7 +105,8 @@ export default function BlogDetail() {
           {blog.tags?.length > 0 && blog.tags.map(tag => (
             <span
               key={tag}
-              className="bg-gray-100 text-gray-700 border border-gray-300 px-3 py-1.5 rounded-full text-sm font-medium shadow-sm hover:bg-gray-200 transition"
+              className="bg-[#e6f1ea] text-[#26BF64] border border-[#26BF64] px-3 py-1.5 rounded-full text-sm font-medium shadow-sm cursor-default select-none"
+              title={tag}
             >
               #{typeof tag === 'string' && tag.length < 20 ? tag : 'Tag'}
             </span>
@@ -96,16 +115,15 @@ export default function BlogDetail() {
       </div>
 
       {/* Content */}
-      <div className="px-8 py-10 max-w-none leading-relaxed space-y-4 text-gray-800 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:mb-2">
-  <div dangerouslySetInnerHTML={{ __html: blog.content }} />
-</div>
-
+      <article className="px-8 py-10 max-w-none leading-relaxed space-y-6 text-gray-800 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:mb-2">
+        <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+      </article>
 
       {/* Back Button */}
       <div className="px-8 pb-10">
         <Link
           to="/blog"
-          className="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-semibold transition group"
+          className="inline-flex items-center text-[#1C3C6D] hover:text-[#26BF64] font-semibold transition group"
         >
           <svg
             className="w-5 h-5 mr-2 transition-transform transform group-hover:-translate-x-1"
@@ -113,8 +131,10 @@ export default function BlogDetail() {
             stroke="currentColor"
             strokeWidth="2"
             viewBox="0 0 24 24"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            <path d="M15 19l-7-7 7-7" />
           </svg>
           Back to Blog
         </Link>
